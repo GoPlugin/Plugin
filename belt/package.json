@@ -34,7 +34,7 @@
     "shelljs": "^0.8.3",
     "ts-generator": "^0.1.1",
     "tslib": "^2.1.0",
-    "typechain": "^4.0.1"
+    "typechain": "^5.1.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
