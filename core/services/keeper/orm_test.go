@@ -4,16 +4,16 @@ import (
 	"context"
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager"
-	bptxmmocks "github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager/mocks"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
+	bptxmmocks "github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager/mocks"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/store/models"
 	"gorm.io/gorm"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/services/keeper"
-	"github.com/smartcontractkit/chainlink/core/store"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/services/keeper"
+	"github.com/GoPlugin/Plugin/core/store"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -15,7 +15,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	gethParams "github.com/ethereum/go-ethereum/params"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 	"golang.org/x/tools/go/ast/astutil"
 )
 
@@ -92,7 +92,7 @@ func ImproveAbigenOutput(path string, abiPath string) {
 	logNames := getLogNames(fileNode)
 	if len(logNames) > 0 {
 		astutil.AddImport(fset, fileNode, "fmt")
-		astutil.AddImport(fset, fileNode, "github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated")
+		astutil.AddImport(fset, fileNode, "github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated")
 	}
 	contractName := getContractName(fileNode)
 	fileNode = addContractStructFields(contractName, fileNode)

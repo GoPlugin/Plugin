@@ -3,7 +3,7 @@ package pipeline
 import (
 	"gorm.io/gorm"
 
-	"github.com/smartcontractkit/chainlink/core/services/eth"
+	"github.com/GoPlugin/Plugin/core/services/eth"
 )
 
 var (

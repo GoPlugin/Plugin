@@ -21,8 +21,8 @@ import (
 
 	"github.com/tidwall/gjson"
 
-	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/internal/gethwrappers"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 func main() {

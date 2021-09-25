@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/utils"
 
 	"github.com/stretchr/testify/assert"
 )

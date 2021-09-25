@@ -10,9 +10,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/onsi/gomega"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/services/synchronization"
-	"github.com/smartcontractkit/chainlink/core/static"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/services/synchronization"
+	"github.com/GoPlugin/Plugin/core/static"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

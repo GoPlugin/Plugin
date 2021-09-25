@@ -8,8 +8,8 @@ import (
 	"os"
 
 	"github.com/pkg/errors"
-	"github.com/smartcontractkit/chainlink/core/utils"
-	"github.com/smartcontractkit/chainlink/core/web/presenters"
+	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/GoPlugin/Plugin/core/web/presenters"
 	"github.com/urfave/cli"
 	"go.uber.org/multierr"
 )

@@ -8,21 +8,21 @@ import (
 	"sync"
 	"time"
 
-	httypes "github.com/smartcontractkit/chainlink/core/services/headtracker/types"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	httypes "github.com/GoPlugin/Plugin/core/services/headtracker/types"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
 	"gopkg.in/guregu/null.v4"
 	"gorm.io/gorm"
 
 	"github.com/pkg/errors"
 
 	"github.com/ethereum/go-ethereum"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/services/eth"
-	"github.com/smartcontractkit/chainlink/core/services/job"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/store/orm"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/services/eth"
+	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 const (

@@ -35,7 +35,7 @@ Note: Contracts in `dev/` directories are under active development and are likel
 
 ```bash
 # Clone Chainlink repository
-$ git clone https://github.com/smartcontractkit/chainlink.git
+$ git clone https://github.com/GoPlugin/Plugin.git
 # Continuing via Yarn
 $ cd contracts/
 $ yarn

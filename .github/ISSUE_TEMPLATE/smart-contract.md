@@ -10,7 +10,7 @@ assignees: ''
 [replace this line with a clear and concise description of the smart contract issue you are experiencing]
 
 **Basic Information**
-[replace this line with basic information about the issue you are experiencing, including but not limited to the names of the smart contract files and the version of the Chainlink software repository in which they are found, contract addresses, transaction IDs, etc.]
+[replace this line with basic information about the issue you are experiencing, including but not limited to the names of the smart contract files and the version of the Plugin software repository in which they are found, contract addresses, transaction IDs, etc.]
 
 **Steps to Reproduce**
 [replace this line with detailed steps to reproduce the issue you are experiencing]

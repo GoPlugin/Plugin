@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/lib/pq"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/services/feeds"
-	"github.com/smartcontractkit/chainlink/core/utils/crypto"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/services/feeds"
+	"github.com/GoPlugin/Plugin/core/utils/crypto"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

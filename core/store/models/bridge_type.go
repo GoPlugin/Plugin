@@ -7,8 +7,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/assets"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/assets"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // BridgeTypeRequest is the incoming record used to create a BridgeType

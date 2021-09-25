@@ -9,19 +9,19 @@ import (
 	"github.com/onsi/gomega"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/store/models"
 
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"gorm.io/gorm"
 
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest/heavyweight"
-	"github.com/smartcontractkit/chainlink/core/services/job"
-	"github.com/smartcontractkit/chainlink/core/services/job/mocks"
-	"github.com/smartcontractkit/chainlink/core/services/offchainreporting"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/internal/cltest/heavyweight"
+	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/GoPlugin/Plugin/core/services/job/mocks"
+	"github.com/GoPlugin/Plugin/core/services/offchainreporting"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
 	"gopkg.in/guregu/null.v4"
 )
 

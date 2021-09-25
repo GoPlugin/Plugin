@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"testing"
 
-	bm "github.com/smartcontractkit/chainlink/core/utils/big_math"
+	bm "github.com/GoPlugin/Plugin/core/utils/big_math"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -11,9 +11,9 @@ import (
 	"go.uber.org/multierr"
 	"gorm.io/gorm"
 
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 type ETHTxTask struct {

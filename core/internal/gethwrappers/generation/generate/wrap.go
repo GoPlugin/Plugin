@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	gethParams "github.com/ethereum/go-ethereum/params"
-	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers"
+	"github.com/GoPlugin/Plugin/core/internal/gethwrappers"
 )
 
 func main() {

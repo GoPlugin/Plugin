@@ -3,10 +3,10 @@ package keeper
 import (
 	"reflect"
 
-	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/keeper_registry_wrapper"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/services/log"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/keeper_registry_wrapper"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/services/log"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 func (rs *RegistrySynchronizer) JobID() models.JobID {

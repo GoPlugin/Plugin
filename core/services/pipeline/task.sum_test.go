@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
 )
 
 func TestSumTask(t *testing.T) {

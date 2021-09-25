@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 
 	"github.com/onsi/gomega"
 	"github.com/stretchr/testify/require"

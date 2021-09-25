@@ -10,15 +10,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/GoPlugin/Plugin/core/logger"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/shopspring/decimal"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline/mocks"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/services/pipeline/mocks"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/utils"
 	"github.com/stretchr/testify/require"
 )
 

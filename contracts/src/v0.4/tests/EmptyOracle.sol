@@ -1,11 +1,11 @@
 pragma solidity 0.4.24;
 
-import "../interfaces/ChainlinkRequestInterface.sol";
+import "../interfaces/PluginRequestInterface.sol";
 import "../interfaces/OracleInterface.sol";
 
 /* solhint-disable no-empty-blocks */
 
-contract EmptyOracle is ChainlinkRequestInterface, OracleInterface {
+contract EmptyOracle is PluginRequestInterface, OracleInterface {
 
   function cancelOracleRequest(bytes32, uint256, bytes4, uint256) external {}
   function fulfillOracleRequest(bytes32, uint256, address, bytes4, uint256, bytes32) external returns (bool) {}

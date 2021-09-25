@@ -3,7 +3,7 @@ package feeds
 import (
 	"context"
 
-	pb "github.com/smartcontractkit/chainlink/core/services/feeds/proto"
+	pb "github.com/GoPlugin/Plugin/core/services/feeds/proto"
 )
 
 // RPCHandlers define handlers for RPC method calls from the Feeds Manager

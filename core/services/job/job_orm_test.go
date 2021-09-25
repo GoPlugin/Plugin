@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/services/offchainreporting"
-	"github.com/smartcontractkit/chainlink/core/services/vrf"
-	"github.com/smartcontractkit/chainlink/core/testdata/testspecs"
+	"github.com/GoPlugin/Plugin/core/services/offchainreporting"
+	"github.com/GoPlugin/Plugin/core/services/vrf"
+	"github.com/GoPlugin/Plugin/core/testdata/testspecs"
 
-	"github.com/smartcontractkit/chainlink/core/services/directrequest"
+	"github.com/GoPlugin/Plugin/core/services/directrequest"
 
 	gormpostgres "gorm.io/driver/postgres"
 
@@ -20,13 +20,13 @@ import (
 	"github.com/stretchr/testify/require"
 	"gorm.io/gorm"
 
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest/heavyweight"
-	"github.com/smartcontractkit/chainlink/core/internal/mocks"
-	"github.com/smartcontractkit/chainlink/core/services/job"
-	"github.com/smartcontractkit/chainlink/core/services/keeper"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/internal/cltest/heavyweight"
+	"github.com/GoPlugin/Plugin/core/internal/mocks"
+	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/GoPlugin/Plugin/core/services/keeper"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
 )
 
 func TestORM(t *testing.T) {

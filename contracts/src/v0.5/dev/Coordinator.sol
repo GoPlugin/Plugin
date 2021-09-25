@@ -1,21 +1,21 @@
 pragma solidity 0.5.0;
 
 import "./CoordinatorInterface.sol";
-import "../interfaces/ChainlinkRequestInterface.sol";
-import "../interfaces/LinkTokenInterface.sol";
-import "../vendor/SafeMathChainlink.sol";
+import "../interfaces/PluginRequestInterface.sol";
+import "../interfaces/PliTokenInterface.sol";
+import "../vendor/SafeMathPlugin.sol";
 import "./ServiceAgreementDecoder.sol";
 import "./OracleSignaturesDecoder.sol";
 
 
 /**
- * @title The Chainlink Coordinator handles oracle service aggreements between one or more oracles
+ * @title The Plugin Coordinator handles oracle service aggreements between one or more oracles
  */
-contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, ServiceAgreementDecoder, OracleSignaturesDecoder {
-  using SafeMathChainlink for uint256;
+contract Coordinator is PluginRequestInterface, CoordinatorInterface, ServiceAgreementDecoder, OracleSignaturesDecoder {
+  using SafeMathPlugin for uint256;
 
   uint256 constant public EXPIRY_TIME = 5 minutes;
-  LinkTokenInterface internal LINK;
+  PliTokenInterface internal PLI;
 
   struct Callback {
     bytes32 sAId;
@@ -33,12 +33,12 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
   mapping(address => uint256) public withdrawableTokens;
 
   /**
-   * @notice Deploy with the address of the LINK token
-   * @dev Sets the LinkToken address for the imported LinkTokenInterface
-   * @param _link The address of the LINK token
+   * @notice Deploy with the address of the PLI token
+   * @dev Sets the PliToken address for the imported PliTokenInterface
+   * @param _pli The address of the PLI token
    */
-  constructor(address _link) public {
-    LINK = LinkTokenInterface(_link);
+  constructor(address _pli) public {
+    PLI = PliTokenInterface(_pli);
   }
 
   event OracleRequest(
@@ -63,9 +63,9 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
   );
 
   /**
-   * @notice Creates the Chainlink request
+   * @notice Creates the Plugin request
    * @dev Stores the params on-chain in a callback for the request.
-   * Emits OracleRequest event for Chainlink nodes to detect.
+   * Emits OracleRequest event for Plugin nodes to detect.
    * @param _sender The sender of the request
    * @param _amount The amount of payment given (specified in wei)
    * @param _sAId The Service Agreement ID
@@ -86,8 +86,8 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
     bytes calldata _data
   )
     external
-    onlyLINK
-    sufficientLINK(_amount, _sAId)
+    onlyPLI
+    sufficientPLI(_amount, _sAId)
     checkCallbackAddress(_callbackAddress)
     // checkServiceAgreementPresence(_sAId) // TODO: exhausts the stack
   {
@@ -215,7 +215,7 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
   }
 
   /**
-   * @notice Called by the Chainlink node to fulfill requests
+   * @notice Called by the Plugin node to fulfill requests
    * @dev Response must have a valid callback, and will delete the associated callback storage
    * before calling the external contract.
    * @param _requestId The fulfillment request ID that must match the requester's
@@ -251,31 +251,31 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
   }
 
   /**
-   * @dev Allows the oracle operator to withdraw their LINK
+   * @dev Allows the oracle operator to withdraw their PLI
    * @param _recipient is the address the funds will be sent to
-   * @param _amount is the amount of LINK transferred from the Coordinator contract
+   * @param _amount is the amount of PLI transferred from the Coordinator contract
    */
   function withdraw(address _recipient, uint256 _amount)
     external
     hasAvailableFunds(_amount)
   {
     withdrawableTokens[msg.sender] = withdrawableTokens[msg.sender].sub(_amount);
-    assert(LINK.transfer(_recipient, _amount));
+    assert(PLI.transfer(_recipient, _amount));
   }
 
   /**
-   * @dev Necessary to implement ChainlinkRequestInterface
+   * @dev Necessary to implement PluginRequestInterface
    */
   function cancelOracleRequest(bytes32, uint256, bytes4, uint256)
     external
   {} // solhint-disable-line no-empty-blocks
 
   /**
-   * @notice Called when LINK is sent to the contract via `transferAndCall`
+   * @notice Called when PLI is sent to the contract via `transferAndCall`
    * @dev The data payload's first 2 words will be overwritten by the `_sender` and `_amount`
    * values to ensure correctness. Calls oracleRequest.
    * @param _sender Address of the sender
-   * @param _amount Amount of LINK sent (specified in wei)
+   * @param _amount Amount of PLI sent (specified in wei)
    * @param _data Payload of the transaction
    */
   function onTokenTransfer(
@@ -284,8 +284,8 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
     bytes memory _data
   )
     public
-    onlyLINK
-    permittedFunctionsForLINK
+    onlyPLI
+    permittedFunctionsForPLI
   {
     assembly { // solhint-disable-line no-inline-assembly
       mstore(add(_data, 36), _sender) // ensure correct sender is passed
@@ -323,11 +323,11 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
   }
 
   /**
-   * @notice Called when LINK is sent to the contract via `transferAndCall`
+   * @notice Called when PLI is sent to the contract via `transferAndCall`
    * @param _sender Address of the sender
-   * @param _amount Amount of LINK sent (specified in wei)
+   * @param _amount Amount of PLI sent (specified in wei)
    */
-  function depositFunds(address _sender, uint256 _amount) external onlyLINK
+  function depositFunds(address _sender, uint256 _amount) external onlyPLI
   {
     withdrawableTokens[_sender] = withdrawableTokens[_sender].add(_amount);
   }
@@ -342,11 +342,11 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
   }
 
   /**
-   * @dev Reverts if the callback address is the LINK token
+   * @dev Reverts if the callback address is the PLI token
    * @param _to The callback address
    */
   modifier checkCallbackAddress(address _to) {
-    require(_to != address(LINK), "Cannot callback to LINK");
+    require(_to != address(PLI), "Cannot callback to PLI");
     _;
   }
 
@@ -374,7 +374,7 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
    * @param _amount The payment for the request
    * @param _sAId The service agreement ID which the request is for
    */
-  modifier sufficientLINK(uint256 _amount, bytes32 _sAId) {
+  modifier sufficientPLI(uint256 _amount, bytes32 _sAId) {
     require(_amount >= serviceAgreements[_sAId].payment, "Below agreed payment");
     _;
   }
@@ -383,7 +383,7 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
    * @dev Reverts if the given data does not begin with the `oracleRequest` or
    * `depositFunds` function selector
    */
-  modifier permittedFunctionsForLINK() {
+  modifier permittedFunctionsForPLI() {
     bytes4[1] memory funcSelector;
     assembly { // solhint-disable-line no-inline-assembly
       calldatacopy(funcSelector, 132, 4) // grab function selector from calldata
@@ -402,10 +402,10 @@ contract Coordinator is ChainlinkRequestInterface, CoordinatorInterface, Service
   }
 
   /**
-   * @dev Reverts if not sent from the LINK token
+   * @dev Reverts if not sent from the PLI token
    */
-  modifier onlyLINK() {
-    require(msg.sender == address(LINK), "Must use LINK token");
+  modifier onlyPLI() {
+    require(msg.sender == address(PLI), "Must use PLI token");
     _;
   }
 }

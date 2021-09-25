@@ -19,7 +19,7 @@ jobs:
         username: ${{ secrets.DOCKER_READONLY_USERNAME }}
         password: ${{ secrets.DOCKER_READONLY_PASSWORD }}
     env:
-      DATABASE_URL: postgres://chainlink@postgres:5432/chainlink_test?sslmode=disable
+      DATABASE_URL: postgres://plugin@postgres:5432/plugin_test?sslmode=disable
       LOG_LEVEL: debug
     services:
       postgres:
@@ -42,7 +42,7 @@ jobs:
       - name: Set up Postgres user
         uses: docker://postgres
         with:
-          args: psql -v ON_ERROR_STOP=1 --username postgres -h postgres -c "CREATE USER chainlink NOSUPERUSER CREATEDB;"
+          args: psql -v ON_ERROR_STOP=1 --username postgres -h postgres -c "CREATE USER plugin NOSUPERUSER CREATEDB;"
       - name: Install Postgres for CLI tools
         run: wget --quiet -O - https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - && echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list && sudo apt update && sudo apt install -y postgresql-client-13
       - name: Cache Yarn dependencies
@@ -94,7 +94,7 @@ jobs:
     env:
       GETH_MODE: ${{ matrix.node == 'geth' }}
       CI: true
-      CHAINLINK_DB_NAME: postgres
+      PLUGIN_DB_NAME: postgres
       EXPLORER_DOCKER_TAG: ${{ fromJSON('["latest", "develop"]')[github.ref == 'refs/heads/master'] }} # https://github.community/t/do-expressions-support-ternary-operators-to-change-their-returned-value/18114/4
     steps:
       - name: Checkout the repo
@@ -149,8 +149,8 @@ jobs:
       - name: Run prepublish NPM test
         run: ./tools/ci/prepublish_npm_test
 
-  build-chainlink:
-    name: Build chainlink image
+  build-plugin:
+    name: Build plugin image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo
@@ -166,6 +166,6 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v2
         with:
-          file: core/chainlink.Dockerfile
+          file: core/plugin.Dockerfile
           build_args: COMMIT_SHA=${{ github.sha }},ENVIRONMENT=release
           push: false

@@ -1,6 +1,6 @@
 ---
 name: Node Operator Issue
-about: Report an issue encountered while operating a Chainlink node.
+about: Report an issue encountered while operating a Plugin node.
 title: '[NODE] <replace with issue title>'
 labels: 'Node Operator'
 assignees: ''
@@ -15,10 +15,10 @@ assignees: ''
 - Network: [e.g. Ethereum Mainnet, Ropsten]
 - Blockchain Client: [name and version of blockchain client e.g. Geth v1.9.6]
 - Go Version: [e.g. v1.12]
-- Operating System: [name and version of operating system running Chainlink node]
+- Operating System: [name and version of operating system running Plugin node]
 - Commit: [log INFO line when starting node]
 - Hosting Provider: [e.g. AWS, GCP, self-hosted]
-- Startup Command: [e.g. `docker run smartcontract/chainlink local n`]
+- Startup Command: [e.g. `docker run smartcontract/Plugin local n`]
 
 **Environment Variables**
 [replace this line with the output of the environment variables when running the node in debug mode]

@@ -6,10 +6,10 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/keeper_registry_wrapper"
-	"github.com/smartcontractkit/chainlink/core/services/job"
-	"github.com/smartcontractkit/chainlink/core/services/log"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/keeper_registry_wrapper"
+	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/GoPlugin/Plugin/core/services/log"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // MailRoom holds the log mailboxes for all the log types that keeper cares about

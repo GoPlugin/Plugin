@@ -9,10 +9,10 @@ import (
 
 	"github.com/ethereum/go-ethereum/eth/ethconfig"
 
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/solidity_vrf_verifier_wrapper"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/vrfkey"
-	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/solidity_vrf_verifier_wrapper"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/vrfkey"
+	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
 
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"

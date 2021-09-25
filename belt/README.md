@@ -7,7 +7,7 @@
 <br/>
 
 [![npm](https://img.shields.io/npm/v/@chainlink/belt?style=flat-square)](https://www.npmjs.com/package/@chainlink/belt)
-[![GitHub license](https://img.shields.io/github/license/smartcontractkit/chainlink?style=flat-square)](https://github.com/smartcontractkit/chainlink/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/GoPlugin/Plugin?style=flat-square)](https://github.com/GoPlugin/Plugin/blob/master/LICENSE)
 [![npm downloads](https://img.shields.io/npm/dt/@chainlink/belt?style=flat-square)](https://npmjs.com/package/@chainlink/belt)
 
 Chainlink Belt is a toolbelt for performing various commands on Chainlink smart contracts.
@@ -72,7 +72,7 @@ EXAMPLES
   belt box -l
 ```
 
-_See code: [src/src/commands/box.ts](https://github.com/smartcontractkit/chainlink/blob/v0.0.3/src/src/commands/box.ts)_
+_See code: [src/src/commands/box.ts](https://github.com/GoPlugin/Plugin/blob/v0.0.3/src/src/commands/box.ts)_
 
 ## `belt compile [COMPILER]`
 
@@ -104,7 +104,7 @@ EXAMPLE
   ...
 ```
 
-_See code: [src/src/commands/compile.ts](https://github.com/smartcontractkit/chainlink/blob/v0.0.3/src/src/commands/compile.ts)_
+_See code: [src/src/commands/compile.ts](https://github.com/GoPlugin/Plugin/blob/v0.0.3/src/src/commands/compile.ts)_
 
 ## `belt help [COMMAND]`
 

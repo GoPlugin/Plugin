@@ -4,9 +4,9 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/smartcontractkit/chainlink/core/chains"
-	"github.com/smartcontractkit/chainlink/core/services/eth"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/chains"
+	"github.com/GoPlugin/Plugin/core/services/eth"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 // BlockTranslator converts emitted block numbers (from block.number) into a

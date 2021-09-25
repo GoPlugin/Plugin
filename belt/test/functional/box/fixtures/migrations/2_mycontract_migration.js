@@ -1,23 +1,23 @@
 const MyContract = artifacts.require('MyContract')
-const { LinkToken } = require('@chainlink/contracts/truffle/v0.4/LinkToken')
-const { Oracle } = require('@chainlink/contracts/truffle/v0.4/Oracle')
+const { PluginToken } = require('@plugin/contracts/truffle/v0.4/PluginToken')
+const { Oracle } = require('@plugin/contracts/truffle/v0.4/Oracle')
 
 module.exports = (deployer, network, [defaultAccount]) => {
   // Local (development) networks need their own deployment of the LINK
   // token and the Oracle contract
   if (!network.startsWith('live')) {
-    LinkToken.setProvider(deployer.provider)
+    PluginToken.setProvider(deployer.provider)
     Oracle.setProvider(deployer.provider)
 
-    deployer.deploy(LinkToken, { from: defaultAccount }).then((link) => {
+    deployer.deploy(PluginToken, { from: defaultAccount }).then((plugin) => {
       return deployer
-        .deploy(Oracle, link.address, { from: defaultAccount })
+        .deploy(Oracle, plugin.address, { from: defaultAccount })
         .then(() => {
-          return deployer.deploy(MyContract, link.address)
+          return deployer.deploy(MyContract, plugin.address)
         })
     })
   } else {
-    // For live networks, use the 0 address to allow the ChainlinkRegistry
+    // For live networks, use the 0 address to allow the ChainpluginRegistry
     // contract automatically retrieve the correct address for you
     deployer.deploy(MyContract, '0x0000000000000000000000000000000000000000')
   }

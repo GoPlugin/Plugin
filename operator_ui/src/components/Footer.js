@@ -29,7 +29,7 @@ const Footnote = ({ classes }) => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href={`https://github.com/smartcontractkit/chainlink/commit/${sha}`}
+          href={`https://github.com/GoPlugin/Plugin/commit/${sha}`}
           className={classes.bareAnchor}
         >
           {sha}

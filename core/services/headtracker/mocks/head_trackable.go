@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	models "github.com/smartcontractkit/chainlink/core/store/models"
+	models "github.com/GoPlugin/Plugin/core/store/models"
 	mock "github.com/stretchr/testify/mock"
 )
 

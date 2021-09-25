@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build-publish-chainlink:
+  build-publish-plugin:
     resource_class: 2xlarge
     machine:
       image: circleci/classic:201808-01
@@ -13,17 +13,17 @@ jobs:
           command: DOCKER_TAG=circleci BUILDER="${AWS_ECR_URL}/builder" make docker
       - run:
           name: Docker build non-root
-          command: DOCKER_TAG=circleci-nonroot CHAINLINK_USER=chainlink make docker
+          command: DOCKER_TAG=circleci-nonroot PLUGIN_USER=plugin make docker
       - run:
           name: Docker push, if applicable
           command: |
-            tools/ci/push_chainlink "${CIRCLE_BRANCH}" "${CIRCLE_TAG}" "${CIRCLE_SHA1}"
+            tools/ci/push_plugin "${CIRCLE_BRANCH}" "${CIRCLE_TAG}" "${CIRCLE_SHA1}"
 
 workflows:
   version: 2
   test:
     jobs:
-      - build-publish-chainlink:
+      - build-publish-plugin:
           filters:
             tags:
               only: /^v.*/

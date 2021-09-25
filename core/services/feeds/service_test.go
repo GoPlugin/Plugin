@@ -6,11 +6,11 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/services/feeds"
-	"github.com/smartcontractkit/chainlink/core/services/feeds/mocks"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/csakey"
-	ksmocks "github.com/smartcontractkit/chainlink/core/services/keystore/mocks"
-	"github.com/smartcontractkit/chainlink/core/utils/crypto"
+	"github.com/GoPlugin/Plugin/core/services/feeds"
+	"github.com/GoPlugin/Plugin/core/services/feeds/mocks"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/csakey"
+	ksmocks "github.com/GoPlugin/Plugin/core/services/keystore/mocks"
+	"github.com/GoPlugin/Plugin/core/utils/crypto"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -4,9 +4,9 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/smartcontractkit/chainlink/core/services/keystore"
-	"github.com/smartcontractkit/chainlink/core/store"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/services/keystore"
+	"github.com/GoPlugin/Plugin/core/store"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 // Compare adapter type takes an Operator and a Value field to

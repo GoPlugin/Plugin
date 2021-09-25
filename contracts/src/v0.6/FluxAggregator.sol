@@ -8,8 +8,8 @@ import "./SafeMath32.sol";
 import "./SafeMath64.sol";
 import "./interfaces/AggregatorV2V3Interface.sol";
 import "./interfaces/AggregatorValidatorInterface.sol";
-import "./interfaces/LinkTokenInterface.sol";
-import "./vendor/SafeMathChainlink.sol";
+import "./interfaces/PliTokenInterface.sol";
+import "./vendor/SafeMathPlugin.sol";
 
 /**
  * @title The Prepaid Aggregator contract
@@ -20,7 +20,7 @@ import "./vendor/SafeMathChainlink.sol";
  * answers and their updated at timestamp.
  */
 contract FluxAggregator is AggregatorV2V3Interface, Owned {
-  using SafeMathChainlink for uint256;
+  using SafeMathPlugin for uint256;
   using SafeMath128 for uint128;
   using SafeMath64 for uint64;
   using SafeMath32 for uint32;
@@ -63,7 +63,7 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
     uint128 allocated;
   }
 
-  LinkTokenInterface public linkToken;
+  PliTokenInterface public pliToken;
   AggregatorValidatorInterface public validator;
 
   // Round related params
@@ -83,7 +83,7 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
   /**
    * @notice To ensure owner isn't withdrawing required funds as oracles are
    * submitting updates, we enforce that the contract maintains a minimum
-   * reserve of RESERVE_ROUNDS * oracleCount() LINK earmarked for payment to
+   * reserve of RESERVE_ROUNDS * oracleCount() PLI earmarked for payment to
    * oracles. (Of course, this doesn't prevent the contract from running out of
    * funds without the owner's intervention.)
    */
@@ -144,8 +144,8 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
 
   /**
    * @notice set up the aggregator with initial configuration
-   * @param _link The address of the LINK token
-   * @param _paymentAmount The amount paid of LINK paid to each oracle per submission, in wei (units of 10⁻¹⁸ LINK)
+   * @param _pli The address of the PLI token
+   * @param _paymentAmount The amount paid of PLI paid to each oracle per submission, in wei (units of 10⁻¹⁸ PLI)
    * @param _timeout is the number of seconds after the previous round that are
    * allowed to lapse before allowing an oracle to skip an unfinished round
    * @param _validator is an optional contract address for validating
@@ -158,7 +158,7 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
    * @param _description a short description of what is being reported
    */
   constructor(
-    address _link,
+    address _pli,
     uint128 _paymentAmount,
     uint32 _timeout,
     address _validator,
@@ -167,7 +167,7 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
     uint8 _decimals,
     string memory _description
   ) public {
-    linkToken = LinkTokenInterface(_link);
+    pliToken = PliTokenInterface(_pli);
     updateFutureRounds(_paymentAmount, 0, 0, 0, _timeout);
     setValidator(_validator);
     minSubmissionValue = _minSubmissionValue;
@@ -303,14 +303,14 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
   }
 
   /**
-   * @notice recalculate the amount of LINK available for payouts
+   * @notice recalculate the amount of PLI available for payouts
    */
   function updateAvailableFunds()
     public
   {
     Funds memory funds = recordedFunds;
 
-    uint256 nowAvailable = linkToken.balanceOf(address(this)).sub(funds.allocated);
+    uint256 nowAvailable = pliToken.balanceOf(address(this)).sub(funds.allocated);
 
     if (funds.available != nowAvailable) {
       recordedFunds.available = uint128(nowAvailable);
@@ -513,7 +513,7 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
 
 
   /**
-   * @notice query the available amount of LINK for an oracle to withdraw
+   * @notice query the available amount of PLI for an oracle to withdraw
    */
   function withdrawablePayment(address _oracle)
     external
@@ -524,18 +524,18 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
   }
 
   /**
-   * @notice transfers the oracle's LINK to another address. Can only be called
+   * @notice transfers the oracle's PLI to another address. Can only be called
    * by the oracle's admin.
-   * @param _oracle is the oracle whose LINK is transferred
-   * @param _recipient is the address to send the LINK to
-   * @param _amount is the amount of LINK to send
+   * @param _oracle is the oracle whose PLI is transferred
+   * @param _recipient is the address to send the PLI to
+   * @param _amount is the amount of PLI to send
    */
   function withdrawPayment(address _oracle, address _recipient, uint256 _amount)
     external
   {
     require(oracles[_oracle].admin == msg.sender, "only callable by admin");
 
-    // Safe to downcast _amount because the total amount of LINK is less than 2^128.
+    // Safe to downcast _amount because the total amount of PLI is less than 2^128.
     uint128 amount = uint128(_amount);
     uint128 available = oracles[_oracle].withdrawable;
     require(available >= amount, "insufficient withdrawable funds");
@@ -543,13 +543,13 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
     oracles[_oracle].withdrawable = available.sub(amount);
     recordedFunds.allocated = recordedFunds.allocated.sub(amount);
 
-    assert(linkToken.transfer(_recipient, uint256(amount)));
+    assert(pliToken.transfer(_recipient, uint256(amount)));
   }
 
   /**
-   * @notice transfers the owner's LINK to another address
-   * @param _recipient is the address to send the LINK to
-   * @param _amount is the amount of LINK to send
+   * @notice transfers the owner's PLI to another address
+   * @param _recipient is the address to send the PLI to
+   * @param _amount is the amount of PLI to send
    */
   function withdrawFunds(address _recipient, uint256 _amount)
     external
@@ -557,7 +557,7 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
   {
     uint256 available = uint256(recordedFunds.available);
     require(available.sub(requiredReserve(paymentAmount)) >= _amount, "insufficient reserve funds");
-    require(linkToken.transfer(_recipient, _amount), "token transfer failed");
+    require(pliToken.transfer(_recipient, _amount), "token transfer failed");
     updateAvailableFunds();
   }
 
@@ -641,7 +641,7 @@ contract FluxAggregator is AggregatorV2V3Interface, Owned {
   }
 
   /**
-   * @notice called through LINK's transferAndCall to update available funds
+   * @notice called through PLI's transferAndCall to update available funds
    * in the same transaction as the funds were transferred to the aggregator
    * @param _data is mostly ignored. It is checked for length, to be sure
    * nothing strange is passed in.

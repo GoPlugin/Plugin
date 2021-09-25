@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/smartcontractkit/chainlink/core/services/cron"
-	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/GoPlugin/Plugin/core/services/cron"
+	"github.com/GoPlugin/Plugin/core/services/job"
 )
 
 func TestValidatedCronJobSpec(t *testing.T) {

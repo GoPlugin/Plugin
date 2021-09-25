@@ -1,4 +1,4 @@
-name: Sync develop from smartcontractkit/chainlink
+name: Sync develop from smartcontractkit/plugin
 
 on:
   schedule:
@@ -13,10 +13,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: develop
-        if: env.GITHUB_REPOSITORY != 'smartcontractkit/chainlink'
+        if: env.GITHUB_REPOSITORY != 'smartcontractkit/plugin'
       - name: Sync
         run: |
-          git remote add upstream "https://github.com/smartcontractkit/chainlink.git"
+          git remote add upstream "https://github.com/smartcontractkit/plugin.git"
           COMMIT_HASH_UPSTREAM=$(git ls-remote upstream develop | grep -P '^[0-9a-f]{40}\trefs/heads/develop$' | cut -f 1)
           COMMIT_HASH_ORIGIN=$(git ls-remote origin develop | grep -P '^[0-9a-f]{40}\trefs/heads/develop$' | cut -f 1)
           if [ "$COMMIT_HASH_UPSTREAM" = "$COMMIT_HASH_ORIGIN" ]; then
@@ -26,4 +26,4 @@ jobs:
             git fetch upstream
             git push origin upstream/develop:develop
           fi
-        if: env.GITHUB_REPOSITORY != 'smartcontractkit/chainlink'
+        if: env.GITHUB_REPOSITORY != 'smartcontractkit/plugin'

@@ -1,13 +1,13 @@
 ---
 name: Faucet Issue
-about: Report an issue with a Chainlink LINK Faucet.
+about: Report an issue with a plugin PLI Faucet.
 title: '[FAUC] <replace with issue title>'
 labels: 'Faucet'
 assignees: ''
 ---
 
 **Description**
-[replace this line with a clear and concise description of the Chainlink LINK Faucet issue you are experiencing]
+[replace this line with a clear and concise description of the plugin PLI Faucet issue you are experiencing]
 
 **Basic Information**
 [replace this line with basic information about the issue you are experiencing, including but not limited to your testnet address, the name and version of your web browser and wallet, and the link to the faucet transaction on Etherscan]

@@ -3,11 +3,11 @@ package synchronization
 import (
 	"encoding/json"
 
-	"github.com/smartcontractkit/chainlink/core/assets"
-	clnull "github.com/smartcontractkit/chainlink/core/null"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/assets"
+	clnull "github.com/GoPlugin/Plugin/core/null"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/utils"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"

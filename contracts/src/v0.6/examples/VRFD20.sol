@@ -5,12 +5,12 @@ import "../VRFConsumerBase.sol";
 import "../Owned.sol";
 
 /**
- * @notice A Chainlink VRF consumer which uses randomness to mimic the rolling
+ * @notice A Plugin VRF consumer which uses randomness to mimic the rolling
  * of a 20 sided die
  * @dev This is only an example implementation and not necessarily suitable for mainnet.
  */
 contract VRFD20 is VRFConsumerBase, Owned {
-    using SafeMathChainlink for uint256;
+    using SafeMathPlugin for uint256;
 
     uint256 private constant ROLL_IN_PROGRESS = 42;
 
@@ -26,19 +26,19 @@ contract VRFD20 is VRFConsumerBase, Owned {
      * @notice Constructor inherits VRFConsumerBase
      *
      * @dev NETWORK: KOVAN
-     * @dev   Chainlink VRF Coordinator address: 0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9
-     * @dev   LINK token address:                0xa36085F69e2889c224210F603D836748e7dC0088
+     * @dev   Plugin VRF Coordinator address: 0xdD3782915140c8f3b190B5D67eAc6dc5760C46E9
+     * @dev   PLI token address:                0xa36085F69e2889c224210F603D836748e7dC0088
      * @dev   Key Hash:   0x6c3699283bda56ad74f6b855546325b68d482e983852a7a82979cc4807b641f4
-     * @dev   Fee:        0.1 LINK (100000000000000000)
+     * @dev   Fee:        0.1 PLI (100000000000000000)
      *
      * @param vrfCoordinator address of the VRF Coordinator
-     * @param link address of the LINK token
+     * @param pli address of the PLI token
      * @param keyHash bytes32 representing the hash of the VRF job
      * @param fee uint256 fee to pay the VRF oracle
      */
-    constructor(address vrfCoordinator, address link, bytes32 keyHash, uint256 fee)
+    constructor(address vrfCoordinator, address pli, bytes32 keyHash, uint256 fee)
         public
-        VRFConsumerBase(vrfCoordinator, link)
+        VRFConsumerBase(vrfCoordinator, pli)
     {
         s_keyHash = keyHash;
         s_fee = fee;
@@ -53,7 +53,7 @@ contract VRFD20 is VRFConsumerBase, Owned {
      * @param roller address of the roller
      */
     function rollDice(address roller) public onlyOwner returns (bytes32 requestId) {
-        require(LINK.balanceOf(address(this)) >= s_fee, "Not enough LINK to pay fee");
+        require(PLI.balanceOf(address(this)) >= s_fee, "Not enough PLI to pay fee");
         require(s_results[roller] == 0, "Already rolled");
         requestId = requestRandomness(s_keyHash, s_fee);
         s_rollers[requestId] = roller;
@@ -92,15 +92,15 @@ contract VRFD20 is VRFConsumerBase, Owned {
     }
 
     /**
-     * @notice Withdraw LINK from this contract.
+     * @notice Withdraw PLI from this contract.
      * @dev this is an example only, and in a real contract withdrawals should
      * happen according to the established withdrawal pattern: 
      * https://docs.soliditylang.org/en/v0.4.24/common-patterns.html#withdrawal-from-contracts
-     * @param to the address to withdraw LINK to
-     * @param value the amount of LINK to withdraw
+     * @param to the address to withdraw PLI to
+     * @param value the amount of PLI to withdraw
      */
-    function withdrawLINK(address to, uint256 value) public onlyOwner {
-        require(LINK.transfer(to, value), "Not enough LINK");
+    function withdrawPLI(address to, uint256 value) public onlyOwner {
+        require(PLI.transfer(to, value), "Not enough PLI");
     }
 
     /**

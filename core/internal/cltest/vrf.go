@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/services/keystore"
-	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/GoPlugin/Plugin/core/services/keystore"
+	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
 
 	"github.com/stretchr/testify/require"
 )

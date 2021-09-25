@@ -1,9 +1,9 @@
 package headtracker
 
 import (
-	"github.com/smartcontractkit/chainlink/core/logger"
-	httypes "github.com/smartcontractkit/chainlink/core/services/headtracker/types"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/logger"
+	httypes "github.com/GoPlugin/Plugin/core/services/headtracker/types"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 var _ httypes.Tracker = &NullTracker{}

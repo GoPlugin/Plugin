@@ -5,11 +5,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/auth"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/store"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/web"
+	"github.com/GoPlugin/Plugin/core/auth"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/store"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/web"
 
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"

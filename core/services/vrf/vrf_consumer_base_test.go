@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
 	"github.com/stretchr/testify/require"
 )
 

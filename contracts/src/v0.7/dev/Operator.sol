@@ -2,28 +2,28 @@
 pragma solidity ^0.7.0;
 
 import "./AuthorizedReceiver.sol";
-import "./LinkTokenReceiver.sol";
+import "./PliTokenReceiver.sol";
 import "./ConfirmedOwner.sol";
-import "../interfaces/LinkTokenInterface.sol";
+import "../interfaces/PliTokenInterface.sol";
 import "../interfaces/OperatorInterface.sol";
 import "../interfaces/OwnableInterface.sol";
 import "../interfaces/WithdrawalInterface.sol";
 import "../vendor/Address.sol";
-import "../vendor/SafeMathChainlink.sol";
+import "../vendor/SafeMathPlugin.sol";
 
 /**
- * @title The Chainlink Operator contract
+ * @title The Plugin Operator contract
  * @notice Node operators can deploy this contract to fulfill requests sent to them
  */
 contract Operator is
   AuthorizedReceiver,
   ConfirmedOwner,
-  LinkTokenReceiver,
+  PliTokenReceiver,
   OperatorInterface,
   WithdrawalInterface
 {
   using Address for address;
-  using SafeMathChainlink for uint256;
+  using SafeMathPlugin for uint256;
 
   struct Commitment {
     bytes31 paramsHash;
@@ -44,7 +44,7 @@ contract Operator is
   // requestOracleData is version 2, enabling multi-word responses
   bytes4 constant private OPERATOR_REQUEST_SELECTOR = this.requestOracleData.selector;
 
-  LinkTokenInterface internal immutable linkToken;
+  PliTokenInterface internal immutable pliToken;
   mapping(bytes32 => Commitment) private s_commitments;
   // Tokens sent for requests that have not been fulfilled yet
   uint256 private s_tokensInEscrow = ONE_FOR_CONSISTENT_GAS_COST;
@@ -80,18 +80,18 @@ contract Operator is
   );
 
   /**
-   * @notice Deploy with the address of the LINK token
-   * @dev Sets the LinkToken address for the imported LinkTokenInterface
-   * @param link The address of the LINK token
+   * @notice Deploy with the address of the PLI token
+   * @dev Sets the PliToken address for the imported PliTokenInterface
+   * @param pli The address of the PLI token
    * @param owner The address of the owner
    */
   constructor(
-    address link,
+    address pli,
     address owner
   )
     ConfirmedOwner(owner)
   {
-    linkToken = LinkTokenInterface(link); // external but already deployed and unalterable
+    pliToken = PliTokenInterface(pli); // external but already deployed and unalterable
   }
 
   function oracleRequest(
@@ -120,9 +120,9 @@ contract Operator is
   }
 
   /**
-   * @notice Creates the Chainlink request
+   * @notice Creates the Plugin request
    * @dev Stores the hash of the params as the on-chain commitment for the request.
-   * Emits OracleRequest event for the Chainlink node to detect.
+   * Emits OracleRequest event for the Plugin node to detect.
    * @param sender The sender of the request
    * @param payment The amount of payment given (specified in wei)
    * @param specId The Job Specification ID
@@ -144,8 +144,8 @@ contract Operator is
   )
     public
     override
-    validateFromLINK()
-    validateNotToLINK(callbackAddress)
+    validateFromPLI()
+    validateNotToPLI(callbackAddress)
   {
     (bytes32 requestId, uint256 expiration) = _verifyOracleRequest(
       sender,
@@ -168,7 +168,7 @@ contract Operator is
   }
 
   /**
-   * @notice Called by the Chainlink node to fulfill requests
+   * @notice Called by the Plugin node to fulfill requests
    * @dev Given params must hash back to the commitment stored from `oracleRequest`.
    * Will call the callback address' callback function without bubbling up error
    * checking in a `require` so that the node can get paid.
@@ -214,7 +214,7 @@ contract Operator is
   }
 
   /**
-   * @notice Called by the Chainlink node to fulfill requests with multi-word support
+   * @notice Called by the Plugin node to fulfill requests with multi-word support
    * @dev Given params must hash back to the commitment stored from `oracleRequest`.
    * Will call the callback address' callback function without bubbling up error
    * checking in a `require` so that the node can get paid.
@@ -330,9 +330,9 @@ contract Operator is
   }
 
   /**
-   * @notice Allows the node operator to withdraw earned LINK to a given address
-   * @dev The owner of the contract can be another wallet and does not have to be a Chainlink node
-   * @param recipient The address to send the LINK token to
+   * @notice Allows the node operator to withdraw earned PLI to a given address
+   * @dev The owner of the contract can be another wallet and does not have to be a Plugin node
+   * @param recipient The address to send the PLI token to
    * @param amount The amount to send (specified in wei)
    */
   function withdraw(
@@ -344,13 +344,13 @@ contract Operator is
     onlyOwner()
     validateAvailableFunds(amount)
   {
-    assert(linkToken.transfer(recipient, amount));
+    assert(pliToken.transfer(recipient, amount));
   }
 
   /**
-   * @notice Displays the amount of LINK that is available for the node operator to withdraw
+   * @notice Displays the amount of PLI that is available for the node operator to withdraw
    * @dev We use `ONE_FOR_CONSISTENT_GAS_COST` in place of 0 in storage
-   * @return The amount of withdrawable LINK on the contract
+   * @return The amount of withdrawable PLI on the contract
    */
   function withdrawable()
     external
@@ -373,7 +373,7 @@ contract Operator is
   )
     external
     onlyOwner()
-    validateNotToLINK(to)
+    validateNotToPLI(to)
   {
     require(to.isContract(), "Must forward to a contract");
     (bool status,) = to.call(data);
@@ -381,7 +381,7 @@ contract Operator is
   }
 
   /**
-   * @notice Interact with other LinkTokenReceiver contracts by calling transferAndCall
+   * @notice Interact with other PliTokenReceiver contracts by calling transferAndCall
    * @param to The address to transfer to.
    * @param value The amount to be transferred.
    * @param data The extra data to be passed to the receiving contract.
@@ -400,7 +400,7 @@ contract Operator is
       bool success
     )
   {
-    return linkToken.transferAndCall(to, value, data);
+    return pliToken.transferAndCall(to, value, data);
   }
 
   /**
@@ -428,7 +428,7 @@ contract Operator is
   }
 
   /**
-   * @notice Allows requesters to cancel requests sent to this oracle contract. Will transfer the LINK
+   * @notice Allows requesters to cancel requests sent to this oracle contract. Will transfer the PLI
    * sent for the request back to the requester's address.
    * @dev Given params must hash to a commitment stored on the contract in order for the request to be valid
    * Emits CancelOracleRequest event.
@@ -454,15 +454,15 @@ contract Operator is
     delete s_commitments[requestId];
     emit CancelOracleRequest(requestId);
 
-    assert(linkToken.transfer(msg.sender, payment));
+    assert(pliToken.transfer(msg.sender, payment));
   }
 
   /**
-   * @notice Returns the address of the LINK token
-   * @dev This is the public implementation for chainlinkTokenAddress, which is
-   * an internal method of the ChainlinkClient contract
+   * @notice Returns the address of the PLI token
+   * @dev This is the public implementation for pluginTokenAddress, which is
+   * an internal method of the PluginClient contract
    */
-  function getChainlinkToken()
+  function getPluginToken()
     public
     view
     override
@@ -470,7 +470,7 @@ contract Operator is
       address
     )
   {
-    return address(linkToken);
+    return address(pliToken);
   }
 
 
@@ -596,8 +596,8 @@ contract Operator is
   }
 
   /**
-   * @notice Returns the LINK available in this contract, not locked in escrow
-   * @return uint256 LINK tokens available
+   * @notice Returns the PLI available in this contract, not locked in escrow
+   * @return uint256 PLI tokens available
    */
   function _fundsAvailable()
     private
@@ -607,7 +607,7 @@ contract Operator is
     )
   {
     uint256 inEscrow = s_tokensInEscrow.sub(ONE_FOR_CONSISTENT_GAS_COST);
-    return linkToken.balanceOf(address(this)).sub(inEscrow);
+    return pliToken.balanceOf(address(this)).sub(inEscrow);
   }
 
   /**
@@ -666,13 +666,13 @@ contract Operator is
   }
 
   /**
-   * @dev Reverts if the callback address is the LINK token
+   * @dev Reverts if the callback address is the PLI token
    * @param to The callback address
    */
-  modifier validateNotToLINK(
+  modifier validateNotToPLI(
     address to
   ) {
-    require(to != address(linkToken), "Cannot call to LINK");
+    require(to != address(pliToken), "Cannot call to PLI");
     _;
   }
 

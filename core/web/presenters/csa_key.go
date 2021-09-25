@@ -3,7 +3,7 @@ package presenters
 import (
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/csakey"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/csakey"
 )
 
 // CSAKeyResource represents a CSA key JSONAPI resource.

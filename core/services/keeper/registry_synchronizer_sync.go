@@ -7,10 +7,10 @@ import (
 	"sync"
 
 	"github.com/pkg/errors"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // syncUpkeepQueueSize represents the max number of upkeeps that can be synced in parallel

@@ -1,15 +1,15 @@
 pragma solidity 0.4.24;
 
-import "@chainlink/contracts/src/v0.4/ChainlinkClient.sol";
+import "@plugin/contracts/src/v0.4/PluginClient.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /**
  * @title MyContract is an example contract which requests data from
- * the Chainlink network
+ * the Plugin network
  * @dev This contract is designed to work on multiple networks, including
  * local test networks
  */
-contract MyContract is ChainlinkClient, Ownable {
+contract MyContract is PluginClient, Ownable {
   uint256 public data;
 
   /**
@@ -20,19 +20,19 @@ contract MyContract is ChainlinkClient, Ownable {
    */
   constructor(address _link) public {
     if (_link == address(0)) {
-      setPublicChainlinkToken();
+      setPublicPluginToken();
     } else {
-      setChainlinkToken(_link);
+      setPluginToken(_link);
     }
   }
 
   /**
    * @notice Returns the address of the LINK token
-   * @dev This is the public implementation for chainlinkTokenAddress, which is
-   * an internal method of the ChainlinkClient contract
+   * @dev This is the public implementation for pluginTokenAddress, which is
+   * an internal method of the PluginClient contract
    */
-  function getChainlinkToken() public view returns (address) {
-    return chainlinkTokenAddress();
+  function getPluginToken() public view returns (address) {
+    return pluginTokenAddress();
   }
 
   /**
@@ -57,23 +57,23 @@ contract MyContract is ChainlinkClient, Ownable {
     onlyOwner
     returns (bytes32 requestId)
   {
-    Chainlink.Request memory req = buildChainlinkRequest(_jobId, this, this.fulfill.selector);
+    Plugin.Request memory req = buildPluginRequest(_jobId, this, this.fulfill.selector);
     req.add("url", _url);
     req.add("path", _path);
     req.addInt("times", _times);
-    requestId = sendChainlinkRequestTo(_oracle, req, _payment);
+    requestId = sendPluginRequestTo(_oracle, req, _payment);
   }
 
   /**
    * @notice The fulfill method from requests created by this contract
-   * @dev The recordChainlinkFulfillment protects this function from being called
+   * @dev The recordPluginFulfillment protects this function from being called
    * by anyone other than the oracle address that the request was sent to
    * @param _requestId The ID that was generated for the request
    * @param _data The answer provided by the oracle
    */
   function fulfill(bytes32 _requestId, uint256 _data)
     public
-    recordChainlinkFulfillment(_requestId)
+    recordPluginFulfillment(_requestId)
   {
     data = _data;
   }
@@ -82,7 +82,7 @@ contract MyContract is ChainlinkClient, Ownable {
    * @notice Allows the owner to withdraw any LINK balance on the contract
    */
   function withdrawLink() public onlyOwner {
-    LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
+    LinkTokenInterface link = LinkTokenInterface(pluginTokenAddress());
     require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
   }
 
@@ -103,6 +103,6 @@ contract MyContract is ChainlinkClient, Ownable {
     public
     onlyOwner
   {
-    cancelChainlinkRequest(_requestId, _payment, _callbackFunctionId, _expiration);
+    cancelPluginRequest(_requestId, _payment, _callbackFunctionId, _expiration);
   }
 }

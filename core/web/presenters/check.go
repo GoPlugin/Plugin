@@ -1,6 +1,6 @@
 package presenters
 
-import "github.com/smartcontractkit/chainlink/core/services/health"
+import "github.com/GoPlugin/Plugin/core/services/health"
 
 type Check struct {
 	JAID

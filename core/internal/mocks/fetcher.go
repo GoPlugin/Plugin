@@ -7,7 +7,7 @@ import (
 
 	decimal "github.com/shopspring/decimal"
 
-	logger "github.com/smartcontractkit/chainlink/core/logger"
+	logger "github.com/GoPlugin/Plugin/core/logger"
 
 	mock "github.com/stretchr/testify/mock"
 )

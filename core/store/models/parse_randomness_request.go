@@ -5,7 +5,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/pkg/errors"
 
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // parseRandomnessRequest parses the RandomnessRequest log format.

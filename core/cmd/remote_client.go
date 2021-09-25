@@ -20,10 +20,10 @@ import (
 	clipkg "github.com/urfave/cli"
 	"go.uber.org/multierr"
 
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/store/presenters"
-	"github.com/smartcontractkit/chainlink/core/web"
-	webpresenters "github.com/smartcontractkit/chainlink/core/web/presenters"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/store/presenters"
+	"github.com/GoPlugin/Plugin/core/web"
+	webpresenters "github.com/GoPlugin/Plugin/core/web/presenters"
 )
 
 var errUnauthorized = errors.New(http.StatusText(http.StatusUnauthorized))

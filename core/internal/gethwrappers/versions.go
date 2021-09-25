@@ -9,7 +9,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/GoPlugin/Plugin/core/logger"
 
 	"github.com/pkg/errors"
 )

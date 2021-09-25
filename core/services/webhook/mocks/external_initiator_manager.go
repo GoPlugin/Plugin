@@ -3,10 +3,10 @@
 package mocks
 
 import (
-	job "github.com/smartcontractkit/chainlink/core/services/job"
+	job "github.com/GoPlugin/Plugin/core/services/job"
 	mock "github.com/stretchr/testify/mock"
 
-	models "github.com/smartcontractkit/chainlink/core/store/models"
+	models "github.com/GoPlugin/Plugin/core/store/models"
 
 	uuid "github.com/satori/go.uuid"
 )

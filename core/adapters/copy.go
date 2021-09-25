@@ -1,9 +1,9 @@
 package adapters
 
 import (
-	"github.com/smartcontractkit/chainlink/core/services/keystore"
-	"github.com/smartcontractkit/chainlink/core/store"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/services/keystore"
+	"github.com/GoPlugin/Plugin/core/store"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 // Copy obj keys refers to which value to copy inside `data`,

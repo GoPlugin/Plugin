@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	health "github.com/smartcontractkit/chainlink/core/services/health"
+	health "github.com/GoPlugin/Plugin/core/services/health"
 	mock "github.com/stretchr/testify/mock"
 )
 

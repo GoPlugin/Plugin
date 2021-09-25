@@ -9,11 +9,11 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
-	pipelinemocks "github.com/smartcontractkit/chainlink/core/services/pipeline/mocks"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	pipelinemocks "github.com/GoPlugin/Plugin/core/services/pipeline/mocks"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 func TestETHTxTask(t *testing.T) {

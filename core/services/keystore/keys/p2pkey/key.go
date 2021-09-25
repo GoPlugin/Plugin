@@ -16,7 +16,7 @@ import (
 	cryptop2p "github.com/libp2p/go-libp2p-core/crypto"
 	peer "github.com/libp2p/go-libp2p-core/peer"
 	"github.com/pkg/errors"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // Key represents a libp2p private key

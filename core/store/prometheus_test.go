@@ -3,7 +3,7 @@ package store
 import (
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/assets"
+	"github.com/GoPlugin/Plugin/core/assets"
 
 	"github.com/stretchr/testify/require"
 )

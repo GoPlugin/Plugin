@@ -10,10 +10,10 @@ import (
 	"github.com/pkg/errors"
 	"gopkg.in/guregu/null.v4"
 
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/service"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/service"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 //go:generate mockery --name Spawner --output ./mocks/ --case=underscore

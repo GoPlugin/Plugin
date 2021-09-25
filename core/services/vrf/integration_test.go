@@ -6,21 +6,21 @@ import (
 	"testing"
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/internal/cltest/heavyweight"
+	"github.com/GoPlugin/Plugin/core/internal/cltest/heavyweight"
 
-	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/solidity_vrf_coordinator_interface"
+	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/solidity_vrf_coordinator_interface"
 
 	"github.com/onsi/gomega"
-	"github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/guregu/null.v4"
 
 	uuid "github.com/satori/go.uuid"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
-	"github.com/smartcontractkit/chainlink/core/services/vrf"
-	"github.com/smartcontractkit/chainlink/core/testdata/testspecs"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
+	"github.com/GoPlugin/Plugin/core/services/vrf"
+	"github.com/GoPlugin/Plugin/core/testdata/testspecs"
 	"github.com/stretchr/testify/require"
 )
 

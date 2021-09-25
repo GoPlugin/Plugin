@@ -1,7 +1,7 @@
 package bulletprooftxmanager
 
 import (
-	"github.com/smartcontractkit/chainlink/core/services/eth"
+	"github.com/GoPlugin/Plugin/core/services/eth"
 )
 
 func SetEthClientOnEthConfirmer(ethClient eth.Client, ethConfirmer *EthConfirmer) {

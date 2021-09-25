@@ -10,11 +10,11 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/service"
-	"github.com/smartcontractkit/chainlink/core/static"
-	"github.com/smartcontractkit/chainlink/core/store/orm"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/service"
+	"github.com/GoPlugin/Plugin/core/static"
+	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 var (

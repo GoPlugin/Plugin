@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "./vendor/SafeMathChainlink.sol";
+import "./vendor/SafeMathPlugin.sol";
 
-import "./interfaces/LinkTokenInterface.sol";
+import "./interfaces/PliTokenInterface.sol";
 
 import "./VRFRequestIDBase.sol";
 
@@ -35,15 +35,15 @@ import "./VRFRequestIDBase.sol";
  * @dev shown:
  *
  * @dev   contract VRFConsumer {
- * @dev     constuctor(<other arguments>, address _vrfCoordinator, address _link)
- * @dev       VRFConsumerBase(_vrfCoordinator, _link) public {
+ * @dev     constuctor(<other arguments>, address _vrfCoordinator, address _pli)
+ * @dev       VRFConsumerBase(_vrfCoordinator, _pli) public {
  * @dev         <initialization with other arguments goes here>
  * @dev       }
  * @dev   }
  *
  * @dev The oracle will have given you an ID for the VRF keypair they have
- * @dev committed to (let's call it keyHash), and have told you the minimum LINK
- * @dev price for VRF service. Make sure your contract has sufficient LINK, and
+ * @dev committed to (let's call it keyHash), and have told you the minimum PLI
+ * @dev price for VRF service. Make sure your contract has sufficient PLI, and
  * @dev call requestRandomness(keyHash, fee, seed), where seed is the input you
  * @dev want to generate randomness from.
  *
@@ -102,7 +102,7 @@ import "./VRFRequestIDBase.sol";
  */
 abstract contract VRFConsumerBase is VRFRequestIDBase {
 
-  using SafeMathChainlink for uint256;
+  using SafeMathPlugin for uint256;
 
   /**
    * @notice fulfillRandomness handles the VRF response. Your contract must
@@ -151,7 +151,7 @@ abstract contract VRFConsumerBase is VRFRequestIDBase {
    * @dev VRF seed it ultimately uses.
    *
    * @param _keyHash ID of public key against which randomness is generated
-   * @param _fee The amount of LINK to send with the request
+   * @param _fee The amount of PLI to send with the request
    *
    * @return requestId unique ID for this request
    *
@@ -168,14 +168,14 @@ abstract contract VRFConsumerBase is VRFRequestIDBase {
       bytes32 requestId
     )
   {
-    LINK.transferAndCall(vrfCoordinator, _fee, abi.encode(_keyHash, USER_SEED_PLACEHOLDER));
+    PLI.transferAndCall(vrfCoordinator, _fee, abi.encode(_keyHash, USER_SEED_PLACEHOLDER));
     // This is the seed passed to VRFCoordinator. The oracle will mix this with
     // the hash of the block containing this request to obtain the seed/input
     // which is finally passed to the VRF cryptographic machinery.
     uint256 vRFSeed  = makeVRFInputSeed(_keyHash, USER_SEED_PLACEHOLDER, address(this), nonces[_keyHash]);
     // nonces[_keyHash] must stay in sync with
     // VRFCoordinator.nonces[_keyHash][this], which was incremented by the above
-    // successful LINK.transferAndCall (in VRFCoordinator.randomnessRequest).
+    // successful PLI.transferAndCall (in VRFCoordinator.randomnessRequest).
     // This provides protection against the user repeating their input seed,
     // which would result in a predictable/duplicate output, if multiple such
     // requests appeared in the same block.
@@ -183,7 +183,7 @@ abstract contract VRFConsumerBase is VRFRequestIDBase {
     return makeRequestId(_keyHash, vRFSeed);
   }
 
-  LinkTokenInterface immutable internal LINK;
+  PliTokenInterface immutable internal PLI;
   address immutable private vrfCoordinator;
 
   // Nonces for each VRF key from which randomness has been requested.
@@ -193,16 +193,16 @@ abstract contract VRFConsumerBase is VRFRequestIDBase {
 
   /**
    * @param _vrfCoordinator address of VRFCoordinator contract
-   * @param _link address of LINK token contract
+   * @param _pli address of PLI token contract
    *
-   * @dev https://docs.chain.link/docs/link-token-contracts
+   * @dev https://docs.chain.pli/docs/pli-token-contracts
    */
   constructor(
     address _vrfCoordinator,
-    address _link
+    address _pli
   ) {
     vrfCoordinator = _vrfCoordinator;
-    LINK = LinkTokenInterface(_link);
+    PLI = PliTokenInterface(_pli);
   }
 
   // rawFulfillRandomness is called by VRFCoordinator when it receives a valid VRF

@@ -3,13 +3,13 @@ package offchainreporting
 import (
 	"testing"
 
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/store/orm"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/store/orm"
 	gormpostgres "gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline/mocks"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/services/pipeline/mocks"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 )

@@ -5,7 +5,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/smartcontractkit/chainlink/core/static"
+	"github.com/GoPlugin/Plugin/core/static"
 	"github.com/urfave/cli"
 )
 

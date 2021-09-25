@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A simple, configurable external adapter suitable for testing Chainlink",
   "main": "dist/src/index.js",
-  "repository": "https://github.com/smartcontractkit/chainlink",
+  "repository": "https://github.com/GoPlugin/Plugin",
   "license": "MIT",
   "scripts": {
     "start": "node .",

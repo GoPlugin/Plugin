@@ -1,4 +1,4 @@
-module github.com/smartcontractkit/chainlink
+module github.com/GoPlugin/Plugin
 
 go 1.15
 

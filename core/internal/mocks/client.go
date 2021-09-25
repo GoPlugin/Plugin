@@ -5,7 +5,7 @@ package mocks
 import (
 	big "math/big"
 
-	assets "github.com/smartcontractkit/chainlink/core/assets"
+	assets "github.com/GoPlugin/Plugin/core/assets"
 
 	common "github.com/ethereum/go-ethereum/common"
 
@@ -15,7 +15,7 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
-	models "github.com/smartcontractkit/chainlink/core/store/models"
+	models "github.com/GoPlugin/Plugin/core/store/models"
 
 	rpc "github.com/ethereum/go-ethereum/rpc"
 

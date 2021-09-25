@@ -3,10 +3,10 @@ package services
 import (
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/store"
-	"github.com/smartcontractkit/chainlink/core/store/orm"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/store"
+	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 type sessionReaper struct {

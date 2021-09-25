@@ -1,8 +1,8 @@
 const MyContract = artifacts.require('MyContract')
 
 /*
-  This script allows for a Chainlink request to be created from
-  the requesting contract. Defaults to the Chainlink oracle address
+  This script allows for a Plugin request to be created from
+  the requesting contract. Defaults to the Plugin oracle address
   on this page: https://docs.chain.link/docs/testnet-oracles
 */
 

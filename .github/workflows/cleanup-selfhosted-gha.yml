@@ -16,6 +16,6 @@ jobs:
       - name: Run GHA self hosted runner cleanup
         uses: smartcontractkit/gha-cleanup@v0.0.1
         with:
-          githubRepository: smartcontractkit/chainlink
+          githubRepository: smartcontractkit/Plugin
           githubToken: ${{ github.event.inputs.githubToken }}
           dummyRunner: ${{ github.event.inputs.dummyRunner }}
