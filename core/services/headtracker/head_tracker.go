@@ -11,12 +11,12 @@ import (
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
-	"github.com/GoPlugin/Plugin/core/logger"
-	httypes "github.com/GoPlugin/Plugin/core/services/headtracker/types"
-	strpkg "github.com/GoPlugin/Plugin/core/store"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/store/presenters"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	httypes "github.com/smartcontractkit/chainlink/core/services/headtracker/types"
+	strpkg "github.com/smartcontractkit/chainlink/core/store"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/presenters"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 var (

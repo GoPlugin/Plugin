@@ -23,12 +23,12 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/assets"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
-	"github.com/GoPlugin/Plugin/core/services/eth"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/assets"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager"
+	"github.com/smartcontractkit/chainlink/core/services/eth"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 // newIdentity returns a go-ethereum abstraction of an ethereum account for

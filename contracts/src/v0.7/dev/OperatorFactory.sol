@@ -10,7 +10,7 @@ import "./AuthorizedForwarder.sol";
  */
 contract OperatorFactory {
 
-  address public immutable getPluginToken;
+  address public immutable getChainlinkToken;
   mapping(address => bool) private s_created;
 
   event OperatorCreated(
@@ -25,12 +25,12 @@ contract OperatorFactory {
   );
 
   /**
-   * @param pliAddress address
+   * @param linkAddress address
    */
   constructor(
-    address pliAddress
+    address linkAddress
   ) {
-    getPluginToken = pliAddress;
+    getChainlinkToken = linkAddress;
   }
 
   /**
@@ -43,7 +43,7 @@ contract OperatorFactory {
     )
   {
     Operator operator = new Operator(
-      getPluginToken,
+      getChainlinkToken,
       msg.sender
     );
 
@@ -69,7 +69,7 @@ contract OperatorFactory {
     )
   {
     Operator operator = new Operator(
-      getPluginToken,
+      getChainlinkToken,
       msg.sender
     );
     s_created[address(operator)] = true;
@@ -81,7 +81,7 @@ contract OperatorFactory {
 
     bytes memory tmp = new bytes(0);
     AuthorizedForwarder forwarder = new AuthorizedForwarder(
-      getPluginToken,
+      getChainlinkToken,
       address(operator),
       address(0),
       tmp
@@ -107,7 +107,7 @@ contract OperatorFactory {
   {
     bytes memory tmp = new bytes(0);
     AuthorizedForwarder forwarder = new AuthorizedForwarder(
-      getPluginToken,
+      getChainlinkToken,
       msg.sender,
       address(0),
       tmp
@@ -136,7 +136,7 @@ contract OperatorFactory {
     )
   {
     AuthorizedForwarder forwarder = new AuthorizedForwarder(
-      getPluginToken,
+      getChainlinkToken,
       msg.sender,
       to,
       message

@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
-	"github.com/GoPlugin/Plugin/core/services/pipeline/mocks"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline/mocks"
 )
 
 func TestVars_Get(t *testing.T) {

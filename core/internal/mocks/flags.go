@@ -8,9 +8,9 @@ import (
 
 	event "github.com/ethereum/go-ethereum/event"
 
-	flags_wrapper "github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/flags_wrapper"
+	flags_wrapper "github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/flags_wrapper"
 
-	generated "github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated"
+	generated "github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated"
 
 	mock "github.com/stretchr/testify/mock"
 

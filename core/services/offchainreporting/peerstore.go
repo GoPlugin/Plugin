@@ -6,17 +6,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/gracefulpanic"
+	"github.com/smartcontractkit/chainlink/core/gracefulpanic"
 
 	p2ppeer "github.com/libp2p/go-libp2p-core/peer"
 	p2ppeerstore "github.com/libp2p/go-libp2p-core/peerstore"
 	"github.com/libp2p/go-libp2p-peerstore/pstoremem"
 	ma "github.com/multiformats/go-multiaddr"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/p2pkey"
-	"github.com/GoPlugin/Plugin/core/services/postgres"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/p2pkey"
+	"github.com/smartcontractkit/chainlink/core/services/postgres"
+	"github.com/smartcontractkit/chainlink/core/utils"
 	"gorm.io/gorm"
 )
 

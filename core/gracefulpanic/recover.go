@@ -3,7 +3,7 @@ package gracefulpanic
 import (
 	"runtime/debug"
 
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 )
 
 func WrapRecover(fn func()) {

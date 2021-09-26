@@ -9,10 +9,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/services/job"
-	"github.com/GoPlugin/Plugin/core/services/webhook"
-	webhookmocks "github.com/GoPlugin/Plugin/core/services/webhook/mocks"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/webhook"
+	webhookmocks "github.com/smartcontractkit/chainlink/core/services/webhook/mocks"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 )
 
 func TestValidatedWebJobSpec(t *testing.T) {

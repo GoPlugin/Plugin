@@ -8,14 +8,14 @@ import (
 	"time"
 
 	"github.com/jpillora/backoff"
-	"github.com/GoPlugin/Plugin/core/gracefulpanic"
+	"github.com/smartcontractkit/chainlink/core/gracefulpanic"
 
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/eth"
-	strpkg "github.com/GoPlugin/Plugin/core/store"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/eth"
+	strpkg "github.com/smartcontractkit/chainlink/core/store"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/utils"
 
 	"github.com/ethereum/go-ethereum"
 	"github.com/pkg/errors"

@@ -6,16 +6,16 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/job"
 
 	uuid "github.com/satori/go.uuid"
 
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/static"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/static"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 )
 
 //go:generate mockery --name ExternalInitiatorManager --output ./mocks/ --case=underscore

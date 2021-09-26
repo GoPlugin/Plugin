@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/orm"
 	"gorm.io/gorm"
 )
 

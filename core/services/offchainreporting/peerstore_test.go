@@ -7,9 +7,9 @@ import (
 	p2ppeer "github.com/libp2p/go-libp2p-core/peer"
 	p2ppeerstore "github.com/libp2p/go-libp2p-core/peerstore"
 	ma "github.com/multiformats/go-multiaddr"
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/p2pkey"
-	"github.com/GoPlugin/Plugin/core/services/offchainreporting"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/p2pkey"
+	"github.com/smartcontractkit/chainlink/core/services/offchainreporting"
 	"github.com/stretchr/testify/require"
 )
 

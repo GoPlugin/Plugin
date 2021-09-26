@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	postgres "github.com/GoPlugin/Plugin/core/services/postgres"
+	postgres "github.com/smartcontractkit/chainlink/core/services/postgres"
 	mock "github.com/stretchr/testify/mock"
 )
 

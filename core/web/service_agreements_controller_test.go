@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/store/presenters"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/presenters"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

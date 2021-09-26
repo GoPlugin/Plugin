@@ -3,12 +3,12 @@ package store_test
 import (
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/static"
-	"github.com/GoPlugin/Plugin/core/store"
-	"github.com/GoPlugin/Plugin/core/store/migrations"
+	"github.com/smartcontractkit/chainlink/core/static"
+	"github.com/smartcontractkit/chainlink/core/store"
+	"github.com/smartcontractkit/chainlink/core/store/migrations"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/internal/cltest/heavyweight"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest/heavyweight"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

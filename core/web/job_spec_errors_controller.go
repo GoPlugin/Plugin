@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/chainlink"
-	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/services/chainlink"
+	"github.com/smartcontractkit/chainlink/core/store/orm"
 )
 
 // JobSpecErrorsController manages JobSpecError requests

@@ -6,7 +6,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 )
 
 var privateIPBlocks []*net.IPNet

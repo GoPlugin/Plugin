@@ -3,14 +3,14 @@ package adapters
 import (
 	"fmt"
 
-	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/solidity_vrf_coordinator_interface"
-	"github.com/GoPlugin/Plugin/core/services/keystore"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
-	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
-	"github.com/GoPlugin/Plugin/core/services/vrf"
-	"github.com/GoPlugin/Plugin/core/store"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/solidity_vrf_coordinator_interface"
+	"github.com/smartcontractkit/chainlink/core/services/keystore"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
+	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/smartcontractkit/chainlink/core/services/vrf"
+	"github.com/smartcontractkit/chainlink/core/store"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/utils"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"

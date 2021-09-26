@@ -5,10 +5,10 @@ import (
 	"sync"
 
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/keeper_registry_wrapper"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/log"
-	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/keeper_registry_wrapper"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/log"
+	"github.com/smartcontractkit/chainlink/core/services/postgres"
 )
 
 func (rs *RegistrySynchronizer) processLogs() {

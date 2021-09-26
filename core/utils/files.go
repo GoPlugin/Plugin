@@ -6,7 +6,7 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 
 	"github.com/pkg/errors"
 )

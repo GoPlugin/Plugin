@@ -1,12 +1,12 @@
 pragma solidity 0.4.24;
 
-import "../PluginClient.sol";
+import "../ChainlinkClient.sol";
 
-contract Consumer is PluginClient {
+contract Consumer is ChainlinkClient {
   bytes32 internal specId;
   bytes32 public currentPrice;
 
-  uint256 constant private ORACLE_PAYMENT = 1 * PLI;
+  uint256 constant private ORACLE_PAYMENT = 1 * LINK;
 
   event RequestFulfilled(
     bytes32 indexed requestId,  // User-defined ID
@@ -14,12 +14,12 @@ contract Consumer is PluginClient {
   );
 
   function requestEthereumPrice(string _currency) public {
-    Plugin.Request memory req = buildPluginRequest(specId, this, this.fulfill.selector);
+    Chainlink.Request memory req = buildChainlinkRequest(specId, this, this.fulfill.selector);
     req.add("get", "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,EUR,JPY");
     string[] memory path = new string[](1);
     path[0] = _currency;
     req.addStringArray("path", path);
-    sendPluginRequest(req, ORACLE_PAYMENT);
+    sendChainlinkRequest(req, ORACLE_PAYMENT);
   }
 
   function cancelRequest(
@@ -28,17 +28,17 @@ contract Consumer is PluginClient {
     bytes4 _callbackFunctionId,
     uint256 _expiration
   ) public {
-    cancelPluginRequest(_requestId, _payment, _callbackFunctionId, _expiration);
+    cancelChainlinkRequest(_requestId, _payment, _callbackFunctionId, _expiration);
   }
 
-  function withdrawPli() public {
-    PliTokenInterface pli = PliTokenInterface(pluginTokenAddress());
-    require(pli.transfer(msg.sender, pli.balanceOf(address(this))), "Unable to transfer");
+  function withdrawLink() public {
+    LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
+    require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
   }
 
   function fulfill(bytes32 _requestId, bytes32 _price)
     public
-    recordPluginFulfillment(_requestId)
+    recordChainlinkFulfillment(_requestId)
   {
     emit RequestFulfilled(_requestId, _price);
     currentPrice = _price;

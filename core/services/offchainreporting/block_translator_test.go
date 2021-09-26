@@ -5,9 +5,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/chains"
-	"github.com/GoPlugin/Plugin/core/internal/mocks"
-	"github.com/GoPlugin/Plugin/core/services/offchainreporting"
+	"github.com/smartcontractkit/chainlink/core/chains"
+	"github.com/smartcontractkit/chainlink/core/internal/mocks"
+	"github.com/smartcontractkit/chainlink/core/services/offchainreporting"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -12,9 +12,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/assets"
-	clnull "github.com/GoPlugin/Plugin/core/null"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/assets"
+	clnull "github.com/smartcontractkit/chainlink/core/null"
+	"github.com/smartcontractkit/chainlink/core/utils"
 	null "gopkg.in/guregu/null.v4"
 )
 

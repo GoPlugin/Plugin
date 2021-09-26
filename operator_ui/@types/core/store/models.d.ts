@@ -2,7 +2,7 @@ declare module 'core/store/models' {
   import * as assets from 'core/store/assets'
   import * as common from 'github.com/ethereum/go-ethereum/common'
   import * as gorm from 'github.com/jinzhu/gorm'
-  import * as clnull from 'github.com/GoPlugin/Plugin/core/null'
+  import * as clnull from 'github.com/smartcontractkit/chainlink/core/null'
   import * as nullable from 'gopkg.in/guregu/null.v3'
   import * as big from 'math/big'
   import * as url from 'net/url'

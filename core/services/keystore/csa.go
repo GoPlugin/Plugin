@@ -5,10 +5,10 @@ import (
 	"sync"
 
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/csakey"
-	"github.com/GoPlugin/Plugin/core/utils"
-	"github.com/GoPlugin/Plugin/core/utils/crypto"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/csakey"
+	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/smartcontractkit/chainlink/core/utils/crypto"
 	"go.uber.org/multierr"
 	"gorm.io/gorm"
 )

@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 type EncryptedPrivateKey struct {

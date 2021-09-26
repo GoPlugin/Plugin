@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/health"
+	"github.com/smartcontractkit/chainlink/core/services/health"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/jpillora/backoff"
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 )
 
 var (

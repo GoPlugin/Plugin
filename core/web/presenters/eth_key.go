@@ -3,8 +3,8 @@ package presenters
 import (
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/assets"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
+	"github.com/smartcontractkit/chainlink/core/assets"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
 )
 
 // ETHKeyResource represents a ETH key JSONAPI resource. It holds the hex

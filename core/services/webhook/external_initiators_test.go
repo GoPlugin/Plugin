@@ -10,11 +10,11 @@ import (
 
 	uuid "github.com/satori/go.uuid"
 
-	"github.com/GoPlugin/Plugin/core/auth"
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/services/webhook"
-	"github.com/GoPlugin/Plugin/core/static"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/auth"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/services/webhook"
+	"github.com/smartcontractkit/chainlink/core/static"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

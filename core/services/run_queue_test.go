@@ -3,9 +3,9 @@ package services_test
 import (
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/internal/mocks"
-	"github.com/GoPlugin/Plugin/core/services"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/internal/mocks"
+	"github.com/smartcontractkit/chainlink/core/services"
 
 	"github.com/onsi/gomega"
 	uuid "github.com/satori/go.uuid"

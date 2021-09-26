@@ -12,15 +12,15 @@ import (
 
 	"gorm.io/gorm/clause"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	storm "github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	storm "github.com/smartcontractkit/chainlink/core/store/orm"
 
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
-	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/services/postgres"
 )
 
 var (

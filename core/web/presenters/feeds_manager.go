@@ -3,8 +3,8 @@ package presenters
 import (
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/services/feeds"
-	"github.com/GoPlugin/Plugin/core/utils/crypto"
+	"github.com/smartcontractkit/chainlink/core/services/feeds"
+	"github.com/smartcontractkit/chainlink/core/utils/crypto"
 )
 
 // FeedsManagerResource represents a Feeds Manager JSONAPI resource.

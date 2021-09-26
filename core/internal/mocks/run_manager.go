@@ -5,7 +5,7 @@ package mocks
 import (
 	big "math/big"
 
-	models "github.com/GoPlugin/Plugin/core/store/models"
+	models "github.com/smartcontractkit/chainlink/core/store/models"
 	mock "github.com/stretchr/testify/mock"
 
 	uuid "github.com/satori/go.uuid"

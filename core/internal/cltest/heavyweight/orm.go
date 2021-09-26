@@ -14,11 +14,11 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/gracefulpanic"
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/store/dialects"
-	"github.com/GoPlugin/Plugin/core/store/migrations"
-	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/gracefulpanic"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/store/dialects"
+	"github.com/smartcontractkit/chainlink/core/store/migrations"
+	"github.com/smartcontractkit/chainlink/core/store/orm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

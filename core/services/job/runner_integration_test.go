@@ -11,31 +11,31 @@ import (
 	"time"
 
 	"github.com/shopspring/decimal"
-	"github.com/GoPlugin/Plugin/core/chains"
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/chains"
+	"github.com/smartcontractkit/chainlink/core/logger"
 
 	"github.com/pkg/errors"
 
 	"github.com/pelletier/go-toml"
-	"github.com/GoPlugin/Plugin/core/services/headtracker"
-	"github.com/GoPlugin/Plugin/core/services/log"
-	"github.com/GoPlugin/Plugin/core/services/offchainreporting"
+	"github.com/smartcontractkit/chainlink/core/services/headtracker"
+	"github.com/smartcontractkit/chainlink/core/services/log"
+	"github.com/smartcontractkit/chainlink/core/services/offchainreporting"
 	"github.com/stretchr/testify/mock"
 	"gopkg.in/guregu/null.v4"
 
-	"github.com/GoPlugin/Plugin/core/services/job"
-	"github.com/GoPlugin/Plugin/core/services/telemetry"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/telemetry"
 
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 	ocrtypes "github.com/smartcontractkit/libocr/offchainreporting/types"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/internal/cltest/heavyweight"
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
-	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest/heavyweight"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/services/postgres"
 )
 
 var monitoringEndpoint = ocrtypes.MonitoringEndpoint(&telemetry.NoopAgent{})

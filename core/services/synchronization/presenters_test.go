@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/assets"
-	clnull "github.com/GoPlugin/Plugin/core/null"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/assets"
+	clnull "github.com/smartcontractkit/chainlink/core/null"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 
 	"github.com/ethereum/go-ethereum/common"
 	uuid "github.com/satori/go.uuid"

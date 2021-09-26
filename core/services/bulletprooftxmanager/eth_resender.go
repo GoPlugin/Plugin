@@ -9,11 +9,11 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 	"github.com/lib/pq"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/null"
-	"github.com/GoPlugin/Plugin/core/services/eth"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/null"
+	"github.com/smartcontractkit/chainlink/core/services/eth"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/utils"
 	"gorm.io/gorm"
 )
 

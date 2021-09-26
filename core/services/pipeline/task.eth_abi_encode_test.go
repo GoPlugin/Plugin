@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
 )
 
 func TestETHABIEncodeTask(t *testing.T) {

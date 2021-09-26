@@ -4,10 +4,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
+	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/utils"
 	"github.com/stretchr/testify/assert"
 )
 

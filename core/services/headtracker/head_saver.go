@@ -5,9 +5,9 @@ import (
 	"sync"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/GoPlugin/Plugin/core/services/postgres"
-	strpkg "github.com/GoPlugin/Plugin/core/store"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/services/postgres"
+	strpkg "github.com/smartcontractkit/chainlink/core/store"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 )
 
 type HeadSaver struct {

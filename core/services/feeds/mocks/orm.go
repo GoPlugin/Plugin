@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	feeds "github.com/GoPlugin/Plugin/core/services/feeds"
+	feeds "github.com/smartcontractkit/chainlink/core/services/feeds"
 	mock "github.com/stretchr/testify/mock"
 )
 

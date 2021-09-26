@@ -3,9 +3,9 @@ package fluxmonitorv2
 import (
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 type PollManagerConfig struct {

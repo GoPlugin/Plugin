@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/web"
+	"github.com/smartcontractkit/chainlink/core/web"
 
-	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/job"
 
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/stretchr/testify/require"

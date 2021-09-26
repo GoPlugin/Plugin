@@ -4,8 +4,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/assets"
-	"github.com/GoPlugin/Plugin/core/services/fluxmonitorv2"
+	"github.com/smartcontractkit/chainlink/core/assets"
+	"github.com/smartcontractkit/chainlink/core/services/fluxmonitorv2"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,10 +3,10 @@ package cron
 import (
 	"github.com/robfig/cron/v3"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/job"
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 // Cron runs a cron jobSpec from a CronSpec

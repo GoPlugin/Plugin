@@ -3,8 +3,8 @@ package directrequest
 import (
 	"github.com/pelletier/go-toml"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/job"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
 )
 
 type DirectRequestToml struct {

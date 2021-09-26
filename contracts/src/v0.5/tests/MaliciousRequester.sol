@@ -1,45 +1,45 @@
 pragma solidity 0.5.0;
 
 
-import "./MaliciousPluginClient.sol";
+import "./MaliciousChainlinkClient.sol";
 
 
-contract MaliciousRequester is MaliciousPluginClient {
+contract MaliciousRequester is MaliciousChainlinkClient {
 
-  uint256 constant private ORACLE_PAYMENT = 1 * PLI;
+  uint256 constant private ORACLE_PAYMENT = 1 * LINK;
   uint256 private expiration;
 
-  constructor(address _pli, address _oracle) public {
-    setPluginToken(_pli);
-    setPluginOracle(_oracle);
+  constructor(address _link, address _oracle) public {
+    setChainlinkToken(_link);
+    setChainlinkOracle(_oracle);
   }
 
   function maliciousWithdraw()
     public
   {
-    MaliciousPlugin.WithdrawRequest memory req = newWithdrawRequest(
+    MaliciousChainlink.WithdrawRequest memory req = newWithdrawRequest(
       "specId", address(this), this.doesNothing.selector);
-    pluginWithdrawRequest(req, ORACLE_PAYMENT);
+    chainlinkWithdrawRequest(req, ORACLE_PAYMENT);
   }
 
   function request(bytes32 _id, address _target, bytes memory _callbackFunc) public returns (bytes32 requestId) {
-    Plugin.Request memory req = buildPluginRequest(_id, _target, bytes4(keccak256(_callbackFunc)));
+    Chainlink.Request memory req = buildChainlinkRequest(_id, _target, bytes4(keccak256(_callbackFunc)));
     expiration = now.add(5 minutes); // solhint-disable-line not-rely-on-time
-    requestId = sendPluginRequest(req, ORACLE_PAYMENT);
+    requestId = sendChainlinkRequest(req, ORACLE_PAYMENT);
   }
 
   function maliciousPrice(bytes32 _id) public returns (bytes32 requestId) {
-    Plugin.Request memory req = buildPluginRequest(_id, address(this), this.doesNothing.selector);
-    requestId = pluginPriceRequest(req, ORACLE_PAYMENT);
+    Chainlink.Request memory req = buildChainlinkRequest(_id, address(this), this.doesNothing.selector);
+    requestId = chainlinkPriceRequest(req, ORACLE_PAYMENT);
   }
 
   function maliciousTargetConsumer(address _target) public returns (bytes32 requestId) {
-    Plugin.Request memory req = buildPluginRequest("specId", _target, bytes4(keccak256("fulfill(bytes32,bytes32)")));
-    requestId = pluginTargetRequest(_target, req, ORACLE_PAYMENT);
+    Chainlink.Request memory req = buildChainlinkRequest("specId", _target, bytes4(keccak256("fulfill(bytes32,bytes32)")));
+    requestId = chainlinkTargetRequest(_target, req, ORACLE_PAYMENT);
   }
 
   function maliciousRequestCancel(bytes32 _id, bytes memory _callbackFunc) public {
-    PluginRequestInterface _oracle = PluginRequestInterface(pluginOracleAddress());
+    ChainlinkRequestInterface _oracle = ChainlinkRequestInterface(chainlinkOracleAddress());
     _oracle.cancelOracleRequest(
       request(_id, address(this), _callbackFunc),
       ORACLE_PAYMENT,

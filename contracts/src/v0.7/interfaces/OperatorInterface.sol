@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "./PluginRequestInterface.sol";
+import "./ChainlinkRequestInterface.sol";
 import "./OracleInterface.sol";
 
 interface OperatorInterface is
-  PluginRequestInterface,
+  ChainlinkRequestInterface,
   OracleInterface
 {
 

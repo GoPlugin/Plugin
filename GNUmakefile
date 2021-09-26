@@ -4,7 +4,7 @@ ENVIRONMENT ?= release
 
 GOPATH ?= $(HOME)/go
 BUILDER ?= smartcontract/builder
-REPO := smartcontract/plugin
+REPO := smartcontract/chainlink
 COMMIT_SHA ?= $(shell git rev-parse HEAD)
 VERSION = $(shell cat VERSION)
 GOBIN ?= $(GOPATH)/bin

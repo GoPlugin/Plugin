@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/assets"
+	"github.com/smartcontractkit/chainlink/core/assets"
 )
 
 type (

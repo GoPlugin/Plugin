@@ -4,7 +4,7 @@ package mocks
 
 import (
 	common "github.com/ethereum/go-ethereum/common"
-	fluxmonitorv2 "github.com/GoPlugin/Plugin/core/services/fluxmonitorv2"
+	fluxmonitorv2 "github.com/smartcontractkit/chainlink/core/services/fluxmonitorv2"
 	gorm "gorm.io/gorm"
 
 	mock "github.com/stretchr/testify/mock"

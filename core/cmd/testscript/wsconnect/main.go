@@ -6,12 +6,12 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/internal/mocks"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/internal/mocks"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 
 	"github.com/ethereum/go-ethereum"
-	"github.com/GoPlugin/Plugin/core/services"
-	"github.com/GoPlugin/Plugin/core/services/eth"
+	"github.com/smartcontractkit/chainlink/core/services"
+	"github.com/smartcontractkit/chainlink/core/services/eth"
 )
 
 func panicErr(err error) {

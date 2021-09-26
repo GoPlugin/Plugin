@@ -6,14 +6,14 @@ import (
 	"net/url"
 	"sync"
 
-	"github.com/GoPlugin/Plugin/core/static"
-	"github.com/GoPlugin/Plugin/core/store/dialects"
+	"github.com/smartcontractkit/chainlink/core/static"
+	"github.com/smartcontractkit/chainlink/core/store/dialects"
 
 	"github.com/pkg/errors"
 	"go.uber.org/multierr"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 // NOTE: All advisory lock class IDs used by the Chainlink application MUST be

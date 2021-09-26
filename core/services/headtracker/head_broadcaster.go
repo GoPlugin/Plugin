@@ -8,10 +8,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	httypes "github.com/GoPlugin/Plugin/core/services/headtracker/types"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	httypes "github.com/smartcontractkit/chainlink/core/services/headtracker/types"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 const callbackTimeout = 2 * time.Second

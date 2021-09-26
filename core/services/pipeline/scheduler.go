@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 )
 
 type scheduler struct {

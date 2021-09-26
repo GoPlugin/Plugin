@@ -17,7 +17,7 @@
     "prepublishOnly": "yarn clean && yarn setup",
     "version": "oclif-dev readme && git add README.md"
   },
-  "bugs": "https://github.com/GoPlugin/Plugin/issues",
+  "bugs": "https://github.com/smartcontractkit/chainlink/issues",
   "dependencies": {
     "@0x/sol-compiler": "4.0.8",
     "@oclif/command": "^1",
@@ -61,7 +61,7 @@
     "/oclif.manifest.json",
     "/patches"
   ],
-  "homepage": "https://github.com/GoPlugin/Plugin",
+  "homepage": "https://github.com/smartcontractkit/chainlink",
   "keywords": [
     "oclif"
   ],
@@ -75,6 +75,6 @@
       "@oclif/plugin-not-found"
     ]
   },
-  "repository": "GoPlugin/Plugin",
+  "repository": "smartcontractkit/chainlink",
   "types": "lib/src/index.d.ts"
 }

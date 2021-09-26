@@ -2,7 +2,7 @@ package fluxmonitorv2
 
 import (
 	"github.com/shopspring/decimal"
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 )
 
 // DeviationThresholds carries parameters used by the threshold-trigger logic

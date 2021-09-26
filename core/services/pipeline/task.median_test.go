@@ -8,7 +8,7 @@ import (
 	"github.com/shopspring/decimal"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
 )
 
 func TestMedian(t *testing.T) {

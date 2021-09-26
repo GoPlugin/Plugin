@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/utils"
 	"github.com/stretchr/testify/assert"
 )
 

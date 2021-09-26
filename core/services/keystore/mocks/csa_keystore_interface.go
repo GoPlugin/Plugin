@@ -3,8 +3,8 @@
 package mocks
 
 import (
-	csakey "github.com/GoPlugin/Plugin/core/services/keystore/keys/csakey"
-	crypto "github.com/GoPlugin/Plugin/core/utils/crypto"
+	csakey "github.com/smartcontractkit/chainlink/core/services/keystore/keys/csakey"
+	crypto "github.com/smartcontractkit/chainlink/core/utils/crypto"
 
 	mock "github.com/stretchr/testify/mock"
 )

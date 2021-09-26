@@ -6,10 +6,10 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	pb "github.com/GoPlugin/Plugin/core/services/feeds/proto"
-	"github.com/GoPlugin/Plugin/core/services/keystore"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	pb "github.com/smartcontractkit/chainlink/core/services/feeds/proto"
+	"github.com/smartcontractkit/chainlink/core/services/keystore"
+	"github.com/smartcontractkit/chainlink/core/utils"
 	"github.com/smartcontractkit/wsrpc"
 )
 

@@ -17,7 +17,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 	"go.uber.org/atomic"
 
 	"github.com/ethereum/go-ethereum/common"

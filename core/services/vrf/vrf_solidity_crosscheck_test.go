@@ -16,12 +16,12 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.dedis.ch/kyber/v3"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/solidity_vrf_verifier_wrapper"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/vrfkey"
-	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
-	"github.com/GoPlugin/Plugin/core/services/vrf"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/solidity_vrf_verifier_wrapper"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/vrfkey"
+	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/smartcontractkit/chainlink/core/services/vrf"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 // Cross-checks of golang implementation details vs corresponding solidity

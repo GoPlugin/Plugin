@@ -4,17 +4,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/job"
 
 	uuid "github.com/satori/go.uuid"
 
-	"github.com/GoPlugin/Plugin/core/assets"
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/internal/cltest/heavyweight"
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
-	"github.com/GoPlugin/Plugin/core/store/migrations"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/assets"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest/heavyweight"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/store/migrations"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 	"gopkg.in/guregu/null.v4"
 
 	"github.com/stretchr/testify/assert"

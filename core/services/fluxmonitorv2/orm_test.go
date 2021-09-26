@@ -9,13 +9,13 @@ import (
 
 	"gopkg.in/guregu/null.v4"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	bptxmmocks "github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager/mocks"
-	"github.com/GoPlugin/Plugin/core/services/fluxmonitorv2"
-	"github.com/GoPlugin/Plugin/core/services/job"
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
-	"github.com/GoPlugin/Plugin/core/services/postgres"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	bptxmmocks "github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager/mocks"
+	"github.com/smartcontractkit/chainlink/core/services/fluxmonitorv2"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/services/postgres"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 	"github.com/stretchr/testify/require"
 )
 

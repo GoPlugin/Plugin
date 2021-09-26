@@ -3,7 +3,7 @@ package migrations
 import (
 	"fmt"
 
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 	"gopkg.in/guregu/null.v4"
 
 	uuid "github.com/satori/go.uuid"

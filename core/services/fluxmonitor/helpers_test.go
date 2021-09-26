@@ -10,17 +10,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	logmocks "github.com/GoPlugin/Plugin/core/services/log/mocks"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	logmocks "github.com/smartcontractkit/chainlink/core/services/log/mocks"
 
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 func ExportedSetCheckerFactory(fm Service, fac DeviationCheckerFactory) {

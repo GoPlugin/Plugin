@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { oracle } = require('@plugin/test-helpers')
+const { oracle } = require('@chainlink/test-helpers')
 const { expectRevert, time } = require('openzeppelin-test-helpers')
 
 contract('MyContract', (accounts) => {
-  const { PluginToken } = require('@plugin/contracts/truffle/v0.4/PluginToken')
-  const { Oracle } = require('@plugin/contracts/truffle/v0.4/Oracle')
+  const { LinkToken } = require('@chainlink/contracts/truffle/v0.4/LinkToken')
+  const { Oracle } = require('@chainlink/contracts/truffle/v0.4/Oracle')
   const MyContract = artifacts.require('MyContract.sol')
 
   const defaultAccount = accounts[0]
@@ -23,13 +23,13 @@ contract('MyContract', (accounts) => {
   const path = 'USD'
   const times = 100
 
-  // Represents 1 PLI for testnet requests
+  // Represents 1 LINK for testnet requests
   const payment = web3.utils.toWei('1')
 
   let link, oc, cc
 
   beforeEach(async () => {
-    link = await PluginToken.new({ from: defaultAccount })
+    link = await LinkToken.new({ from: defaultAccount })
     oc = await Oracle.new(link.address, { from: defaultAccount })
     cc = await MyContract.new(link.address, { from: consumer })
     await oc.setFulfillmentPermission(oracleNode, true, {
@@ -38,7 +38,7 @@ contract('MyContract', (accounts) => {
   })
 
   describe('#createRequest', () => {
-    context('without PLI', () => {
+    context('without LINK', () => {
       it('reverts', async () => {
         await expectRevert.unspecified(
           cc.createRequestTo(oc.address, jobId, payment, url, path, times, {
@@ -48,7 +48,7 @@ contract('MyContract', (accounts) => {
       })
     })
 
-    context('with PLI', () => {
+    context('with LINK', () => {
       let request
 
       beforeEach(async () => {
@@ -210,7 +210,7 @@ contract('MyContract', (accounts) => {
     })
   })
 
-  describe('#withdrawPlugin', () => {
+  describe('#withdrawLink', () => {
     beforeEach(async () => {
       await link.transfer(cc.address, web3.utils.toWei('1', 'ether'), {
         from: defaultAccount,
@@ -219,15 +219,15 @@ contract('MyContract', (accounts) => {
 
     context('when called by a non-owner', () => {
       it('cannot withdraw', async () => {
-        await expectRevert.unspecified(cc.withdrawPlugin({ from: stranger }))
+        await expectRevert.unspecified(cc.withdrawLink({ from: stranger }))
       })
     })
 
     context('when called by the owner', () => {
-      it('transfers PLI to the owner', async () => {
+      it('transfers LINK to the owner', async () => {
         const beforeBalance = await link.balanceOf(consumer)
         assert.equal(beforeBalance, '0')
-        await cc.withdrawPlugin({ from: consumer })
+        await cc.withdrawLink({ from: consumer })
         const afterBalance = await link.balanceOf(consumer)
         assert.equal(afterBalance, web3.utils.toWei('1', 'ether'))
       })

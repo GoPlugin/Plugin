@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >= 0.4.19 < 0.7.0;
 
-import { Buffer as BufferPlugin } from "./Buffer.sol";
+import { Buffer as BufferChainlink } from "./Buffer.sol";
 
 library CBOR {
-    using BufferPlugin for BufferPlugin.buffer;
+    using BufferChainlink for BufferChainlink.buffer;
 
     uint8 private constant MAJOR_TYPE_INT = 0;
     uint8 private constant MAJOR_TYPE_NEGATIVE_INT = 1;
@@ -18,7 +18,7 @@ library CBOR {
     uint8 private constant TAG_TYPE_BIGNUM = 2;
     uint8 private constant TAG_TYPE_NEGATIVE_BIGNUM = 3;
 
-    function encodeType(BufferPlugin.buffer memory buf, uint8 major, uint value) private pure {
+    function encodeType(BufferChainlink.buffer memory buf, uint8 major, uint value) private pure {
         if(value <= 23) {
             buf.appendUint8(uint8((major << 5) | value));
         } else if(value <= 0xFF) {
@@ -36,15 +36,15 @@ library CBOR {
         }
     }
 
-    function encodeIndefiniteLengthType(BufferPlugin.buffer memory buf, uint8 major) private pure {
+    function encodeIndefiniteLengthType(BufferChainlink.buffer memory buf, uint8 major) private pure {
         buf.appendUint8(uint8((major << 5) | 31));
     }
 
-    function encodeUInt(BufferPlugin.buffer memory buf, uint value) internal pure {
+    function encodeUInt(BufferChainlink.buffer memory buf, uint value) internal pure {
         encodeType(buf, MAJOR_TYPE_INT, value);
     }
 
-    function encodeInt(BufferPlugin.buffer memory buf, int value) internal pure {
+    function encodeInt(BufferChainlink.buffer memory buf, int value) internal pure {
         if(value < -0x10000000000000000) {
             encodeSignedBigNum(buf, value);
         } else if(value > 0xFFFFFFFFFFFFFFFF) {
@@ -56,35 +56,35 @@ library CBOR {
         }
     }
 
-    function encodeBytes(BufferPlugin.buffer memory buf, bytes memory value) internal pure {
+    function encodeBytes(BufferChainlink.buffer memory buf, bytes memory value) internal pure {
         encodeType(buf, MAJOR_TYPE_BYTES, value.length);
         buf.append(value);
     }
 
-    function encodeBigNum(BufferPlugin.buffer memory buf, int value) internal pure {
+    function encodeBigNum(BufferChainlink.buffer memory buf, int value) internal pure {
       buf.appendUint8(uint8((MAJOR_TYPE_TAG << 5) | TAG_TYPE_BIGNUM));
       encodeBytes(buf, abi.encode(uint(value)));
     }
 
-    function encodeSignedBigNum(BufferPlugin.buffer memory buf, int input) internal pure {
+    function encodeSignedBigNum(BufferChainlink.buffer memory buf, int input) internal pure {
       buf.appendUint8(uint8((MAJOR_TYPE_TAG << 5) | TAG_TYPE_NEGATIVE_BIGNUM));
       encodeBytes(buf, abi.encode(uint(-1 - input)));
     }
 
-    function encodeString(BufferPlugin.buffer memory buf, string memory value) internal pure {
+    function encodeString(BufferChainlink.buffer memory buf, string memory value) internal pure {
         encodeType(buf, MAJOR_TYPE_STRING, bytes(value).length);
         buf.append(bytes(value));
     }
 
-    function startArray(BufferPlugin.buffer memory buf) internal pure {
+    function startArray(BufferChainlink.buffer memory buf) internal pure {
         encodeIndefiniteLengthType(buf, MAJOR_TYPE_ARRAY);
     }
 
-    function startMap(BufferPlugin.buffer memory buf) internal pure {
+    function startMap(BufferChainlink.buffer memory buf) internal pure {
         encodeIndefiniteLengthType(buf, MAJOR_TYPE_MAP);
     }
 
-    function endSequence(BufferPlugin.buffer memory buf) internal pure {
+    function endSequence(BufferChainlink.buffer memory buf) internal pure {
         encodeIndefiniteLengthType(buf, MAJOR_TYPE_CONTENT_FREE);
     }
 }

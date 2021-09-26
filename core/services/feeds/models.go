@@ -5,7 +5,7 @@ import (
 
 	"github.com/lib/pq"
 	uuid "github.com/satori/go.uuid"
-	"github.com/GoPlugin/Plugin/core/utils/crypto"
+	"github.com/smartcontractkit/chainlink/core/utils/crypto"
 )
 
 // We only support OCR and FM for the feeds manager

@@ -3,10 +3,10 @@ package keeper
 import (
 	"context"
 
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/orm"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"

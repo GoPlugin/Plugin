@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/smartcontractkit/chainlink/core/logger"
 )
 
 // To add a new chain to this file:

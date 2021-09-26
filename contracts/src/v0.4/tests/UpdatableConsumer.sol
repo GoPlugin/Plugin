@@ -6,19 +6,19 @@ contract UpdatableConsumer is Consumer {
 
   constructor(bytes32 _specId, address _ens, bytes32 _node) public {
     specId = _specId;
-    usePluginWithENS(_ens, _node);
+    useChainlinkWithENS(_ens, _node);
   }
 
   function updateOracle() public {
-    updatePluginOracleWithENS();
+    updateChainlinkOracleWithENS();
   }
 
-  function getPluginToken() public view returns (address) {
-    return pluginTokenAddress();
+  function getChainlinkToken() public view returns (address) {
+    return chainlinkTokenAddress();
   }
 
   function getOracle() public view returns (address) {
-    return pluginOracleAddress();
+    return chainlinkOracleAddress();
   }
 
 }

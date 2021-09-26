@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
-	"github.com/GoPlugin/Plugin/core/utils"
-	bm "github.com/GoPlugin/Plugin/core/utils/big_math"
+	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/smartcontractkit/chainlink/core/utils"
+	bm "github.com/smartcontractkit/chainlink/core/utils/big_math"
 	"go.dedis.ch/kyber/v3"
 )
 

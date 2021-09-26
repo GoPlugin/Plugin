@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	bptxmmocks "github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager/mocks"
-	"github.com/GoPlugin/Plugin/core/services/offchainreporting"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	bptxmmocks "github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager/mocks"
+	"github.com/smartcontractkit/chainlink/core/services/offchainreporting"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 )

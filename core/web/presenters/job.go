@@ -5,14 +5,14 @@ import (
 
 	"github.com/lib/pq"
 	uuid "github.com/satori/go.uuid"
-	"github.com/GoPlugin/Plugin/core/assets"
-	clnull "github.com/GoPlugin/Plugin/core/null"
-	"github.com/GoPlugin/Plugin/core/services/job"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/p2pkey"
-	"github.com/GoPlugin/Plugin/core/services/pipeline"
-	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/assets"
+	clnull "github.com/smartcontractkit/chainlink/core/null"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/p2pkey"
+	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 )
 
 // JobSpecType defines the the the spec type of the job

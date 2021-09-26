@@ -12,7 +12,7 @@ contract AuthorizedForwarder is
 {
   using Address for address;
 
-  address public immutable getPluginToken;
+  address public immutable getChainlinkToken;
 
   event OwnershipTransferRequestedWithMessage(
     address indexed from,
@@ -21,14 +21,14 @@ contract AuthorizedForwarder is
   );
 
   constructor(
-    address pli,
+    address link,
     address owner,
     address recipient,
     bytes memory message
   )
     ConfirmedOwnerWithProposal(owner, recipient)
   {
-    getPluginToken = pli;
+    getChainlinkToken = link;
     if (recipient != address(0)) {
       emit OwnershipTransferRequestedWithMessage(owner, recipient, message);
     }
@@ -47,7 +47,7 @@ contract AuthorizedForwarder is
     external
     validateAuthorizedSender()
   {
-    require(to != getPluginToken, "Cannot #forward to Pli token");
+    require(to != getChainlinkToken, "Cannot #forward to Link token");
     _forward(to, data);
   }
 

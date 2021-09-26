@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/auth"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/auth"
+	"github.com/smartcontractkit/chainlink/core/utils"
 
 	"github.com/pkg/errors"
 )

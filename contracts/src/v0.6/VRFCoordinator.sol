@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.6;
 
-import "./vendor/SafeMathPlugin.sol";
+import "./vendor/SafeMathChainlink.sol";
 
-import "./interfaces/PliTokenInterface.sol";
+import "./interfaces/LinkTokenInterface.sol";
 import "./interfaces/BlockHashStoreInterface.sol";
 
 import "./vendor/Ownable.sol";
@@ -18,19 +18,19 @@ import "./VRFConsumerBase.sol";
  */
 contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
 
-  using SafeMathPlugin for uint256;
+  using SafeMathChainlink for uint256;
 
-  PliTokenInterface internal PLI;
+  LinkTokenInterface internal LINK;
   BlockHashStoreInterface internal blockHashStore;
 
-  constructor(address _pli, address _blockHashStore) public {
-    PLI = PliTokenInterface(_pli);
+  constructor(address _link, address _blockHashStore) public {
+    LINK = LinkTokenInterface(_link);
     blockHashStore = BlockHashStoreInterface(_blockHashStore);
   }
 
   struct Callback { // Tracks an ongoing request
     address callbackContract; // Requesting contract, which will receive response
-    // Amount of PLI paid at request time. Total PLI = 1e9 * 1e18 < 2^96, so
+    // Amount of LINK paid at request time. Total LINK = 1e9 * 1e18 < 2^96, so
     // this representation is adequate, and saves a word of storage when this
     // field follows the 160-bit callbackContract address.
     uint96 randomnessFee;
@@ -43,14 +43,14 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
 
   struct ServiceAgreement { // Tracks oracle commitments to VRF service
     address vRFOracle; // Oracle committing to respond with VRF service
-    uint96 fee; // Minimum payment for oracle response. Total PLI=1e9*1e18<2^96
-    bytes32 jobID; // ID of corresponding plugin job in oracle's DB
+    uint96 fee; // Minimum payment for oracle response. Total LINK=1e9*1e18<2^96
+    bytes32 jobID; // ID of corresponding chainlink job in oracle's DB
   }
 
   mapping(bytes32 /* (provingKey, seed) */ => Callback) public callbacks;
   mapping(bytes32 /* provingKey */ => ServiceAgreement)
     public serviceAgreements;
-  mapping(address /* oracle */ => uint256 /* PLI balance */)
+  mapping(address /* oracle */ => uint256 /* LINK balance */)
     public withdrawableTokens;
   mapping(bytes32 /* provingKey */ => mapping(address /* consumer */ => uint256))
     private nonces;
@@ -72,10 +72,10 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
 
   /**
    * @notice Commits calling address to serve randomness
-   * @param _fee minimum PLI payment required to serve randomness
-   * @param _oracle the address of the Plugin node with the proving key and job
+   * @param _fee minimum LINK payment required to serve randomness
+   * @param _oracle the address of the Chainlink node with the proving key and job
    * @param _publicProvingKey public key used to prove randomness
-   * @param _jobID ID of the corresponding plugin job in the oracle's db
+   * @param _jobID ID of the corresponding chainlink job in the oracle's db
    */
   function registerProvingKey(
     uint256 _fee, address _oracle, uint256[2] calldata _publicProvingKey, bytes32 _jobID
@@ -91,13 +91,13 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
     serviceAgreements[keyHash].jobID = _jobID;
     // Yes, this revert message doesn't fit in a word
     require(_fee <= 1e9 ether,
-      "you can't charge more than all the PLI in the world, greedy");
+      "you can't charge more than all the LINK in the world, greedy");
     serviceAgreements[keyHash].fee = uint96(_fee);
     emit NewServiceAgreement(keyHash, _fee);
   }
 
   /**
-   * @notice Called by PLI.transferAndCall, on successful PLI transfer
+   * @notice Called by LINK.transferAndCall, on successful LINK transfer
    *
    * @dev To invoke this, use the requestRandomness method in VRFConsumerBase.
    *
@@ -107,24 +107,24 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
    * @dev contract should inherit from VRFConsumerBase, and implement
    * @dev fulfilRandomness.
    *
-   * @param _sender address: who sent the PLI (must be a contract)
-   * @param _fee amount of PLI sent
+   * @param _sender address: who sent the LINK (must be a contract)
+   * @param _fee amount of LINK sent
    * @param _data abi-encoded call to randomnessRequest
    */
   function onTokenTransfer(address _sender, uint256 _fee, bytes memory _data)
     public
-    onlyPLI
+    onlyLINK
   {
     (bytes32 keyHash, uint256 seed) = abi.decode(_data, (bytes32, uint256));
     randomnessRequest(keyHash, seed, _fee, _sender);
   }
 
   /**
-   * @notice creates the plugin request for randomness
+   * @notice creates the chainlink request for randomness
    *
    * @param _keyHash ID of the VRF public key against which to generate output
    * @param _consumerSeed Input to the VRF, from which randomness is generated
-   * @param _feePaid Amount of PLI sent with request. Must exceed fee for key
+   * @param _feePaid Amount of LINK sent with request. Must exceed fee for key
    * @param _sender Requesting contract; to be called back with VRF output
    *
    * @dev _consumerSeed is mixed with key hash, sender address and nonce to
@@ -141,7 +141,7 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
     address _sender
   )
     internal
-    sufficientPLI(_feePaid, _keyHash)
+    sufficientLINK(_feePaid, _keyHash)
   {
     uint256 nonce = nonces[_keyHash][_sender];
     uint256 preSeed = makeVRFInputSeed(_keyHash, _consumerSeed, _sender, nonce);
@@ -149,7 +149,7 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
     // Cryptographically guaranteed by preSeed including an increasing nonce
     assert(callbacks[requestId].callbackContract == address(0));
     callbacks[requestId].callbackContract = _sender;
-    assert(_feePaid < 1e27); // Total PLI fits in uint96
+    assert(_feePaid < 1e27); // Total LINK fits in uint96
     callbacks[requestId].randomnessFee = uint96(_feePaid);
     callbacks[requestId].seedAndBlockNum = keccak256(abi.encodePacked(
       preSeed, block.number));
@@ -166,7 +166,7 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
   uint256 public constant PRESEED_OFFSET = 0xe0;
 
   /**
-   * @notice Called by the plugin node to fulfill requests
+   * @notice Called by the chainlink node to fulfill requests
    *
    * @param _proof the proof of randomness. Actual random output built from this
    *
@@ -257,16 +257,16 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
   }
 
   /**
-   * @dev Allows the oracle operator to withdraw their PLI
+   * @dev Allows the oracle operator to withdraw their LINK
    * @param _recipient is the address the funds will be sent to
-   * @param _amount is the amount of PLI transferred from the Coordinator contract
+   * @param _amount is the amount of LINK transferred from the Coordinator contract
    */
   function withdraw(address _recipient, uint256 _amount)
     external
     hasAvailableFunds(_amount)
   {
     withdrawableTokens[msg.sender] = withdrawableTokens[msg.sender].sub(_amount);
-    assert(PLI.transfer(_recipient, _amount));
+    assert(LINK.transfer(_recipient, _amount));
   }
 
   /**
@@ -282,16 +282,16 @@ contract VRFCoordinator is VRF, VRFRequestIDBase, Ownable {
    * @param _feePaid The payment for the request
    * @param _keyHash The key which the request is for
    */
-  modifier sufficientPLI(uint256 _feePaid, bytes32 _keyHash) {
+  modifier sufficientLINK(uint256 _feePaid, bytes32 _keyHash) {
     require(_feePaid >= serviceAgreements[_keyHash].fee, "Below agreed payment");
     _;
   }
 
 /**
-   * @dev Reverts if not sent from the PLI token
+   * @dev Reverts if not sent from the LINK token
    */
-  modifier onlyPLI() {
-    require(msg.sender == address(PLI), "Must use PLI token");
+  modifier onlyLINK() {
+    require(msg.sender == address(LINK), "Must use LINK token");
     _;
   }
 

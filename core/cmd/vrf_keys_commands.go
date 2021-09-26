@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
-	"github.com/GoPlugin/Plugin/core/web/presenters"
+	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/smartcontractkit/chainlink/core/web/presenters"
 	"go.uber.org/multierr"
 
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/utils"
 	"github.com/urfave/cli"
 )
 

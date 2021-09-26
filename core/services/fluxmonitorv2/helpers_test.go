@@ -1,9 +1,9 @@
 package fluxmonitorv2
 
 import (
-	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
-	"github.com/GoPlugin/Plugin/core/services/log"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
+	"github.com/smartcontractkit/chainlink/core/services/log"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 func (fm *FluxMonitor) ExportedPollIfEligible(threshold, absoluteThreshold float64) {

@@ -4,9 +4,9 @@ import (
 	"reflect"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/flags_wrapper"
-	"github.com/GoPlugin/Plugin/core/services/eth"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/flags_wrapper"
+	"github.com/smartcontractkit/chainlink/core/services/eth"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 // Flags wraps the a contract

@@ -2,21 +2,21 @@
 pragma solidity ^0.7.0;
 
 import "./ConfirmedOwner.sol";
-import "../vendor/SafeMathPlugin.sol";
+import "../vendor/SafeMathChainlink.sol";
 import "../interfaces/FlagsInterface.sol";
 import "../interfaces/AggregatorV3Interface.sol";
 import "../interfaces/UniswapAnchoredView.sol";
 import "../interfaces/KeeperCompatibleInterface.sol";
 
 /**
- * @notice This validator compares the price of Plugin aggregators against
+ * @notice This validator compares the price of Chainlink aggregators against
  * their equivalent Compound Open Oracle feeds. For each aggregator, a Compound
  * feed is configured with its symbol, number of decimals, and deviation threshold.
  * An aggregator address is flagged when its corresponding Compound feed price deviates
  * by more than the configured threshold from the aggregator price.
  */
 contract CompoundPriceFlaggingValidator is ConfirmedOwner, KeeperCompatibleInterface {
-  using SafeMathPlugin for uint256;
+  using SafeMathChainlink for uint256;
 
   struct CompoundFeedDetails {
     // Used to call the Compound Open Oracle
@@ -58,7 +58,7 @@ contract CompoundPriceFlaggingValidator is ConfirmedOwner, KeeperCompatibleInter
   
   /**
    * @notice Create a new CompoundPriceFlaggingValidator
-   * @dev Use this contract to compare Plugin aggregator prices
+   * @dev Use this contract to compare Chainlink aggregator prices
    * against the Compound Open Oracle prices
    * @param flagsAddress Address of the flag contract
    * @param compoundOracleAddress Address of the Compound Open Oracle UniswapAnchoredView contract
@@ -108,9 +108,9 @@ contract CompoundPriceFlaggingValidator is ConfirmedOwner, KeeperCompatibleInter
   }
 
   /**
-   * @notice Set the threshold details for comparing a Plugin aggregator
+   * @notice Set the threshold details for comparing a Chainlink aggregator
    * to a Compound Open Oracle feed.
-   * @param aggregator The Plugin aggregator address
+   * @param aggregator The Chainlink aggregator address
    * @param compoundSymbol The symbol used by Compound for this feed
    * @param compoundDecimals The number of decimals in the Compound feed
    * @param compoundDeviationThresholdNumerator The threshold numerator use to determine
@@ -332,7 +332,7 @@ contract CompoundPriceFlaggingValidator is ConfirmedOwner, KeeperCompatibleInter
   /**
    * @notice Check if an aggregator has an equivalent Compound Oracle feed
    * that's price is deviated more than the threshold.
-   * @param aggregator address of the Plugin aggregator
+   * @param aggregator address of the Chainlink aggregator
    * @return invalid bool. True if the deviation exceeds threshold.
    */
   function _isInvalid(

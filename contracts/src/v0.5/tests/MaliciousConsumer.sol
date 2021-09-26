@@ -1,25 +1,25 @@
 pragma solidity 0.5.0;
 
-import "../PluginClient.sol";
-import "../vendor/SafeMathPlugin.sol";
+import "../ChainlinkClient.sol";
+import "../vendor/SafeMathChainlink.sol";
 
-contract MaliciousConsumer is PluginClient {
-   using SafeMathPlugin for uint256;
+contract MaliciousConsumer is ChainlinkClient {
+   using SafeMathChainlink for uint256;
 
-  uint256 constant private ORACLE_PAYMENT = 1 * PLI;
+  uint256 constant private ORACLE_PAYMENT = 1 * LINK;
   uint256 private expiration;
 
-  constructor(address _pli, address _oracle) public payable {
-    setPluginToken(_pli);
-    setPluginOracle(_oracle);
+  constructor(address _link, address _oracle) public payable {
+    setChainlinkToken(_link);
+    setChainlinkOracle(_oracle);
   }
 
   function () external payable {} // solhint-disable-line no-empty-blocks
 
   function requestData(bytes32 _id, bytes memory _callbackFunc) public {
-    Plugin.Request memory req = buildPluginRequest(_id, address(this), bytes4(keccak256(_callbackFunc)));
+    Chainlink.Request memory req = buildChainlinkRequest(_id, address(this), bytes4(keccak256(_callbackFunc)));
     expiration = now.add(5 minutes); // solhint-disable-line not-rely-on-time
-    sendPluginRequest(req, ORACLE_PAYMENT);
+    sendChainlinkRequest(req, ORACLE_PAYMENT);
   }
 
   function assertFail(bytes32, bytes32) public pure {
@@ -27,7 +27,7 @@ contract MaliciousConsumer is PluginClient {
   }
 
   function cancelRequestOnFulfill(bytes32 _requestId, bytes32) public {
-    cancelPluginRequest(
+    cancelChainlinkRequest(
       _requestId,
       ORACLE_PAYMENT,
       this.cancelRequestOnFulfill.selector,
@@ -38,18 +38,18 @@ contract MaliciousConsumer is PluginClient {
     selfdestruct(address(0));
   }
 
-  function stealEthCall(bytes32 _requestId, bytes32) public recordPluginFulfillment(_requestId) {
+  function stealEthCall(bytes32 _requestId, bytes32) public recordChainlinkFulfillment(_requestId) {
     (bool success,) = address(this).call.value(100)(""); // solhint-disable-line avoid-call-value
     require(success, "Call failed");
   }
 
-  function stealEthSend(bytes32 _requestId, bytes32) public recordPluginFulfillment(_requestId) {
+  function stealEthSend(bytes32 _requestId, bytes32) public recordChainlinkFulfillment(_requestId) {
     // solhint-disable-next-line check-send-result
     bool success = address(this).send(100); // solhint-disable-line multiple-sends
     require(success, "Send failed");
   }
 
-  function stealEthTransfer(bytes32 _requestId, bytes32) public recordPluginFulfillment(_requestId) {
+  function stealEthTransfer(bytes32 _requestId, bytes32) public recordChainlinkFulfillment(_requestId) {
     address(this).transfer(100);
   }
 

@@ -1,9 +1,9 @@
 package adapters
 
 import (
-	"github.com/GoPlugin/Plugin/core/services/keystore"
-	"github.com/GoPlugin/Plugin/core/store"
-	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/services/keystore"
+	"github.com/smartcontractkit/chainlink/core/store"
+	"github.com/smartcontractkit/chainlink/core/store/models"
 )
 
 // NoOp adapter type holds no fields

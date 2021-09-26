@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/cmd"
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/services/chainlink"
-	"github.com/GoPlugin/Plugin/core/web/presenters"
+	"github.com/smartcontractkit/chainlink/core/cmd"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/services/chainlink"
+	"github.com/smartcontractkit/chainlink/core/web/presenters"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

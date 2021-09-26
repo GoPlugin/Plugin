@@ -7,35 +7,35 @@ import (
 
 	context "context"
 
-	feeds "github.com/GoPlugin/Plugin/core/services/feeds"
+	feeds "github.com/smartcontractkit/chainlink/core/services/feeds"
 
-	health "github.com/GoPlugin/Plugin/core/services/health"
+	health "github.com/smartcontractkit/chainlink/core/services/health"
 
-	job "github.com/GoPlugin/Plugin/core/services/job"
+	job "github.com/smartcontractkit/chainlink/core/services/job"
 
-	keystore "github.com/GoPlugin/Plugin/core/services/keystore"
+	keystore "github.com/smartcontractkit/chainlink/core/services/keystore"
 
-	logger "github.com/GoPlugin/Plugin/core/logger"
+	logger "github.com/smartcontractkit/chainlink/core/logger"
 
 	mock "github.com/stretchr/testify/mock"
 
-	models "github.com/GoPlugin/Plugin/core/store/models"
+	models "github.com/smartcontractkit/chainlink/core/store/models"
 
 	null "gopkg.in/guregu/null.v4"
 
 	packr "github.com/gobuffalo/packr"
 
-	pipeline "github.com/GoPlugin/Plugin/core/services/pipeline"
+	pipeline "github.com/smartcontractkit/chainlink/core/services/pipeline"
 
-	store "github.com/GoPlugin/Plugin/core/store"
+	store "github.com/smartcontractkit/chainlink/core/store"
 
-	synchronization "github.com/GoPlugin/Plugin/core/services/synchronization"
+	synchronization "github.com/smartcontractkit/chainlink/core/services/synchronization"
 
-	types "github.com/GoPlugin/Plugin/core/services/headtracker/types"
+	types "github.com/smartcontractkit/chainlink/core/services/headtracker/types"
 
 	uuid "github.com/satori/go.uuid"
 
-	webhook "github.com/GoPlugin/Plugin/core/services/webhook"
+	webhook "github.com/smartcontractkit/chainlink/core/services/webhook"
 
 	zapcore "go.uber.org/zap/zapcore"
 )

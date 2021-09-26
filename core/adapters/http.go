@@ -11,11 +11,11 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/keystore"
-	"github.com/GoPlugin/Plugin/core/store"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/store/orm"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/services/keystore"
+	"github.com/smartcontractkit/chainlink/core/store"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 // HTTPGet requires a URL which is used for a GET request when the adapter is called.

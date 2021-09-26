@@ -3,23 +3,23 @@ package web
 import (
 	"net/http"
 
-	"github.com/GoPlugin/Plugin/core/services/vrf"
+	"github.com/smartcontractkit/chainlink/core/services/vrf"
 
-	"github.com/GoPlugin/Plugin/core/services/directrequest"
-	"github.com/GoPlugin/Plugin/core/services/keeper"
-	"github.com/GoPlugin/Plugin/core/services/offchainreporting"
-	"github.com/GoPlugin/Plugin/core/services/webhook"
-	"github.com/GoPlugin/Plugin/core/web/presenters"
+	"github.com/smartcontractkit/chainlink/core/services/directrequest"
+	"github.com/smartcontractkit/chainlink/core/services/keeper"
+	"github.com/smartcontractkit/chainlink/core/services/offchainreporting"
+	"github.com/smartcontractkit/chainlink/core/services/webhook"
+	"github.com/smartcontractkit/chainlink/core/web/presenters"
 
-	"github.com/GoPlugin/Plugin/core/services/fluxmonitorv2"
+	"github.com/smartcontractkit/chainlink/core/services/fluxmonitorv2"
 
 	"github.com/gin-gonic/gin"
 	"github.com/pelletier/go-toml"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/chainlink"
-	"github.com/GoPlugin/Plugin/core/services/cron"
-	"github.com/GoPlugin/Plugin/core/services/job"
-	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/services/chainlink"
+	"github.com/smartcontractkit/chainlink/core/services/cron"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/store/orm"
 	"gopkg.in/guregu/null.v4"
 )
 

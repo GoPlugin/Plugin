@@ -1,7 +1,7 @@
 package keystore
 
 import (
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/vrfkey"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/vrfkey"
 	"gorm.io/gorm"
 )
 

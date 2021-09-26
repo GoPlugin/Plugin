@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "../PluginClient.sol";
+import "../ChainlinkClient.sol";
 
-contract Consumer is PluginClient {
-  using Plugin for Plugin.Request;
+contract Consumer is ChainlinkClient {
+  using Chainlink for Chainlink.Request;
 
   bytes32 internal specId;
   bytes32 public currentPrice;
@@ -15,14 +15,14 @@ contract Consumer is PluginClient {
   );
 
   constructor(
-    address _pli,
+    address _link,
     address _oracle,
     bytes32 _specId
   )
     public
   {
-    setPluginToken(_pli);
-    setPluginOracle(_oracle);
+    setChainlinkToken(_link);
+    setChainlinkOracle(_oracle);
     specId = _specId;
   }
 
@@ -42,13 +42,13 @@ contract Consumer is PluginClient {
   )
     public
   {
-    Plugin.Request memory req = buildPluginRequest(specId, _callback, this.fulfill.selector);
+    Chainlink.Request memory req = buildChainlinkRequest(specId, _callback, this.fulfill.selector);
     req.add("get", "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,EUR,JPY");
     string[] memory path = new string[](1);
     path[0] = _currency;
     req.addStringArray("path", path);
     // version 2
-    sendPluginRequest(req, _payment);
+    sendChainlinkRequest(req, _payment);
   }
 
   function cancelRequest(
@@ -60,15 +60,15 @@ contract Consumer is PluginClient {
   )
     public
   {
-    PluginRequestInterface requested = PluginRequestInterface(_oracle);
+    ChainlinkRequestInterface requested = ChainlinkRequestInterface(_oracle);
     requested.cancelOracleRequest(_requestId, _payment, _callbackFunctionId, _expiration);
   }
 
-  function withdrawPli()
+  function withdrawLink()
     public
   {
-    PliTokenInterface _pli = PliTokenInterface(pluginTokenAddress());
-    require(_pli.transfer(msg.sender, _pli.balanceOf(address(this))), "Unable to transfer");
+    LinkTokenInterface _link = LinkTokenInterface(chainlinkTokenAddress());
+    require(_link.transfer(msg.sender, _link.balanceOf(address(this))), "Unable to transfer");
   }
 
   function addExternalRequest(
@@ -77,7 +77,7 @@ contract Consumer is PluginClient {
   )
     external
   {
-    addPluginExternalRequest(_oracle, _requestId);
+    addChainlinkExternalRequest(_oracle, _requestId);
   }
 
   function fulfill(
@@ -85,7 +85,7 @@ contract Consumer is PluginClient {
     bytes32 _price
   )
     public
-    recordPluginFulfillment(_requestId)
+    recordChainlinkFulfillment(_requestId)
   {
     emit RequestFulfilled(_requestId, _price);
     currentPrice = _price;

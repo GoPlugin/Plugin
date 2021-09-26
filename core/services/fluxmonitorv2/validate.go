@@ -7,8 +7,8 @@ import (
 
 	"github.com/pelletier/go-toml"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/job"
-	coreorm "github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/smartcontractkit/chainlink/core/services/job"
+	coreorm "github.com/smartcontractkit/chainlink/core/store/orm"
 )
 
 func ValidatedFluxMonitorSpec(config *coreorm.Config, ts string) (job.Job, error) {

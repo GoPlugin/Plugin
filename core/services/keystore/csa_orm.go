@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/csakey"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/csakey"
 	"gorm.io/gorm"
 )
 

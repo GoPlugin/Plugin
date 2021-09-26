@@ -13,11 +13,11 @@ import (
 	"go.uber.org/multierr"
 	"gorm.io/gorm"
 
-	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ocrkey"
-	"github.com/GoPlugin/Plugin/core/services/keystore/keys/p2pkey"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ocrkey"
+	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/p2pkey"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/utils"
 )
 
 type OCR struct {

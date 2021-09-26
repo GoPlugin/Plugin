@@ -8,7 +8,7 @@ import (
 	"github.com/robfig/cron/v3"
 	uuid "github.com/satori/go.uuid"
 
-	"github.com/GoPlugin/Plugin/core/services/job"
+	"github.com/smartcontractkit/chainlink/core/services/job"
 )
 
 func ValidatedCronSpec(tomlString string) (job.Job, error) {

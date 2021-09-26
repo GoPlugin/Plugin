@@ -5,8 +5,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/utils"
-	"github.com/GoPlugin/Plugin/core/utils/crypto"
+	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/smartcontractkit/chainlink/core/utils/crypto"
 )
 
 type Key struct {

@@ -9,9 +9,9 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
-	models "github.com/GoPlugin/Plugin/core/store/models"
+	models "github.com/smartcontractkit/chainlink/core/store/models"
 
-	pipeline "github.com/GoPlugin/Plugin/core/services/pipeline"
+	pipeline "github.com/smartcontractkit/chainlink/core/services/pipeline"
 
 	time "time"
 )

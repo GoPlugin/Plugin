@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/smartcontractkit/chainlink/core/services/postgres"
 	"go.uber.org/multierr"
 	"gorm.io/gorm"
 )

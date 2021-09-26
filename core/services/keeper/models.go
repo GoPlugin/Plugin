@@ -1,6 +1,6 @@
 package keeper
 
-import "github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
+import "github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
 
 type Registry struct {
 	ID                int32 `gorm:"primary_key"`

@@ -1,19 +1,19 @@
 pragma solidity 0.4.24;
 
-import "./PluginClient.sol";
+import "./ChainlinkClient.sol";
 import "./interfaces/AggregatorInterface.sol";
 import "./vendor/SignedSafeMath.sol";
 import "./vendor/Ownable.sol";
-import "./vendor/SafeMathPlugin.sol";
+import "./vendor/SafeMathChainlink.sol";
 
 /**
- * @title An example Plugin contract with aggregation
+ * @title An example Chainlink contract with aggregation
  * @notice Requesters can use this contract as a framework for creating
- * requests to multiple Plugin nodes and running aggregation
+ * requests to multiple Chainlink nodes and running aggregation
  * as the contract receives answers.
  */
-contract Aggregator is AggregatorInterface, PluginClient, Ownable {
-  using SafeMathPlugin for uint256;
+contract Aggregator is AggregatorInterface, ChainlinkClient, Ownable {
+  using SafeMathChainlink for uint256;
   using SignedSafeMath for int256;
 
   struct Answer {
@@ -42,31 +42,31 @@ contract Aggregator is AggregatorInterface, PluginClient, Ownable {
   uint256 constant private MAX_ORACLE_COUNT = 28;
 
   /**
-   * @notice Deploy with the address of the PLI token and arrays of matching
+   * @notice Deploy with the address of the LINK token and arrays of matching
    * length containing the addresses of the oracles and their corresponding
    * Job IDs.
-   * @dev Sets the PliToken address for the network, addresses of the oracles,
+   * @dev Sets the LinkToken address for the network, addresses of the oracles,
    * and jobIds in storage.
-   * @param _pli The address of the PLI token
-   * @param _paymentAmount the amount of PLI to be sent to each oracle for each request
+   * @param _link The address of the LINK token
+   * @param _paymentAmount the amount of LINK to be sent to each oracle for each request
    * @param _minimumResponses the minimum number of responses
    * before an answer will be calculated
    * @param _oracles An array of oracle addresses
    * @param _jobIds An array of Job IDs
    */
   constructor(
-    address _pli,
+    address _link,
     uint128 _paymentAmount,
     uint128 _minimumResponses,
     address[] _oracles,
     bytes32[] _jobIds
   ) public Ownable() {
-    setPluginToken(_pli);
+    setChainlinkToken(_link);
     updateRequestDetails(_paymentAmount, _minimumResponses, _oracles, _jobIds);
   }
 
   /**
-   * @notice Creates a Plugin request for each oracle in the oracles array.
+   * @notice Creates a Chainlink request for each oracle in the oracles array.
    * @dev This example does not include request parameters. Reference any documentation
    * associated with the Job IDs used to determine the required parameters per-request.
    */
@@ -74,13 +74,13 @@ contract Aggregator is AggregatorInterface, PluginClient, Ownable {
     external
     ensureAuthorizedRequester()
   {
-    Plugin.Request memory request;
+    Chainlink.Request memory request;
     bytes32 requestId;
     uint256 oraclePayment = paymentAmount;
 
     for (uint i = 0; i < oracles.length; i++) {
-      request = buildPluginRequest(jobIds[i], this, this.pluginCallback.selector);
-      requestId = sendPluginRequestTo(oracles[i], request, oraclePayment);
+      request = buildChainlinkRequest(jobIds[i], this, this.chainlinkCallback.selector);
+      requestId = sendChainlinkRequestTo(oracles[i], request, oraclePayment);
       requestAnswers[requestId] = answerCounter;
     }
     answers[answerCounter].minimumResponses = minimumResponses;
@@ -92,15 +92,15 @@ contract Aggregator is AggregatorInterface, PluginClient, Ownable {
   }
 
   /**
-   * @notice Receives the answer from the Plugin node.
+   * @notice Receives the answer from the Chainlink node.
    * @dev This function can only be called by the oracle that received the request.
-   * @param _clRequestId The Plugin request ID associated with the answer
-   * @param _response The answer provided by the Plugin node
+   * @param _clRequestId The Chainlink request ID associated with the answer
+   * @param _response The answer provided by the Chainlink node
    */
-  function pluginCallback(bytes32 _clRequestId, int256 _response)
+  function chainlinkCallback(bytes32 _clRequestId, int256 _response)
     external
   {
-    validatePluginCallback(_clRequestId);
+    validateChainlinkCallback(_clRequestId);
 
     uint256 answerId = requestAnswers[_clRequestId];
     delete requestAnswers[_clRequestId];
@@ -115,7 +115,7 @@ contract Aggregator is AggregatorInterface, PluginClient, Ownable {
    * @notice Updates the arrays of oracles and jobIds with new values,
    * overwriting the old values.
    * @dev Arrays are validated to be equal length.
-   * @param _paymentAmount the amount of PLI to be sent to each oracle for each request
+   * @param _paymentAmount the amount of LINK to be sent to each oracle for each request
    * @param _minimumResponses the minimum number of responses
    * before an answer will be calculated
    * @param _oracles An array of oracle addresses
@@ -138,18 +138,18 @@ contract Aggregator is AggregatorInterface, PluginClient, Ownable {
   }
 
   /**
-   * @notice Allows the owner of the contract to withdraw any PLI balance
+   * @notice Allows the owner of the contract to withdraw any LINK balance
    * available on the contract.
-   * @dev The contract will need to have a PLI balance in order to create requests.
-   * @param _recipient The address to receive the PLI tokens
-   * @param _amount The amount of PLI to send from the contract
+   * @dev The contract will need to have a LINK balance in order to create requests.
+   * @param _recipient The address to receive the LINK tokens
+   * @param _amount The amount of LINK to send from the contract
    */
-  function transferPLI(address _recipient, uint256 _amount)
+  function transferLINK(address _recipient, uint256 _amount)
     public
     onlyOwner()
   {
-    PliTokenInterface pliToken = PliTokenInterface(pluginTokenAddress());
-    require(pliToken.transfer(_recipient, _amount), "PLI transfer failed");
+    LinkTokenInterface linkToken = LinkTokenInterface(chainlinkTokenAddress());
+    require(linkToken.transfer(_recipient, _amount), "LINK transfer failed");
   }
 
   /**
@@ -167,11 +167,11 @@ contract Aggregator is AggregatorInterface, PluginClient, Ownable {
   }
 
   /**
-   * @notice Cancels an outstanding Plugin request.
+   * @notice Cancels an outstanding Chainlink request.
    * The oracle contract requires the request ID and additional metadata to
    * validate the cancellation. Only old answers can be cancelled.
-   * @param _requestId is the identifier for the plugin request being cancelled
-   * @param _payment is the amount of PLI paid to the oracle for the request
+   * @param _requestId is the identifier for the chainlink request being cancelled
+   * @param _payment is the amount of LINK paid to the oracle for the request
    * @param _expiration is the time when the request expires
    */
   function cancelRequest(
@@ -189,29 +189,29 @@ contract Aggregator is AggregatorInterface, PluginClient, Ownable {
     answers[answerId].responses.push(0);
     deleteAnswer(answerId);
 
-    cancelPluginRequest(
+    cancelChainlinkRequest(
       _requestId,
       _payment,
-      this.pluginCallback.selector,
+      this.chainlinkCallback.selector,
       _expiration
     );
   }
 
   /**
-   * @notice Called by the owner to kill the contract. This transfers all PLI
+   * @notice Called by the owner to kill the contract. This transfers all LINK
    * balance and ETH balance (if there is any) to the owner.
    */
   function destroy()
     external
     onlyOwner()
   {
-    PliTokenInterface pliToken = PliTokenInterface(pluginTokenAddress());
-    transferPLI(owner, pliToken.balanceOf(address(this)));
+    LinkTokenInterface linkToken = LinkTokenInterface(chainlinkTokenAddress());
+    transferLINK(owner, linkToken.balanceOf(address(this)));
     selfdestruct(owner);
   }
 
   /**
-   * @dev Performs aggregation of the answers received from the Plugin nodes.
+   * @dev Performs aggregation of the answers received from the Chainlink nodes.
    * Assumes that at least half the oracles are honest and so can't contol the
    * middle of the ordered responses.
    * @param _answerId The answer ID associated with the group of requests

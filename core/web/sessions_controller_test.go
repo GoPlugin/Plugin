@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/store/models"
-	"github.com/GoPlugin/Plugin/core/web"
+	"github.com/smartcontractkit/chainlink/core/internal/cltest"
+	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/smartcontractkit/chainlink/core/web"
 
 	"github.com/onsi/gomega"
 	"github.com/stretchr/testify/assert"

@@ -3,7 +3,7 @@ package telemetry
 import (
 	"context"
 
-	"github.com/GoPlugin/Plugin/core/services/synchronization"
+	"github.com/smartcontractkit/chainlink/core/services/synchronization"
 )
 
 type Agent struct {

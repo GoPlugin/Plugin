@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import "../PliTokenReceiver.sol";
-import "../interfaces/PluginRequestInterface.sol";
-import "../interfaces/PliTokenInterface.sol";
-import "../vendor/SafeMathPlugin.sol";
+import "../LinkTokenReceiver.sol";
+import "../interfaces/ChainlinkRequestInterface.sol";
+import "../interfaces/LinkTokenInterface.sol";
+import "../vendor/SafeMathChainlink.sol";
 
 /**
- * @title The Plugin Mock Oracle contract
- * @notice Plugin smart contract developers can use this to test their contracts
+ * @title The Chainlink Mock Oracle contract
+ * @notice Chainlink smart contract developers can use this to test their contracts
  */
-contract MockOracle is PluginRequestInterface, PliTokenReceiver {
-  using SafeMathPlugin for uint256;
+contract MockOracle is ChainlinkRequestInterface, LinkTokenReceiver {
+  using SafeMathChainlink for uint256;
 
   uint256 constant public EXPIRY_TIME = 5 minutes;
   uint256 constant private MINIMUM_CONSUMER_GAS_LIMIT = 400000;
@@ -21,7 +21,7 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
       bytes4 callbackFunctionId;
   }
 
-  PliTokenInterface internal PliToken;
+  LinkTokenInterface internal LinkToken;
   mapping(bytes32 => Request) private commitments;
 
   event OracleRequest(
@@ -41,22 +41,22 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
   );
 
   /**
-   * @notice Deploy with the address of the PLI token
-   * @dev Sets the PliToken address for the imported PliTokenInterface
-   * @param _pli The address of the PLI token
+   * @notice Deploy with the address of the LINK token
+   * @dev Sets the LinkToken address for the imported LinkTokenInterface
+   * @param _link The address of the LINK token
    */
   constructor(
-    address _pli
+    address _link
   )
     public
   {
-    PliToken = PliTokenInterface(_pli); // external but already deployed and unalterable
+    LinkToken = LinkTokenInterface(_link); // external but already deployed and unalterable
   }
 
   /**
-   * @notice Creates the Plugin request
+   * @notice Creates the Chainlink request
    * @dev Stores the hash of the params as the on-chain commitment for the request.
-   * Emits OracleRequest event for the Plugin node to detect.
+   * Emits OracleRequest event for the Chainlink node to detect.
    * @param _sender The sender of the request
    * @param _payment The amount of payment given (specified in wei)
    * @param _specId The Job Specification ID
@@ -78,7 +78,7 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
   )
     external
     override
-    onlyPLI()
+    onlyLINK()
     checkCallbackAddress(_callbackAddress)
   {
     bytes32 requestId = keccak256(abi.encodePacked(_sender, _nonce));
@@ -104,7 +104,7 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
   }
 
   /**
-   * @notice Called by the Plugin node to fulfill requests
+   * @notice Called by the Chainlink node to fulfill requests
    * @dev Given params must hash back to the commitment stored from `oracleRequest`.
    * Will call the callback address' callback function without bubbling up error
    * checking in a `require` so that the node can get paid.
@@ -133,7 +133,7 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
   }
 
   /**
-   * @notice Allows requesters to cancel requests sent to this oracle contract. Will transfer the PLI
+   * @notice Allows requesters to cancel requests sent to this oracle contract. Will transfer the LINK
    * sent for the request back to the requester's address.
    * @dev Given params must hash to a commitment stored on the contract in order for the request to be valid
    * Emits CancelOracleRequest event.
@@ -157,15 +157,15 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
     delete commitments[_requestId];
     emit CancelOracleRequest(_requestId);
 
-    assert(PliToken.transfer(msg.sender, _payment));
+    assert(LinkToken.transfer(msg.sender, _payment));
   }
 
   /**
-   * @notice Returns the address of the PLI token
-   * @dev This is the public implementation for pluginTokenAddress, which is
-   * an internal method of the PluginClient contract
+   * @notice Returns the address of the LINK token
+   * @dev This is the public implementation for chainlinkTokenAddress, which is
+   * an internal method of the ChainlinkClient contract
    */
-  function getPluginToken()
+  function getChainlinkToken()
     public
     view
     override
@@ -173,7 +173,7 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
       address
     )
   {
-    return address(PliToken);
+    return address(LinkToken);
   }
 
   // MODIFIERS
@@ -191,13 +191,13 @@ contract MockOracle is PluginRequestInterface, PliTokenReceiver {
 
 
   /**
-   * @dev Reverts if the callback address is the PLI token
+   * @dev Reverts if the callback address is the LINK token
    * @param _to The callback address
    */
   modifier checkCallbackAddress(
     address _to
   ) {
-    require(_to != address(PliToken), "Cannot callback to PLI");
+    require(_to != address(LinkToken), "Cannot callback to LINK");
     _;
   }
 
