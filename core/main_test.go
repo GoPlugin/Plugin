@@ -14,7 +14,7 @@ func ExampleRun() {
 	t := &testing.T{}
 	tc, cleanup := cltest.NewConfig(t)
 	defer cleanup()
-	tc.Config.Set("CHAINLINK_DEV", false)
+	tc.Config.Set("PLUGIN_DEV", false)
 	testClient := &cmd.Client{
 		Renderer:               cmd.RendererTable{Writer: ioutil.Discard},
 		Config:                 tc.Config,

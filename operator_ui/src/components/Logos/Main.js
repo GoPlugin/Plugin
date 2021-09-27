@@ -1,10 +1,10 @@
 import { Logo } from 'components/Logo'
 import PropTypes from 'prop-types'
 import React from 'react'
-import src from '../../images/chainlink-operator-logo.svg'
+import src from '../../images/2.svg'
 
 const Main = (props) => {
-  return <Logo src={src} alt="Chainlink Operator" {...props} />
+  return <Logo src={src} alt="Plugin Operator" {...props} />
 }
 
 Main.propTypes = {

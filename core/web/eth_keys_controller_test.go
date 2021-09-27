@@ -74,7 +74,7 @@ func TestETHKeysController_Index_NotDev(t *testing.T) {
 	ethClient.On("GetLINKBalance", mock.Anything, mock.Anything).Return(assets.NewLink(256), nil).Once()
 
 	require.NoError(t, app.Start())
-	app.Config.Set("CHAINLINK_DEV", false)
+	app.Config.Set("PLUGIN_DEV", false)
 
 	client := app.NewHTTPClient()
 	resp, cleanup := client.Get("/v2/keys/eth")

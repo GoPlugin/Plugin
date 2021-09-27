@@ -48,7 +48,7 @@ type EnvPrinter struct {
 	DatabaseMaximumTxDuration             time.Duration   `json:"DATABASE_MAXIMUM_TX_DURATION"`
 	DefaultHTTPLimit                      int64           `json:"DEFAULT_HTTP_LIMIT"`
 	DefaultHTTPTimeout                    models.Duration `json:"DEFAULT_HTTP_TIMEOUT"`
-	Dev                                   bool            `json:"CHAINLINK_DEV"`
+	Dev                                   bool            `json:"PLUGIN_DEV"`
 	EnableExperimentalAdapters            bool            `json:"ENABLE_EXPERIMENTAL_ADAPTERS"`
 	EnableLegacyJobPipeline               bool            `json:"ENABLE_LEGACY_JOB_PIPELINE"`
 	EthBalanceMonitorBlockDelay           uint16          `json:"ETH_BALANCE_MONITOR_BLOCK_DELAY"`
@@ -82,7 +82,7 @@ type EnvPrinter struct {
 	JobPipelineReaperInterval             time.Duration   `json:"JOB_PIPELINE_REAPER_INTERVAL"`
 	JobPipelineReaperThreshold            time.Duration   `json:"JOB_PIPELINE_REAPER_THRESHOLD"`
 	JSONConsole                           bool            `json:"JSON_CONSOLE"`
-	LinkContractAddress                   string          `json:"LINK_CONTRACT_ADDRESS"`
+	LinkContractAddress                   string          `json:"PLI_CONTRACT_ADDRESS"`
 	LogLevel                              orm.LogLevel    `json:"LOG_LEVEL"`
 	LogSQLMigrations                      bool            `json:"LOG_SQL_MIGRATIONS"`
 	LogSQLStatements                      bool            `json:"LOG_SQL"`
@@ -108,14 +108,14 @@ type EnvPrinter struct {
 	OCRTraceLogging                       bool            `json:"OCR_TRACE_LOGGING"`
 	OperatorContractAddress               common.Address  `json:"OPERATOR_CONTRACT_ADDRESS"`
 	OptimismGasFees                       bool            `json:"OPTIMISM_GAS_FEES"`
-	Port                                  uint16          `json:"CHAINLINK_PORT"`
+	Port                                  uint16          `json:"PLUGIN_PORT"`
 	ReaperExpiration                      models.Duration `json:"REAPER_EXPIRATION"`
 	ReplayFromBlock                       int64           `json:"REPLAY_FROM_BLOCK"`
 	RootDir                               string          `json:"ROOT"`
 	SecureCookies                         bool            `json:"SECURE_COOKIES"`
 	SessionTimeout                        models.Duration `json:"SESSION_TIMEOUT"`
 	TLSHost                               string          `json:"CHAINLINK_TLS_HOST"`
-	TLSPort                               uint16          `json:"CHAINLINK_TLS_PORT"`
+	TLSPort                               uint16          `json:"PLUGIN_TLS_PORT"`
 	TLSRedirect                           bool            `json:"CHAINLINK_TLS_REDIRECT"`
 }
 

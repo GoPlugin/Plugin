@@ -1666,7 +1666,7 @@ func setupNode(t *testing.T, owner *bind.TransactOpts, port int, dbName string, 
 	app.Config.Set("P2P_LISTEN_PORT", port)
 	app.Config.Set("ETH_HEAD_TRACKER_MAX_BUFFER_SIZE", 100)
 	app.Config.Set("MIN_OUTGOING_CONFIRMATIONS", 1)
-	app.Config.Set("CHAINLINK_DEV", true) // Disables ocr spec validation so we can have fast polling for the test.
+	app.Config.Set("PLUGIN_DEV", true) // Disables ocr spec validation so we can have fast polling for the test.
 
 	sendingKeys, err := app.KeyStore.Eth().SendingKeys()
 	require.NoError(t, err)

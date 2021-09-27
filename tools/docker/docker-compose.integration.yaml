@@ -19,7 +19,7 @@ services:
     environment:
       - SRCROOT
       - GETH_MODE
-      - CHAINLINK_DEV=TRUE # need this for service agreements subcommand
+      - PLUGIN_DEV=TRUE # need this for service agreements subcommand
       - CHAINLINK_URL
       - ETH_HTTP_URL
       - ECHO_SERVER_URL

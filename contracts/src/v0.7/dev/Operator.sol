@@ -12,7 +12,7 @@ import "../vendor/Address.sol";
 import "../vendor/SafeMathChainlink.sol";
 
 /**
- * @title The Chainlink Operator contract
+ * @title The Plugin Operator contract
  * @notice Node operators can deploy this contract to fulfill requests sent to them
  */
 contract Operator is

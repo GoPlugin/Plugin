@@ -38,7 +38,7 @@ type ConfigSchema struct {
 	DefaultHTTPLimit                          int64           `env:"DEFAULT_HTTP_LIMIT" default:"32768"`
 	DefaultHTTPTimeout                        models.Duration `env:"DEFAULT_HTTP_TIMEOUT" default:"15s"`
 	DefaultMaxHTTPAttempts                    uint            `env:"MAX_HTTP_ATTEMPTS" default:"5"`
-	Dev                                       bool            `env:"CHAINLINK_DEV" default:"false"`
+	Dev                                       bool            `env:"PLUGIN_DEV" default:"false"`
 	EnableExperimentalAdapters                bool            `env:"ENABLE_EXPERIMENTAL_ADAPTERS" default:"false"`
 	EnableLegacyJobPipeline                   bool            `env:"ENABLE_LEGACY_JOB_PIPELINE" default:"true"`
 	EthBalanceMonitorBlockDelay               uint16          `env:"ETH_BALANCE_MONITOR_BLOCK_DELAY"`
@@ -100,7 +100,7 @@ type ConfigSchema struct {
 	KeeperRegistryCheckGasOverhead            uint64          `env:"KEEPER_REGISTRY_CHECK_GAS_OVERHEAD" default:"200000"`
 	KeeperRegistryPerformGasOverhead          uint64          `env:"KEEPER_REGISTRY_PERFORM_GAS_OVERHEAD" default:"150000"`
 	KeeperRegistrySyncInterval                time.Duration   `env:"KEEPER_REGISTRY_SYNC_INTERVAL" default:"30m"`
-	LinkContractAddress                       string          `env:"LINK_CONTRACT_ADDRESS"`
+	LinkContractAddress                       string          `env:"PLI_CONTRACT_ADDRESS"`
 	LogLevel                                  LogLevel        `env:"LOG_LEVEL" default:"info"`
 	LogSQLMigrations                          bool            `env:"LOG_SQL_MIGRATIONS" default:"true"`
 	LogSQLStatements                          bool            `env:"LOG_SQL" default:"false"`
@@ -142,7 +142,7 @@ type ConfigSchema struct {
 	P2PListenPort                             uint16          `env:"P2P_LISTEN_PORT"`
 	P2PPeerID                                 p2pkey.PeerID   `env:"P2P_PEER_ID"`
 	P2PPeerstoreWriteInterval                 time.Duration   `env:"P2P_PEERSTORE_WRITE_INTERVAL" default:"5m"`
-	Port                                      uint16          `env:"CHAINLINK_PORT" default:"6688"`
+	Port                                      uint16          `env:"PLUGIN_PORT" default:"6688"`
 	ReaperExpiration                          models.Duration `env:"REAPER_EXPIRATION" default:"240h"`
 	ReplayFromBlock                           int64           `env:"REPLAY_FROM_BLOCK" default:"-1"`
 	RootDir                                   string          `env:"ROOT" default:"~/.chainlink"`
@@ -152,7 +152,7 @@ type ConfigSchema struct {
 	TLSCertPath                               string          `env:"TLS_CERT_PATH" `
 	TLSHost                                   string          `env:"CHAINLINK_TLS_HOST" `
 	TLSKeyPath                                string          `env:"TLS_KEY_PATH" `
-	TLSPort                                   uint16          `env:"CHAINLINK_TLS_PORT" default:"6689"`
+	TLSPort                                   uint16          `env:"PLUGIN_TLS_PORT" default:"6689"`
 	TLSRedirect                               bool            `env:"CHAINLINK_TLS_REDIRECT" default:"false"`
 	TriggerFallbackDBPollInterval             time.Duration   `env:"TRIGGER_FALLBACK_DB_POLL_INTERVAL" default:"30s"`
 	UnAuthenticatedRateLimit                  int64           `env:"UNAUTHENTICATED_RATE_LIMIT" default:"5"`
