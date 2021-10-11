@@ -23,8 +23,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/smartcontractkit/chainlink/core/services/signatures/ethschnorr"
-	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
+	"github.com/GoPlugin/Plugin/core/services/signatures/ethschnorr"
+	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
 
 	"go.dedis.ch/kyber/v3"
 	"go.dedis.ch/kyber/v3/share"

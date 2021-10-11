@@ -6,7 +6,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
 	"github.com/stretchr/testify/require"
 )
 

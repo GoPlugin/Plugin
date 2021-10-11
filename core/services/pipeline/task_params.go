@@ -14,7 +14,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
 
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 //go:generate mockery --name PipelineParamUnmarshaler --output ./mocks/ --case=underscore

@@ -18,7 +18,7 @@ import (
 	"github.com/fxamacker/cbor/v2"
 	"github.com/pkg/errors"
 	"github.com/robfig/cron/v3"
-	"github.com/smartcontractkit/chainlink/core/assets"
+	"github.com/GoPlugin/Plugin/core/assets"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )

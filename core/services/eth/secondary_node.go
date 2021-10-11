@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/smartcontractkit/chainlink/core/logger"
+	"github.com/GoPlugin/Plugin/core/logger"
 )
 
 // secondarynode represents one ethereum node used as a secondary

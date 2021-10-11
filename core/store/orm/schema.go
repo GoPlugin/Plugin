@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/smartcontractkit/chainlink/core/assets"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/p2pkey"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/assets"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/p2pkey"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 // ConfigSchema records the schema of configuration at the type level

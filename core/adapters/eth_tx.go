@@ -7,12 +7,12 @@ import (
 	"strconv"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/services/bulletprooftxmanager"
-	"github.com/smartcontractkit/chainlink/core/services/keystore"
-	strpkg "github.com/smartcontractkit/chainlink/core/store"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
+	"github.com/GoPlugin/Plugin/core/services/keystore"
+	strpkg "github.com/GoPlugin/Plugin/core/store"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/utils"
 	"github.com/tidwall/gjson"
 
 	"github.com/ethereum/go-ethereum/common"

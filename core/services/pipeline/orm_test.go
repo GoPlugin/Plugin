@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/bmizerany/assert"
-	"github.com/smartcontractkit/chainlink/core/internal/testutils/pgtest"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/internal/testutils/pgtest"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/store/models"
 	"github.com/stretchr/testify/require"
 	"gorm.io/gorm"
 )

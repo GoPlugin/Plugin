@@ -3,9 +3,9 @@ package adapters
 import (
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
-	"github.com/smartcontractkit/chainlink/core/services/keystore"
-	"github.com/smartcontractkit/chainlink/core/store"
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/services/keystore"
+	"github.com/GoPlugin/Plugin/core/store"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 // Multiply holds the a number to multiply the given value by.

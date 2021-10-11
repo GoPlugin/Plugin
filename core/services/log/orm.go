@@ -8,7 +8,7 @@ import (
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 
-	"github.com/smartcontractkit/chainlink/core/store/models"
+	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
 //go:generate mockery --name ORM --output ./mocks/ --case=underscore --structname ORM --filename orm.go

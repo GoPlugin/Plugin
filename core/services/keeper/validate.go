@@ -4,7 +4,7 @@ import (
 	"github.com/pelletier/go-toml"
 	"github.com/pkg/errors"
 	uuid "github.com/satori/go.uuid"
-	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/GoPlugin/Plugin/core/services/job"
 )
 
 func ValidatedKeeperSpec(tomlString string) (job.Job, error) {

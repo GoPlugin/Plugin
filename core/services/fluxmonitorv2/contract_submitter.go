@@ -6,8 +6,8 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/pkg/errors"
-	"github.com/smartcontractkit/chainlink/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
-	"github.com/smartcontractkit/chainlink/core/services/eth"
+	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/flux_aggregator_wrapper"
+	"github.com/GoPlugin/Plugin/core/services/eth"
 )
 
 //go:generate mockery --name ContractSubmitter --output ./mocks/ --case=underscore

@@ -7,10 +7,10 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 
-	"github.com/smartcontractkit/chainlink/core/services/keystore"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/vrfkey"
-	"github.com/smartcontractkit/chainlink/core/services/signatures/secp256k1"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/services/keystore"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/vrfkey"
+	"github.com/GoPlugin/Plugin/core/services/signatures/secp256k1"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // ProofResponse is the data which is sent back to the VRFCoordinator, so that

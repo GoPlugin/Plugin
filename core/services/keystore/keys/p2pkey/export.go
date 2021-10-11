@@ -6,7 +6,7 @@ import (
 	keystore "github.com/ethereum/go-ethereum/accounts/keystore"
 	cryptop2p "github.com/libp2p/go-libp2p-core/crypto"
 	"github.com/pkg/errors"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // EncryptedP2PKeyExport represents the structure of P2P keys exported and imported

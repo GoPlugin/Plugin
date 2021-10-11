@@ -10,13 +10,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/null"
-	"github.com/smartcontractkit/chainlink/core/services/eth"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/null"
+	"github.com/GoPlugin/Plugin/core/services/eth"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/utils"
 
 	gethCommon "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -801,7 +801,7 @@ func (ec *EthConfirmer) attemptForRebroadcast(ctx context.Context, etx models.Et
 	} else {
 		logger.Errorf("invariant violation: EthTx %v was unconfirmed but didn't have any attempts. "+
 			"Falling back to default gas price instead."+
-			"This is a bug! Please report to https://github.com/smartcontractkit/chainlink/issues", etx.ID)
+			"This is a bug! Please report to https://github.com/GoPlugin/Plugin/issues", etx.ID)
 		bumpedGasPrice = ec.config.EthGasPriceDefault()
 	}
 	return newAttempt(ctx, ec.ethClient, ec.keystore, ec.config, etx, bumpedGasPrice)

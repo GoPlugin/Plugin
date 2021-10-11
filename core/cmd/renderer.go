@@ -7,14 +7,14 @@ import (
 	"strings"
 
 	"github.com/olekukonko/tablewriter"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/services/pipeline"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/store/orm"
-	"github.com/smartcontractkit/chainlink/core/store/presenters"
-	"github.com/smartcontractkit/chainlink/core/utils"
-	"github.com/smartcontractkit/chainlink/core/web"
-	webpresenters "github.com/smartcontractkit/chainlink/core/web/presenters"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/services/pipeline"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/store/orm"
+	"github.com/GoPlugin/Plugin/core/store/presenters"
+	"github.com/GoPlugin/Plugin/core/utils"
+	"github.com/GoPlugin/Plugin/core/web"
+	webpresenters "github.com/GoPlugin/Plugin/core/web/presenters"
 )
 
 // Renderer implements the Render method.

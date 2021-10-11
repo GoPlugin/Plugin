@@ -7,7 +7,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	uuid "github.com/satori/go.uuid"
 
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // ONLY USE FOR JPV1 JOBS

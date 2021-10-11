@@ -3,7 +3,7 @@ package fluxmonitorv2
 import (
 	"math/big"
 
-	"github.com/smartcontractkit/chainlink/core/assets"
+	"github.com/GoPlugin/Plugin/core/assets"
 )
 
 // MinFundedRounds defines the minimum number of rounds that needs to be paid

@@ -1,7 +1,7 @@
 package keystore
 
 import (
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/utils"
 	"gorm.io/gorm"
 )
 

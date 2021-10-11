@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/smartcontractkit/chainlink/core/services/feeds"
-	pb "github.com/smartcontractkit/chainlink/core/services/feeds/proto"
+	"github.com/GoPlugin/Plugin/core/services/feeds"
+	pb "github.com/GoPlugin/Plugin/core/services/feeds/proto"
 	"github.com/stretchr/testify/require"
 )
 

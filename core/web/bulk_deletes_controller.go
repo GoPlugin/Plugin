@@ -3,9 +3,9 @@ package web
 import (
 	"net/http"
 
-	"github.com/smartcontractkit/chainlink/core/services/chainlink"
-	"github.com/smartcontractkit/chainlink/core/store/models"
-	"github.com/smartcontractkit/chainlink/core/store/orm"
+	"github.com/GoPlugin/Plugin/core/services/chainlink"
+	"github.com/GoPlugin/Plugin/core/store/models"
+	"github.com/GoPlugin/Plugin/core/store/orm"
 
 	"github.com/gin-gonic/gin"
 )

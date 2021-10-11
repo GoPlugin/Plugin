@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	job "github.com/smartcontractkit/chainlink/core/services/job"
+	job "github.com/GoPlugin/Plugin/core/services/job"
 	mock "github.com/stretchr/testify/mock"
 )
 

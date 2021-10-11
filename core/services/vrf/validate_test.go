@@ -6,7 +6,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/smartcontractkit/chainlink/core/services/job"
+	"github.com/GoPlugin/Plugin/core/services/job"
 	"github.com/stretchr/testify/require"
 )
 

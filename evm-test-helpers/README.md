@@ -7,7 +7,7 @@
 <br/>
 
 [![npm](https://img.shields.io/npm/v/@chainlink/test-helpers?style=flat-square)](https://www.npmjs.com/package/@chainlink/test-helpers)
-[![GitHub license](https://img.shields.io/github/license/smartcontractkit/chainlink?style=flat-square)](https://github.com/smartcontractkit/chainlink/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/GoPlugin/Plugin?style=flat-square)](https://github.com/GoPlugin/Plugin/blob/master/LICENSE)
 [![npm downloads](https://img.shields.io/npm/dt/@chainlink/test-helpers?style=flat-square)](https://npmjs.com/package/@chainlink/test-helpers)
 
 Chainlink Test Helpers provides smart contract resources for use with Chainlink Contracts development.

@@ -19,10 +19,10 @@ import (
 	"gorm.io/gorm/clause"
 
 	gormpostgres "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/services/keystore/keys/ethkey"
-	"github.com/smartcontractkit/chainlink/core/services/postgres"
-	"github.com/smartcontractkit/chainlink/core/utils"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
+	"github.com/GoPlugin/Plugin/core/services/postgres"
+	"github.com/GoPlugin/Plugin/core/utils"
 )
 
 // ErrKeyStoreLocked is returned if you call a method that requires unlocked keys before you unlocked the keystore

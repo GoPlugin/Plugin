@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	job "github.com/smartcontractkit/chainlink/core/services/job"
+	job "github.com/GoPlugin/Plugin/core/services/job"
 	mock "github.com/stretchr/testify/mock"
 
 	null "gopkg.in/guregu/null.v4"

@@ -9,10 +9,10 @@ import (
 	"testing"
 
 	"github.com/bmizerany/assert"
-	"github.com/smartcontractkit/chainlink/core/internal/cltest"
-	"github.com/smartcontractkit/chainlink/core/logger"
-	"github.com/smartcontractkit/chainlink/core/web"
-	"github.com/smartcontractkit/chainlink/core/web/presenters"
+	"github.com/GoPlugin/Plugin/core/internal/cltest"
+	"github.com/GoPlugin/Plugin/core/logger"
+	"github.com/GoPlugin/Plugin/core/web"
+	"github.com/GoPlugin/Plugin/core/web/presenters"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/zap/zapcore"
 )

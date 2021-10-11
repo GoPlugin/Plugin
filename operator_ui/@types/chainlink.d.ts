@@ -12,7 +12,7 @@ declare module 'net/url' {
   export type URL = string
 }
 
-declare module 'github.com/smartcontractkit/chainlink/core/null' {
+declare module 'github.com/GoPlugin/Plugin/core/null' {
   export type Uint32 = string | null
 }
 
