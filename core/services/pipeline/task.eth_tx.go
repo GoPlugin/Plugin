@@ -12,7 +12,6 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/store/models"
 )
 
@@ -38,7 +37,7 @@ type KeyStore interface {
 }
 
 type TxManager interface {
-	CreateEthTransaction(db *gorm.DB, fromAddress, toAddress common.Address, payload []byte, gasLimit uint64, meta interface{}, strategy bulletprooftxmanager.TxStrategy) (etx models.EthTx, err error)
+	CreateEthTransaction(db *gorm.DB, fromAddress, toAddress common.Address, payload []byte, gasLimit uint64, meta interface{}) (etx models.EthTx, err error)
 }
 
 var _ Task = (*ETHTxTask)(nil)
@@ -106,10 +105,7 @@ func (t *ETHTxTask) Run(_ context.Context, vars Vars, inputs []Result) (result R
 		return Result{Error: errors.Wrapf(ErrTaskRunFailed, "while querying keystore: %v", err)}
 	}
 
-	// NOTE: This can be easily adjusted later to allow job specs to specify the details of which strategy they would like
-	strategy := bulletprooftxmanager.SendEveryStrategy{}
-
-	_, err = t.txManager.CreateEthTransaction(t.db, fromAddr, common.Address(toAddr), []byte(data), uint64(gasLimit), &txMeta, strategy)
+	_, err = t.txManager.CreateEthTransaction(t.db, fromAddr, common.Address(toAddr), []byte(data), uint64(gasLimit), &txMeta)
 	if err != nil {
 		return Result{Error: errors.Wrapf(ErrTaskRunFailed, "while creating transaction: %v", err)}
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/GoPlugin/Plugin/core/internal/cltest"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/pipeline"
 	pipelinemocks "github.com/GoPlugin/Plugin/core/services/pipeline/mocks"
 	"github.com/GoPlugin/Plugin/core/store/models"
@@ -48,7 +47,7 @@ func TestETHTxTask(t *testing.T) {
 				gasLimit := uint64(12345)
 				txMeta := &models.EthTxMetaV2{JobID: 321, RequestID: common.HexToHash("0x5198616554d738d9485d1a7cf53b2f33e09c3bbc8fe9ac0020bd672cd2bc15d2"), RequestTxHash: common.HexToHash("0xc524fafafcaec40652b1f84fca09c231185437d008d195fccf2f51e64b7062f8")}
 				keyStore.On("GetRoundRobinAddress", from).Return(from, nil)
-				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta, bulletprooftxmanager.SendEveryStrategy{}).Return(models.EthTx{}, nil)
+				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta).Return(models.EthTx{}, nil)
 			},
 			nil, nil, "",
 		},
@@ -77,7 +76,7 @@ func TestETHTxTask(t *testing.T) {
 				gasLimit := uint64(12345)
 				txMeta := &models.EthTxMetaV2{JobID: 321, RequestID: common.HexToHash("0x5198616554d738d9485d1a7cf53b2f33e09c3bbc8fe9ac0020bd672cd2bc15d2"), RequestTxHash: common.HexToHash("0xc524fafafcaec40652b1f84fca09c231185437d008d195fccf2f51e64b7062f8")}
 				keyStore.On("GetRoundRobinAddress", from).Return(from, nil)
-				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta, bulletprooftxmanager.SendEveryStrategy{}).Return(models.EthTx{}, nil)
+				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta).Return(models.EthTx{}, nil)
 			},
 			nil, nil, "",
 		},
@@ -108,7 +107,7 @@ func TestETHTxTask(t *testing.T) {
 				gasLimit := uint64(12345)
 				txMeta := &models.EthTxMetaV2{JobID: 321, RequestID: common.HexToHash("0x5198616554d738d9485d1a7cf53b2f33e09c3bbc8fe9ac0020bd672cd2bc15d2"), RequestTxHash: common.HexToHash("0xc524fafafcaec40652b1f84fca09c231185437d008d195fccf2f51e64b7062f8")}
 				keyStore.On("GetRoundRobinAddress", from).Return(from, nil)
-				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta, bulletprooftxmanager.SendEveryStrategy{}).Return(models.EthTx{}, nil)
+				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta).Return(models.EthTx{}, nil)
 			},
 			nil, nil, "",
 		},
@@ -139,7 +138,7 @@ func TestETHTxTask(t *testing.T) {
 				gasLimit := uint64(12345)
 				txMeta := &models.EthTxMetaV2{JobID: 321, RequestID: common.HexToHash("0x5198616554d738d9485d1a7cf53b2f33e09c3bbc8fe9ac0020bd672cd2bc15d2"), RequestTxHash: common.HexToHash("0xc524fafafcaec40652b1f84fca09c231185437d008d195fccf2f51e64b7062f8")}
 				keyStore.On("GetRoundRobinAddress").Return(from, nil)
-				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta, bulletprooftxmanager.SendEveryStrategy{}).Return(models.EthTx{}, nil)
+				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta).Return(models.EthTx{}, nil)
 			},
 			nil, nil, "",
 		},
@@ -160,7 +159,7 @@ func TestETHTxTask(t *testing.T) {
 				gasLimit := uint64(12345)
 				txMeta := &models.EthTxMetaV2{}
 				keyStore.On("GetRoundRobinAddress", from).Return(from, nil)
-				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta, bulletprooftxmanager.SendEveryStrategy{}).Return(models.EthTx{}, nil)
+				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta).Return(models.EthTx{}, nil)
 			},
 			nil, nil, "",
 		},
@@ -181,7 +180,7 @@ func TestETHTxTask(t *testing.T) {
 				gasLimit := uint64(999)
 				txMeta := &models.EthTxMetaV2{JobID: 321, RequestID: common.HexToHash("0x5198616554d738d9485d1a7cf53b2f33e09c3bbc8fe9ac0020bd672cd2bc15d2"), RequestTxHash: common.HexToHash("0xc524fafafcaec40652b1f84fca09c231185437d008d195fccf2f51e64b7062f8")}
 				keyStore.On("GetRoundRobinAddress", from).Return(from, nil)
-				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta, bulletprooftxmanager.SendEveryStrategy{}).Return(models.EthTx{}, nil)
+				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta).Return(models.EthTx{}, nil)
 			},
 			nil, nil, "",
 		},
@@ -227,7 +226,7 @@ func TestETHTxTask(t *testing.T) {
 				gasLimit := uint64(12345)
 				txMeta := &models.EthTxMetaV2{JobID: 321, RequestID: common.HexToHash("0x5198616554d738d9485d1a7cf53b2f33e09c3bbc8fe9ac0020bd672cd2bc15d2"), RequestTxHash: common.HexToHash("0xc524fafafcaec40652b1f84fca09c231185437d008d195fccf2f51e64b7062f8")}
 				keyStore.On("GetRoundRobinAddress", from).Return(from, nil)
-				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta, bulletprooftxmanager.SendEveryStrategy{}).Return(models.EthTx{}, errors.New("uh oh"))
+				txManager.On("CreateEthTransaction", mock.Anything, from, to, data, gasLimit, txMeta).Return(models.EthTx{}, errors.New("uh oh"))
 			},
 			nil, pipeline.ErrTaskRunFailed, "while creating transaction",
 		},

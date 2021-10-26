@@ -11,7 +11,6 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
-	"github.com/stretchr/testify/mock"
 
 	"github.com/manyminds/api2go/jsonapi"
 	"github.com/GoPlugin/Plugin/core/adapters"
@@ -360,7 +359,7 @@ func TestJobSpecsController_Create_NonExistentTaskJob(t *testing.T) {
 
 func TestJobSpecsController_Create_FluxMonitor_disabled(t *testing.T) {
 	config := cltest.NewTestConfig(t)
-	config.Set("CHAINLINK_DEV", "FALSE")
+	config.Set("PLUGIN_DEV", "FALSE")
 	config.Set("FEATURE_FLUX_MONITOR", "FALSE")
 	config.Set("GAS_UPDATER_ENABLED", false)
 
@@ -387,7 +386,7 @@ func TestJobSpecsController_Create_FluxMonitor_disabled(t *testing.T) {
 
 func TestJobSpecsController_Create_FluxMonitor_enabled(t *testing.T) {
 	config := cltest.NewTestConfig(t)
-	config.Set("CHAINLINK_DEV", "FALSE")
+	config.Set("PLUGIN_DEV", "FALSE")
 	config.Set("FEATURE_FLUX_MONITOR", "TRUE")
 	config.Set("GAS_UPDATER_ENABLED", false)
 
@@ -425,7 +424,7 @@ func TestJobSpecsController_Create_FluxMonitor_enabled(t *testing.T) {
 
 func TestJobSpecsController_Create_FluxMonitor_Bridge(t *testing.T) {
 	config := cltest.NewTestConfig(t)
-	config.Set("CHAINLINK_DEV", "FALSE")
+	config.Set("PLUGIN_DEV", "FALSE")
 	config.Set("FEATURE_FLUX_MONITOR", "TRUE")
 	config.Set("GAS_UPDATER_ENABLED", false)
 
@@ -469,7 +468,7 @@ func TestJobSpecsController_Create_FluxMonitor_Bridge(t *testing.T) {
 
 func TestJobSpecsController_Create_FluxMonitor_NoBridgeError(t *testing.T) {
 	config := cltest.NewTestConfig(t)
-	config.Set("CHAINLINK_DEV", "FALSE")
+	config.Set("PLUGIN_DEV", "FALSE")
 	config.Set("FEATURE_FLUX_MONITOR", "TRUE")
 	config.Set("GAS_UPDATER_ENABLED", false)
 
@@ -801,9 +800,7 @@ func TestJobSpecsController_Show_Unauthenticated(t *testing.T) {
 
 func TestJobSpecsController_Destroy(t *testing.T) {
 	t.Parallel()
-	ethClient, s, assertMocksCalled := cltest.NewEthMocksWithStartupAssertions(t)
-	ethClient.On("SubscribeFilterLogs", mock.Anything, mock.Anything, mock.Anything).Maybe().Return(s, nil)
-
+	ethClient, _, assertMocksCalled := cltest.NewEthMocksWithStartupAssertions(t)
 	defer assertMocksCalled()
 	app, cleanup := cltest.NewApplication(t,
 		ethClient,

@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.6;
 
-import "./LinkTokenReceiver.sol";
-import "./interfaces/ChainlinkRequestInterface.sol";
+import "./PliTokenReceiver.sol";
+import "./interfaces/PluginRequestInterface.sol";
 import "./interfaces/OracleInterface.sol";
-import "./interfaces/LinkTokenInterface.sol";
+import "./interfaces/PliTokenInterface.sol";
 import "./interfaces/WithdrawalInterface.sol";
 import "./vendor/Ownable.sol";
-import "./vendor/SafeMathChainlink.sol";
+import "./vendor/SafeMathPlugin.sol";
 
 /**
- * @title The Chainlink Oracle contract
+ * @title The Plugin Oracle contract
  * @notice Node operators can deploy this contract to fulfill requests sent to them
  */
-contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkTokenReceiver, WithdrawalInterface {
-  using SafeMathChainlink for uint256;
+contract Oracle is PluginRequestInterface, OracleInterface, Ownable, PliTokenReceiver, WithdrawalInterface {
+  using SafeMathPlugin for uint256;
 
   uint256 constant public EXPIRY_TIME = 5 minutes;
   uint256 constant private MINIMUM_CONSUMER_GAS_LIMIT = 400000;
@@ -22,7 +22,7 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
   // does not cost more gas.
   uint256 constant private ONE_FOR_CONSISTENT_GAS_COST = 1;
 
-  LinkTokenInterface internal LinkToken;
+  PliTokenInterface internal PliToken;
   mapping(bytes32 => bytes32) private commitments;
   mapping(address => bool) private authorizedNodes;
   uint256 private withdrawableTokens = ONE_FOR_CONSISTENT_GAS_COST;
@@ -44,21 +44,21 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
   );
 
   /**
-   * @notice Deploy with the address of the LINK token
-   * @dev Sets the LinkToken address for the imported LinkTokenInterface
-   * @param _link The address of the LINK token
+   * @notice Deploy with the address of the PLI token
+   * @dev Sets the PliToken address for the imported PliTokenInterface
+   * @param _pli The address of the PLI token
    */
-  constructor(address _link)
+  constructor(address _pli)
     public
     Ownable()
   {
-    LinkToken = LinkTokenInterface(_link); // external but already deployed and unalterable
+    PliToken = PliTokenInterface(_pli); // external but already deployed and unalterable
   }
 
   /**
-   * @notice Creates the Chainlink request
+   * @notice Creates the Plugin request
    * @dev Stores the hash of the params as the on-chain commitment for the request.
-   * Emits OracleRequest event for the Chainlink node to detect.
+   * Emits OracleRequest event for the Plugin node to detect.
    * @param _sender The sender of the request
    * @param _payment The amount of payment given (specified in wei)
    * @param _specId The Job Specification ID
@@ -80,7 +80,7 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
   )
     external
     override
-    onlyLINK()
+    onlyPLI()
     checkCallbackAddress(_callbackAddress)
   {
     bytes32 requestId = keccak256(abi.encodePacked(_sender, _nonce));
@@ -110,7 +110,7 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
   }
 
   /**
-   * @notice Called by the Chainlink node to fulfill requests
+   * @notice Called by the Plugin node to fulfill requests
    * @dev Given params must hash back to the commitment stored from `oracleRequest`.
    * Will call the callback address' callback function without bubbling up error
    * checking in a `require` so that the node can get paid.
@@ -157,7 +157,7 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
 
   /**
    * @notice Use this to check if a node is authorized for fulfilling requests
-   * @param _node The address of the Chainlink node
+   * @param _node The address of the Plugin node
    * @return The authorization status of the node
    */
   function getAuthorizationStatus(address _node)
@@ -171,7 +171,7 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
 
   /**
    * @notice Sets the fulfillment permission for a given node. Use `true` to allow, `false` to disallow.
-   * @param _node The address of the Chainlink node
+   * @param _node The address of the Plugin node
    * @param _allowed Bool value to determine if the node can fulfill requests
    */
   function setFulfillmentPermission(address _node, bool _allowed)
@@ -183,9 +183,9 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
   }
 
   /**
-   * @notice Allows the node operator to withdraw earned LINK to a given address
-   * @dev The owner of the contract can be another wallet and does not have to be a Chainlink node
-   * @param _recipient The address to send the LINK token to
+   * @notice Allows the node operator to withdraw earned PLI to a given address
+   * @dev The owner of the contract can be another wallet and does not have to be a Plugin node
+   * @param _recipient The address to send the PLI token to
    * @param _amount The amount to send (specified in wei)
    */
   function withdraw(address _recipient, uint256 _amount)
@@ -195,13 +195,13 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
     hasAvailableFunds(_amount)
   {
     withdrawableTokens = withdrawableTokens.sub(_amount);
-    assert(LinkToken.transfer(_recipient, _amount));
+    assert(PliToken.transfer(_recipient, _amount));
   }
 
   /**
-   * @notice Displays the amount of LINK that is available for the node operator to withdraw
+   * @notice Displays the amount of PLI that is available for the node operator to withdraw
    * @dev We use `ONE_FOR_CONSISTENT_GAS_COST` in place of 0 in storage
-   * @return The amount of withdrawable LINK on the contract
+   * @return The amount of withdrawable PLI on the contract
    */
   function withdrawable()
     external
@@ -214,7 +214,7 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
   }
 
   /**
-   * @notice Allows requesters to cancel requests sent to this oracle contract. Will transfer the LINK
+   * @notice Allows requesters to cancel requests sent to this oracle contract. Will transfer the PLI
    * sent for the request back to the requester's address.
    * @dev Given params must hash to a commitment stored on the contract in order for the request to be valid
    * Emits CancelOracleRequest event.
@@ -246,21 +246,21 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
     delete commitments[_requestId];
     emit CancelOracleRequest(_requestId);
 
-    assert(LinkToken.transfer(msg.sender, _payment));
+    assert(PliToken.transfer(msg.sender, _payment));
   }
 
   /**
-   * @notice Returns the address of the LINK token
-   * @dev This is the public implementation for chainlinkTokenAddress, which is
-   * an internal method of the ChainlinkClient contract
+   * @notice Returns the address of the PLI token
+   * @dev This is the public implementation for pluginTokenAddress, which is
+   * an internal method of the PluginClient contract
    */
-  function getChainlinkToken()
+  function getPluginToken()
     public
     view
     override
     returns (address)
   {
-    return address(LinkToken);
+    return address(PliToken);
   }
 
   // MODIFIERS
@@ -292,11 +292,11 @@ contract Oracle is ChainlinkRequestInterface, OracleInterface, Ownable, LinkToke
   }
 
   /**
-   * @dev Reverts if the callback address is the LINK token
+   * @dev Reverts if the callback address is the PLI token
    * @param _to The callback address
    */
   modifier checkCallbackAddress(address _to) {
-    require(_to != address(LinkToken), "Cannot callback to LINK");
+    require(_to != address(PliToken), "Cannot callback to PLI");
     _;
   }
 

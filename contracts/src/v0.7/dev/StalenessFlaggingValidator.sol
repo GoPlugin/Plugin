@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "./ConfirmedOwner.sol";
-import "../vendor/SafeMathChainlink.sol";
+import "../ConfirmedOwner.sol";
+import "../vendor/SafeMathPlugin.sol";
 import "../interfaces/FlagsInterface.sol";
 import "../interfaces/AggregatorV3Interface.sol";
 import "../interfaces/KeeperCompatibleInterface.sol";
 
 contract StalenessFlaggingValidator is ConfirmedOwner, KeeperCompatibleInterface {
-  using SafeMathChainlink for uint256;
+  using SafeMathPlugin for uint256;
 
   FlagsInterface private s_flags;
   mapping(address => uint256) private s_thresholdSeconds;

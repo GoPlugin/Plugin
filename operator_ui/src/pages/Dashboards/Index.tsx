@@ -61,13 +61,13 @@ export const Index = ({
           <Grid container>
             <Grid item xs={12}>
               <TokenBalanceCard
-                title="Link Balance"
+                title="Pli Balance"
                 value={accountBalance?.linkBalance}
               />
             </Grid>
             <Grid item xs={12}>
               <TokenBalanceCard
-                title="Ether Balance"
+                title="XDC Balance"
                 value={accountBalance?.ethBalance}
               />
             </Grid>

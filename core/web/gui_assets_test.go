@@ -77,7 +77,7 @@ func TestGuiAssets_DefaultIndexHtml_RateLimited(t *testing.T) {
 	t.Parallel()
 
 	config, cfgCleanup := cltest.NewConfig(t)
-	config.Set("CHAINLINK_DEV", false)
+	config.Set("PLUGIN_DEV", false)
 	t.Cleanup(cfgCleanup)
 	app, cleanup := cltest.NewApplicationWithConfig(t, config)
 	t.Cleanup(cleanup)

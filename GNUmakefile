@@ -4,7 +4,7 @@ ENVIRONMENT ?= release
 
 GOPATH ?= $(HOME)/go
 BUILDER ?= smartcontract/builder
-REPO := smartcontract/chainlink
+REPO := GoPlugin/Plugin
 COMMIT_SHA ?= $(shell git rev-parse HEAD)
 VERSION = $(shell cat VERSION)
 GOBIN ?= $(GOPATH)/bin
@@ -59,14 +59,14 @@ plugin-build:
 
 .PHONY: operator-ui
 operator-ui: ## Build the static frontend UI.
-	yarn setup:chainlink
-	PLUGIN_VERSION="$(VERSION)@$(COMMIT_SHA)" yarn workspace @chainlink/operator-ui build
+	yarn setup:plugin
+	PLUGIN_VERSION="$(VERSION)@$(COMMIT_SHA)" yarn workspace @plugin/operator-ui build
 	CGO_ENABLED=0 go run packr/main.go "${CURDIR}/core/services"
 
 .PHONY: contracts-operator-ui-build
 contracts-operator-ui-build: # only compiles tsc and builds contracts and operator-ui
-	yarn setup:chainlink
-	PLUGIN_VERSION="$(VERSION)@$(COMMIT_SHA)" yarn workspace @chainlink/operator-ui build
+	yarn setup:plugin
+	PLUGIN_VERSION="$(VERSION)@$(COMMIT_SHA)" yarn workspace @plugin/operator-ui build
 
 .PHONY: abigen
 abigen:

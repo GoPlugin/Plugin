@@ -10,7 +10,6 @@ import (
 
 	"github.com/GoPlugin/Plugin/core/internal/cltest"
 	"github.com/GoPlugin/Plugin/core/services/feeds"
-	"github.com/GoPlugin/Plugin/core/utils/crypto"
 	"github.com/GoPlugin/Plugin/core/web"
 	"github.com/GoPlugin/Plugin/core/web/presenters"
 	"github.com/stretchr/testify/assert"
@@ -22,7 +21,7 @@ func Test_FeedsManagersController_Create(t *testing.T) {
 
 	app, client := setupFeedsManagerTest(t)
 
-	pubKey, err := crypto.PublicKeyFromHex("3b0f149627adb7b6fafe1497a9dfc357f22295a5440786c3bc566dfdb0176808")
+	pubKey, err := feeds.PublicKeyFromHex("3b0f149627adb7b6fafe1497a9dfc357f22295a5440786c3bc566dfdb0176808")
 	require.NoError(t, err)
 	body, err := json.Marshal(web.CreateFeedsManagerRequest{
 		Name:      "Chainlink FM",
@@ -65,7 +64,7 @@ func Test_FeedsManagersController_List(t *testing.T) {
 
 	app, client := setupFeedsManagerTest(t)
 
-	pubKey, err := crypto.PublicKeyFromHex("3b0f149627adb7b6fafe1497a9dfc357f22295a5440786c3bc566dfdb0176808")
+	pubKey, err := feeds.PublicKeyFromHex("3b0f149627adb7b6fafe1497a9dfc357f22295a5440786c3bc566dfdb0176808")
 	require.NoError(t, err)
 
 	// Seed feed managers
@@ -99,7 +98,7 @@ func Test_FeedsManagersController_List(t *testing.T) {
 func Test_FeedsManagersController_Show(t *testing.T) {
 	t.Parallel()
 
-	pubKey, err := crypto.PublicKeyFromHex("3b0f149627adb7b6fafe1497a9dfc357f22295a5440786c3bc566dfdb0176808")
+	pubKey, err := feeds.PublicKeyFromHex("3b0f149627adb7b6fafe1497a9dfc357f22295a5440786c3bc566dfdb0176808")
 	require.NoError(t, err)
 	var (
 		ms1 = feeds.FeedsManager{
@@ -183,9 +182,6 @@ func setupFeedsManagerTest(t *testing.T) (*cltest.TestApplication, cltest.HTTPCl
 	app, cleanup := cltest.NewApplication(t)
 	t.Cleanup(cleanup)
 	app.Start()
-
-	// We need a CSA key to establish a connection to the FMS
-	app.KeyStore.CSA().CreateCSAKey()
 
 	client := app.NewHTTPClient()
 

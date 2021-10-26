@@ -4,7 +4,6 @@ import (
 	"context"
 	"testing"
 
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	bptxmmocks "github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager/mocks"
 	"github.com/GoPlugin/Plugin/core/services/postgres"
 	"github.com/GoPlugin/Plugin/core/store/models"
@@ -23,7 +22,7 @@ var executeGas = uint64(10_000)
 
 func setupKeeperDB(t *testing.T) (*store.Store, keeper.ORM, func()) {
 	store, cleanup := cltest.NewStore(t)
-	orm := keeper.NewORM(store.DB, nil, store.Config, bulletprooftxmanager.SendEveryStrategy{})
+	orm := keeper.NewORM(store.DB, nil, store.Config)
 	return store, orm, cleanup
 }
 
@@ -340,7 +339,7 @@ func TestKeeperDB_CreateEthTransactionForUpkeep(t *testing.T) {
 	store, cleanup := cltest.NewStore(t)
 	t.Cleanup(cleanup)
 	txm := new(bptxmmocks.TxManager)
-	orm := keeper.NewORM(store.DB, txm, store.Config, bulletprooftxmanager.SendEveryStrategy{})
+	orm := keeper.NewORM(store.DB, txm, store.Config)
 
 	defer cleanup()
 	ethKeyStore := cltest.NewKeyStore(t, store.DB).Eth()
@@ -358,7 +357,7 @@ func TestKeeperDB_CreateEthTransactionForUpkeep(t *testing.T) {
 	defer cancel()
 	gasLimit := upkeep.ExecuteGas + store.Config.KeeperRegistryPerformGasOverhead()
 	err = postgres.GormTransaction(ctx, orm.DB, func(tx *gorm.DB) error {
-		txm.On("CreateEthTransaction", tx, fromAddress, toAddress, payload, gasLimit, nil, bulletprooftxmanager.SendEveryStrategy{}).Once().Return(models.EthTx{
+		txm.On("CreateEthTransaction", tx, fromAddress, toAddress, payload, gasLimit, nil).Once().Return(models.EthTx{
 			FromAddress:    fromAddress,
 			ToAddress:      toAddress,
 			EncodedPayload: payload,

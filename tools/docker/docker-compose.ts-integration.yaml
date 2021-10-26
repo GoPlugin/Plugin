@@ -18,7 +18,7 @@ services:
       - external-adapter
       - external-adapter-2
     environment:
-      - CHAINLINK_DEV=TRUE # need this for service agreements subcommand
+      - PLUGIN_DEV=TRUE # need this for service agreements subcommand
       - CHAINLINK_URL
       - CLIENT_NODE_URL # used to send remote commands
       - CLIENT_NODE_2_URL

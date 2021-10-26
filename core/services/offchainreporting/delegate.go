@@ -13,7 +13,6 @@ import (
 	"github.com/GoPlugin/Plugin/core/chains"
 	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/offchain_aggregator_wrapper"
 	"github.com/GoPlugin/Plugin/core/logger"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/eth"
 	httypes "github.com/GoPlugin/Plugin/core/services/headtracker/types"
 	"github.com/GoPlugin/Plugin/core/services/job"
@@ -202,14 +201,11 @@ func (d Delegate) ServicesForSpec(jobSpec job.Job) (services []job.Service, err 
 		if err != nil {
 			return nil, err
 		}
-
-		strategy := bulletprooftxmanager.NewQueueingTxStrategy(jobSpec.ExternalJobID, d.config.OCRDefaultTransactionQueueDepth())
-
 		contractTransmitter := NewOCRContractTransmitter(
 			concreteSpec.ContractAddress.Address(),
 			contractCaller,
 			contractABI,
-			NewTransmitter(d.txm, d.db, ta.Address(), d.config.EthGasLimitDefault(), strategy),
+			NewTransmitter(d.txm, d.db, ta.Address(), d.config.EthGasLimitDefault()),
 			d.logBroadcaster,
 			tracker,
 			d.config.ChainID(),

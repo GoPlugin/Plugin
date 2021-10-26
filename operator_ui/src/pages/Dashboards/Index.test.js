@@ -74,8 +74,8 @@ describe('pages/Dashboards/Index', () => {
     expect(wrapper.text()).toContain('runA')
     expect(wrapper.text()).toContain('runB')
 
-    expect(wrapper.text()).toContain('Link Balance7.467870k')
-    expect(wrapper.text()).toContain('Ether Balance10.123456k')
+    expect(wrapper.text()).toContain('Pli Balance7.467870k')
+    expect(wrapper.text()).toContain('XDC Balance10.123456k')
 
     await syncFetch(wrapper)
     expect(wrapper.text()).toContain('Recently Created Jobs')

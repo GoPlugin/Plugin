@@ -53,7 +53,6 @@ require (
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/smartcontractkit/gencodec v0.0.0-20181025021405-42dc7da8c287 // indirect
 	github.com/smartcontractkit/libocr v0.0.0-20210617175326-472ada9f2eb2
-	github.com/smartcontractkit/wsrpc v0.2.0
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.7.0
 	github.com/tevino/abool v0.0.0-20170917061928-9b9efcf221b5
@@ -73,7 +72,6 @@ require (
 	golang.org/x/text v0.3.6
 	golang.org/x/tools v0.1.2
 	gonum.org/v1/gonum v0.9.1
-	google.golang.org/protobuf v1.26.0
 	gopkg.in/guregu/null.v4 v4.0.0
 	gorm.io/driver/postgres v1.0.8
 	gorm.io/gorm v1.20.12

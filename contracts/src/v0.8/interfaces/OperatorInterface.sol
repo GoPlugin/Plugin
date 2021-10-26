@@ -2,9 +2,9 @@
 pragma solidity ^0.8.0;
 
 import "./OracleInterface.sol";
-import "./ChainlinkRequestInterface.sol";
+import "./PluginRequestInterface.sol";
 
-interface OperatorInterface is OracleInterface, ChainlinkRequestInterface {
+interface OperatorInterface is OracleInterface, PluginRequestInterface {
 
   function requestOracleData(
     address sender,

@@ -1,5 +1,5 @@
 {
-  "name": "@chainlink/operator-ui",
+  "name": "@plugin/operator-ui",
   "version": "0.6.0",
   "private": true,
   "license": "MIT",
@@ -15,7 +15,7 @@
     "clean": "tsc -b --clean && rimraf -rf artifacts tmp dist",
     "build": "NODE_ENV=production webpack --config webpack.prod.js",
     "setup": "tsc -b",
-    "depcheck": "echo '@chainlink/operator-ui' && depcheck --ignore-dirs=dist || true"
+    "depcheck": "echo '@plugin/operator-ui' && depcheck --ignore-dirs=dist || true"
   },
   "dependencies": {
     "@iarna/toml": "3.0.0",

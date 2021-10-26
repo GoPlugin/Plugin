@@ -46,7 +46,7 @@ describe('pages/Jobs/Show', () => {
     expect(wrapper.text()).toContain('Created 1 minute ago')
     expect(wrapper.text()).toContain('1.000000')
     expect(wrapper.text()).toContain('Httpget')
-    expect(wrapper.text()).toContain('Minimum Payment100 Link')
+    expect(wrapper.text()).toContain('Minimum Payment100 Pli')
     expect(wrapper.text()).toContain('Pending')
     expect(wrapper.text()).not.toContain('View more')
   })

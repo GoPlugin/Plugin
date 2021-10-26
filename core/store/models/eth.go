@@ -76,8 +76,7 @@ type EthTx struct {
 	// Marshalled EthTxMeta
 	// Used for additional context around transactions which you want to log
 	// at send time.
-	Meta    postgres.Jsonb
-	Subject uuid.NullUUID
+	Meta postgres.Jsonb
 }
 
 func (e EthTx) GetError() error {

@@ -46,7 +46,7 @@ This enables a user to make quick changes on either the container or the host, r
 cldev # cldev without the "core" postfix simply calls the core node cli
 #
 # NAME:
-#    main - CLI for Chainlink
+#    main - CLI for Plugin
 #
 # USAGE:
 #    main [global options] command [command options] [arguments...]
@@ -94,7 +94,7 @@ In the first terminal:
 cldev # cldev without the "core" postfix simply calls the core node cli
 #
 # NAME:
-#    main - CLI for Chainlink
+#    main - CLI for Plugin
 #
 # USAGE:
 #    main [global options] command [command options] [arguments...]

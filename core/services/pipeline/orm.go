@@ -28,13 +28,14 @@ type ORM interface {
 }
 
 type orm struct {
-	db *gorm.DB
+	db     *gorm.DB
+	config Config
 }
 
 var _ ORM = (*orm)(nil)
 
-func NewORM(db *gorm.DB) *orm {
-	return &orm{db}
+func NewORM(db *gorm.DB, config Config) *orm {
+	return &orm{db, config}
 }
 
 // The tx argument must be an already started transaction.
@@ -96,9 +97,7 @@ func (o *orm) InsertFinishedRun(db *gorm.DB, run Run, trrs []TaskRunResult, save
 }
 
 func (o *orm) DeleteRunsOlderThan(threshold time.Duration) error {
-	err := o.db.Exec(
-		`DELETE FROM pipeline_runs WHERE finished_at < ?`, time.Now().Add(-threshold),
-	).Error
+	err := o.db.Exec(`DELETE FROM pipeline_runs WHERE finished_at < ?`, time.Now().Add(-threshold)).Error
 	if err != nil {
 		return err
 	}

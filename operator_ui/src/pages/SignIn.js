@@ -73,10 +73,7 @@ export const SignIn = (props) => {
                 <Grid item xs={12}>
                   <Grid container spacing={0}>
                     <Grid item xs={12} className={classes.headerRow}>
-                      <HexagonLogo width={50} />
-                    </Grid>
-                    <Grid item xs={12} className={classes.headerRow}>
-                      <Typography variant="h5">Operator</Typography>
+                      <HexagonLogo width={100} />
                     </Grid>
                   </Grid>
                 </Grid>

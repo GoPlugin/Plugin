@@ -142,20 +142,20 @@ func setConfigs() {
 	polygonMainnet.EnableLegacyJobPipeline = true
 	polygonMainnet.EthBalanceMonitorBlockDelay = 13             // equivalent of 1 eth block seems reasonable
 	polygonMainnet.EthFinalityDepth = 200                       // A sprint is 64 blocks long and doesn't guarantee finality. To be safe we take three sprints (192 blocks) plus a safety margin
-	polygonMainnet.EthGasBumpThreshold = 5                      // 10s delay since feeds update every minute in volatile situations
-	polygonMainnet.EthGasBumpWei = *big.NewInt(20000000000)     // 20 Gwei
+	polygonMainnet.EthGasBumpThreshold = 10                     // 10s delay since feeds update every minute in volatile situations
+	polygonMainnet.EthGasBumpWei = *big.NewInt(5000000000)      // 5 Gwei
 	polygonMainnet.EthGasPriceDefault = *big.NewInt(1000000000) // 1 Gwei
 	polygonMainnet.EthHeadTrackerHistoryDepth = 250             // EthFinalityDepth + safety margin
 	polygonMainnet.EthHeadTrackerSamplingInterval = 1 * time.Second
-	polygonMainnet.EthMaxGasPriceWei = *big.NewInt(1500000000000) // 1500 Gwei
-	polygonMainnet.EthMaxQueuedTransactions = 2000                // Since re-orgs on Polygon can be so large, we need a large safety buffer to allow time for the queue to clear down before we start dropping transactions
-	polygonMainnet.EthMinGasPriceWei = *big.NewInt(1000000000)    // 1 Gwei
-	polygonMainnet.EthTxResendAfterThreshold = 5 * time.Minute    // 5 minutes is roughly 300 blocks on Polygon. Since re-orgs occur often and can be deep we want to avoid overloading the node with a ton of re-sent unconfirmed transactions.
+	polygonMainnet.EthMaxGasPriceWei = *big.NewInt(500000000000) // 500 Gwei
+	polygonMainnet.EthMaxQueuedTransactions = 2000               // Since re-orgs on Polygon can be so large, we need a large safety buffer to allow time for the queue to clear down before we start dropping transactions
+	polygonMainnet.EthMinGasPriceWei = *big.NewInt(1000000000)   // 1 Gwei
+	polygonMainnet.EthTxResendAfterThreshold = 5 * time.Minute   // 5 minutes is roughly 300 blocks on Polygon. Since re-orgs occur often and can be deep we want to avoid overloading the node with a ton of re-sent unconfirmed transactions.
 	polygonMainnet.GasUpdaterBlockDelay = 10
 	polygonMainnet.GasUpdaterBlockHistorySize = 24
 	polygonMainnet.GasUpdaterEnabled = true
 	polygonMainnet.LinkContractAddress = "0xb0897686c545045afc77cf20ec7a532e3120e0f1"
-	polygonMainnet.MinIncomingConfirmations = 5
+	polygonMainnet.MinIncomingConfirmations = 12
 	polygonMainnet.MinRequiredOutgoingConfirmations = 12
 	polygonMumbai := polygonMainnet
 	polygonMumbai.LinkContractAddress = "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
@@ -170,7 +170,7 @@ func setConfigs() {
 	arbitrumMainnet.EthMinGasPriceWei = *big.NewInt(1000000000000)  // Fix the gas price
 	arbitrumMainnet.GasUpdaterEnabled = false
 	arbitrumMainnet.GasUpdaterBlockHistorySize = 0 // Force an error if someone set GAS_UPDATER_ENABLED=true by accident; we never want to run the gas updater on arbitrum
-	arbitrumMainnet.LinkContractAddress = "0xf97f4df75117a78c1A5a0DBb814Af92458539FB4"
+	arbitrumMainnet.LinkContractAddress = ""       // TBD
 	arbitrumMainnet.OCRContractConfirmations = 1
 	arbitrumRinkeby := arbitrumMainnet
 	arbitrumRinkeby.LinkContractAddress = "0x615fBe6372676474d9e6933d310469c9b68e9726"

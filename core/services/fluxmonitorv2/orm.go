@@ -3,13 +3,12 @@ package fluxmonitorv2
 import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/store/models"
 	"gorm.io/gorm"
 )
 
 type transmitter interface {
-	CreateEthTransaction(db *gorm.DB, fromAddress, toAddress common.Address, payload []byte, gasLimit uint64, meta interface{}, strategy bulletprooftxmanager.TxStrategy) (etx models.EthTx, err error)
+	CreateEthTransaction(db *gorm.DB, fromAddress, toAddress common.Address, payload []byte, gasLimit uint64, meta interface{}) (etx models.EthTx, err error)
 }
 
 //go:generate mockery --name ORM --output ./mocks/ --case=underscore
@@ -24,14 +23,13 @@ type ORM interface {
 }
 
 type orm struct {
-	db       *gorm.DB
-	txm      transmitter
-	strategy bulletprooftxmanager.TxStrategy
+	db  *gorm.DB
+	txm transmitter
 }
 
 // NewORM initializes a new ORM
-func NewORM(db *gorm.DB, txm transmitter, strategy bulletprooftxmanager.TxStrategy) *orm {
-	return &orm{db, txm, strategy}
+func NewORM(db *gorm.DB, txm transmitter) *orm {
+	return &orm{db, txm}
 }
 
 // MostRecentFluxMonitorRoundID finds roundID of the most recent round that the
@@ -103,6 +101,6 @@ func (o *orm) CreateEthTransaction(
 	payload []byte,
 	gasLimit uint64,
 ) (err error) {
-	_, err = o.txm.CreateEthTransaction(db, fromAddress, toAddress, payload, gasLimit, nil, o.strategy)
+	_, err = o.txm.CreateEthTransaction(db, fromAddress, toAddress, payload, gasLimit, nil)
 	return errors.Wrap(err, "Skipped Flux Monitor submission")
 }

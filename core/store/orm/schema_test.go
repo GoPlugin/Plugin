@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestConfigSchema(t *testing.T) {
@@ -32,7 +32,7 @@ func TestConfigSchema(t *testing.T) {
 		"DefaultHTTPLimit":                          "DEFAULT_HTTP_LIMIT",
 		"DefaultHTTPTimeout":                        "DEFAULT_HTTP_TIMEOUT",
 		"DefaultMaxHTTPAttempts":                    "MAX_HTTP_ATTEMPTS",
-		"Dev":                                       "CHAINLINK_DEV",
+		"Dev":                                       "PLUGIN_DEV",
 		"EnableExperimentalAdapters":                "ENABLE_EXPERIMENTAL_ADAPTERS",
 		"EnableLegacyJobPipeline":                   "ENABLE_LEGACY_JOB_PIPELINE",
 		"EthBalanceMonitorBlockDelay":               "ETH_BALANCE_MONITOR_BLOCK_DELAY",
@@ -73,7 +73,6 @@ func TestConfigSchema(t *testing.T) {
 		"FeatureOffchainReporting":                  "FEATURE_OFFCHAIN_REPORTING",
 		"FeatureWebhookV2":                          "FEATURE_WEBHOOK_V2",
 		"FlagsContractAddress":                      "FLAGS_CONTRACT_ADDRESS",
-		"FMDefaultTransactionQueueDepth":            "FM_DEFAULT_TRANSACTION_QUEUE_DEPTH",
 		"GasUpdaterBatchSize":                       "GAS_UPDATER_BATCH_SIZE",
 		"GasUpdaterBlockDelay":                      "GAS_UPDATER_BLOCK_DELAY",
 		"GasUpdaterBlockHistorySize":                "GAS_UPDATER_BLOCK_HISTORY_SIZE",
@@ -88,13 +87,12 @@ func TestConfigSchema(t *testing.T) {
 		"JobPipelineReaperInterval":                 "JOB_PIPELINE_REAPER_INTERVAL",
 		"JobPipelineReaperThreshold":                "JOB_PIPELINE_REAPER_THRESHOLD",
 		"JobPipelineResultWriteQueueDepth":          "JOB_PIPELINE_RESULT_WRITE_QUEUE_DEPTH",
-		"KeeperDefaultTransactionQueueDepth":        "KEEPER_DEFAULT_TRANSACTION_QUEUE_DEPTH",
 		"KeeperMaximumGracePeriod":                  "KEEPER_MAXIMUM_GRACE_PERIOD",
 		"KeeperMinimumRequiredConfirmations":        "KEEPER_MINIMUM_REQUIRED_CONFIRMATIONS",
 		"KeeperRegistryCheckGasOverhead":            "KEEPER_REGISTRY_CHECK_GAS_OVERHEAD",
 		"KeeperRegistryPerformGasOverhead":          "KEEPER_REGISTRY_PERFORM_GAS_OVERHEAD",
 		"KeeperRegistrySyncInterval":                "KEEPER_REGISTRY_SYNC_INTERVAL",
-		"LinkContractAddress":                       "LINK_CONTRACT_ADDRESS",
+		"LinkContractAddress":                       "PLI_CONTRACT_ADDRESS",
 		"LogLevel":                                  "LOG_LEVEL",
 		"LogSQLMigrations":                          "LOG_SQL_MIGRATIONS",
 		"LogSQLStatements":                          "LOG_SQL",
@@ -122,7 +120,6 @@ func TestConfigSchema(t *testing.T) {
 		"OCRObservationTimeout":                     "OCR_OBSERVATION_TIMEOUT",
 		"OCROutgoingMessageBufferSize":              "OCR_OUTGOING_MESSAGE_BUFFER_SIZE",
 		"OCRTraceLogging":                           "OCR_TRACE_LOGGING",
-		"OCRDefaultTransactionQueueDepth":           "OCR_DEFAULT_TRANSACTION_QUEUE_DEPTH",
 		"OCRTransmitterAddress":                     "OCR_TRANSMITTER_ADDRESS",
 		"ORMMaxIdleConns":                           "ORM_MAX_IDLE_CONNS",
 		"ORMMaxOpenConns":                           "ORM_MAX_OPEN_CONNS",
@@ -136,7 +133,7 @@ func TestConfigSchema(t *testing.T) {
 		"P2PListenPort":                             "P2P_LISTEN_PORT",
 		"P2PPeerID":                                 "P2P_PEER_ID",
 		"P2PPeerstoreWriteInterval":                 "P2P_PEERSTORE_WRITE_INTERVAL",
-		"Port":                                      "CHAINLINK_PORT",
+		"Port":                                      "PLUGIN_PORT",
 		"ReaperExpiration":                          "REAPER_EXPIRATION",
 		"ReplayFromBlock":                           "REPLAY_FROM_BLOCK",
 		"RootDir":                                   "ROOT",
@@ -144,10 +141,10 @@ func TestConfigSchema(t *testing.T) {
 		"SessionTimeout":                            "SESSION_TIMEOUT",
 		"StatsPusherLogging":                        "STATS_PUSHER_LOGGING",
 		"TLSCertPath":                               "TLS_CERT_PATH",
-		"TLSHost":                                   "CHAINLINK_TLS_HOST",
+		"TLSHost":                                   "PLUGIN_TLS_HOST",
 		"TLSKeyPath":                                "TLS_KEY_PATH",
-		"TLSPort":                                   "CHAINLINK_TLS_PORT",
-		"TLSRedirect":                               "CHAINLINK_TLS_REDIRECT",
+		"TLSPort":                                   "PLUGIN_TLS_PORT",
+		"TLSRedirect":                               "PLUGIN_TLS_REDIRECT",
 		"TriggerFallbackDBPollInterval":             "TRIGGER_FALLBACK_DB_POLL_INTERVAL",
 		"UnAuthenticatedRateLimit":                  "UNAUTHENTICATED_RATE_LIMIT",
 		"UnAuthenticatedRateLimitPeriod":            "UNAUTHENTICATED_RATE_LIMIT_PERIOD",
@@ -161,7 +158,7 @@ func TestConfigSchema(t *testing.T) {
 		//
 		// ╭──╮   ╭────────────────────────────────────╮
 		// │  │   │ It looks like you're trying to add │
-		// @  @  ╭│ a new configuration variable!      │
+		// @  @  ╭│ configuration variable!            │
 		// ││ ││ ││                                    │
 		// ││ ││ ╯╰────────────────────────────────────╯
 		// │╰─╯│
@@ -180,8 +177,8 @@ func TestConfigSchema(t *testing.T) {
 		// 4. Add your new config variable to this test
 		//
 
-		assert.True(t, found, fmt.Sprintf("New test variable: '%s', see test comment for guide on steps to follow when adding a configuration variable", field.Name))
+		require.True(t, found, fmt.Sprintf("New test variable: '%s', see test comment for guide on steps to follow when adding a configuration variable", field.Name))
 		env := field.Tag.Get("env")
-		assert.Equal(t, item, env)
+		require.Equal(t, item, env)
 	}
 }

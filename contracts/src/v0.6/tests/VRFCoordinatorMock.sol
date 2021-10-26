@@ -1,22 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.6;
 
-import "../interfaces/LinkTokenInterface.sol";
+import "../interfaces/PliTokenInterface.sol";
 import "../VRFConsumerBase.sol";
 
 contract VRFCoordinatorMock {
 
-    LinkTokenInterface public LINK;
+    PliTokenInterface public PLI;
 
     event RandomnessRequest(address indexed sender, bytes32 indexed keyHash, uint256 indexed seed);
 
-    constructor(address linkAddress) public {
-        LINK = LinkTokenInterface(linkAddress);
+    constructor(address pliAddress) public {
+        PLI = PliTokenInterface(pliAddress);
     }
 
     function onTokenTransfer(address sender, uint256 fee, bytes memory _data)
         public
-        onlyLINK
+        onlyPLI
     {
         (bytes32 keyHash, uint256 seed) = abi.decode(_data, (bytes32, uint256));
         emit RandomnessRequest(sender, keyHash, seed);
@@ -34,8 +34,8 @@ contract VRFCoordinatorMock {
         (bool success,) = consumerContract.call(resp);
     }
 
-    modifier onlyLINK() {
-        require(msg.sender == address(LINK), "Must use LINK token");
+    modifier onlyPLI() {
+        require(msg.sender == address(PLI), "Must use PLI token");
         _;
     }
 }

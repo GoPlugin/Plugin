@@ -38,7 +38,7 @@ type ConfigSchema struct {
 	DefaultHTTPLimit                          int64           `env:"DEFAULT_HTTP_LIMIT" default:"32768"`
 	DefaultHTTPTimeout                        models.Duration `env:"DEFAULT_HTTP_TIMEOUT" default:"15s"`
 	DefaultMaxHTTPAttempts                    uint            `env:"MAX_HTTP_ATTEMPTS" default:"5"`
-	Dev                                       bool            `env:"CHAINLINK_DEV" default:"false"`
+	Dev                                       bool            `env:"PLUGIN_DEV" default:"false"`
 	EnableExperimentalAdapters                bool            `env:"ENABLE_EXPERIMENTAL_ADAPTERS" default:"false"`
 	EnableLegacyJobPipeline                   bool            `env:"ENABLE_LEGACY_JOB_PIPELINE" default:"true"`
 	EthBalanceMonitorBlockDelay               uint16          `env:"ETH_BALANCE_MONITOR_BLOCK_DELAY"`
@@ -48,8 +48,8 @@ type ConfigSchema struct {
 	EthGasBumpTxDepth                         uint16          `env:"ETH_GAS_BUMP_TX_DEPTH" default:"10"`
 	EthGasBumpWei                             big.Int         `env:"ETH_GAS_BUMP_WEI"`
 	EthGasLimitDefault                        uint64          `env:"ETH_GAS_LIMIT_DEFAULT"`
-	EthGasLimitMultiplier                     float32         `env:"ETH_GAS_LIMIT_MULTIPLIER" default:"1.0"`
 	EthGasLimitTransfer                       uint64          `env:"ETH_GAS_LIMIT_TRANSFER"`
+	EthGasLimitMultiplier                     float32         `env:"ETH_GAS_LIMIT_MULTIPLIER" default:"1.0"`
 	EthGasPriceDefault                        big.Int         `env:"ETH_GAS_PRICE_DEFAULT"`
 	EthHeadTrackerHistoryDepth                uint            `env:"ETH_HEAD_TRACKER_HISTORY_DEPTH"`
 	EthHeadTrackerMaxBufferSize               uint            `env:"ETH_HEAD_TRACKER_MAX_BUFFER_SIZE" default:"3"`
@@ -72,7 +72,6 @@ type ConfigSchema struct {
 	ExplorerAccessKey                         string          `env:"EXPLORER_ACCESS_KEY"`
 	ExplorerSecret                            string          `env:"EXPLORER_SECRET"`
 	ExplorerURL                               *url.URL        `env:"EXPLORER_URL"`
-	FMDefaultTransactionQueueDepth            uint32          `env:"FM_DEFAULT_TRANSACTION_QUEUE_DEPTH" default:"1"`
 	FeatureCronV2                             bool            `env:"FEATURE_CRON_V2" default:"true"`
 	FeatureExternalInitiators                 bool            `env:"FEATURE_EXTERNAL_INITIATORS" default:"false"`
 	FeatureFluxMonitor                        bool            `env:"FEATURE_FLUX_MONITOR" default:"true"`
@@ -94,13 +93,12 @@ type ConfigSchema struct {
 	JobPipelineReaperInterval                 time.Duration   `env:"JOB_PIPELINE_REAPER_INTERVAL" default:"1h"`
 	JobPipelineReaperThreshold                time.Duration   `env:"JOB_PIPELINE_REAPER_THRESHOLD" default:"24h"`
 	JobPipelineResultWriteQueueDepth          uint64          `env:"JOB_PIPELINE_RESULT_WRITE_QUEUE_DEPTH" default:"100"`
-	KeeperDefaultTransactionQueueDepth        uint32          `env:"KEEPER_DEFAULT_TRANSACTION_QUEUE_DEPTH" default:"1"`
 	KeeperMaximumGracePeriod                  int64           `env:"KEEPER_MAXIMUM_GRACE_PERIOD" default:"100"`
 	KeeperMinimumRequiredConfirmations        uint64          `env:"KEEPER_MINIMUM_REQUIRED_CONFIRMATIONS" default:"12"`
 	KeeperRegistryCheckGasOverhead            uint64          `env:"KEEPER_REGISTRY_CHECK_GAS_OVERHEAD" default:"200000"`
-	KeeperRegistryPerformGasOverhead          uint64          `env:"KEEPER_REGISTRY_PERFORM_GAS_OVERHEAD" default:"150000"`
+	KeeperRegistryPerformGasOverhead          uint64          `env:"KEEPER_REGISTRY_PERFORM_GAS_OVERHEAD" default:"110000"`
 	KeeperRegistrySyncInterval                time.Duration   `env:"KEEPER_REGISTRY_SYNC_INTERVAL" default:"30m"`
-	LinkContractAddress                       string          `env:"LINK_CONTRACT_ADDRESS"`
+	LinkContractAddress                       string          `env:"PLI_CONTRACT_ADDRESS"`
 	LogLevel                                  LogLevel        `env:"LOG_LEVEL" default:"info"`
 	LogSQLMigrations                          bool            `env:"LOG_SQL_MIGRATIONS" default:"true"`
 	LogSQLStatements                          bool            `env:"LOG_SQL" default:"false"`
@@ -120,7 +118,6 @@ type ConfigSchema struct {
 	OCRContractTransmitterTransmitTimeout     time.Duration   `env:"OCR_CONTRACT_TRANSMITTER_TRANSMIT_TIMEOUT" default:"10s"`
 	OCRDHTLookupInterval                      int             `env:"OCR_DHT_LOOKUP_INTERVAL" default:"10"`
 	OCRDatabaseTimeout                        time.Duration   `env:"OCR_DATABASE_TIMEOUT" default:"10s"`
-	OCRDefaultTransactionQueueDepth           uint32          `env:"OCR_DEFAULT_TRANSACTION_QUEUE_DEPTH" default:"1"`
 	OCRIncomingMessageBufferSize              int             `env:"OCR_INCOMING_MESSAGE_BUFFER_SIZE" default:"10"`
 	OCRKeyBundleID                            string          `env:"OCR_KEY_BUNDLE_ID"`
 	OCRMonitoringEndpoint                     string          `env:"OCR_MONITORING_ENDPOINT"`
@@ -142,7 +139,7 @@ type ConfigSchema struct {
 	P2PListenPort                             uint16          `env:"P2P_LISTEN_PORT"`
 	P2PPeerID                                 p2pkey.PeerID   `env:"P2P_PEER_ID"`
 	P2PPeerstoreWriteInterval                 time.Duration   `env:"P2P_PEERSTORE_WRITE_INTERVAL" default:"5m"`
-	Port                                      uint16          `env:"CHAINLINK_PORT" default:"6688"`
+	Port                                      uint16          `env:"PLUGIN_PORT" default:"6688"`
 	ReaperExpiration                          models.Duration `env:"REAPER_EXPIRATION" default:"240h"`
 	ReplayFromBlock                           int64           `env:"REPLAY_FROM_BLOCK" default:"-1"`
 	RootDir                                   string          `env:"ROOT" default:"~/.chainlink"`
@@ -150,10 +147,10 @@ type ConfigSchema struct {
 	SessionTimeout                            models.Duration `env:"SESSION_TIMEOUT" default:"15m"`
 	StatsPusherLogging                        string          `env:"STATS_PUSHER_LOGGING" default:"false"`
 	TLSCertPath                               string          `env:"TLS_CERT_PATH" `
-	TLSHost                                   string          `env:"CHAINLINK_TLS_HOST" `
+	TLSHost                                   string          `env:"PLUGIN_TLS_HOST" `
 	TLSKeyPath                                string          `env:"TLS_KEY_PATH" `
-	TLSPort                                   uint16          `env:"CHAINLINK_TLS_PORT" default:"6689"`
-	TLSRedirect                               bool            `env:"CHAINLINK_TLS_REDIRECT" default:"false"`
+	TLSPort                                   uint16          `env:"PLUGIN_TLS_PORT" default:"6689"`
+	TLSRedirect                               bool            `env:"PLUGIN_TLS_REDIRECT" default:"false"`
 	TriggerFallbackDBPollInterval             time.Duration   `env:"TRIGGER_FALLBACK_DB_POLL_INTERVAL" default:"30s"`
 	UnAuthenticatedRateLimit                  int64           `env:"UNAUTHENTICATED_RATE_LIMIT" default:"5"`
 	UnAuthenticatedRateLimitPeriod            time.Duration   `env:"UNAUTHENTICATED_RATE_LIMIT_PERIOD" default:"20s"`

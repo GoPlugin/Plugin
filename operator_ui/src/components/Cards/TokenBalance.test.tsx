@@ -5,25 +5,25 @@ import { mount } from 'enzyme'
 describe('components/Cards/TokenBalance', () => {
   it('renders the title and a loading indicator when it is fetching', () => {
     const wrapper = mount(
-      <TokenBalanceCard title="Ether Balance" value={undefined} />,
+      <TokenBalanceCard title="XDC Balance" value={undefined} />,
     )
 
-    expect(wrapper.text()).toContain('Ether Balance...')
+    expect(wrapper.text()).toContain('XDC Balance...')
   })
 
   it('renders the title and the error message', () => {
     const wrapper = mount(
-      <TokenBalanceCard title="Ether Balance" error="An Error" />,
+      <TokenBalanceCard title="XDC Balance" error="An Error" />,
     )
 
-    expect(wrapper.text()).toContain('Ether BalanceAn Error')
+    expect(wrapper.text()).toContain('XDC BalanceAn Error')
   })
 
   it('renders the title and the formatted balance', () => {
     const wrapper = mount(
-      <TokenBalanceCard title="Ether Balance" value="7779070000000000000000" />,
+      <TokenBalanceCard title="XDC Balance" value="7779070000000000000000" />,
     )
 
-    expect(wrapper.text()).toContain('Ether Balance7.779070k')
+    expect(wrapper.text()).toContain('XDC Balance7.779070k')
   })
 })

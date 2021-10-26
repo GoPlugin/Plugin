@@ -48,7 +48,7 @@ type EnvPrinter struct {
 	DatabaseMaximumTxDuration             time.Duration   `json:"DATABASE_MAXIMUM_TX_DURATION"`
 	DefaultHTTPLimit                      int64           `json:"DEFAULT_HTTP_LIMIT"`
 	DefaultHTTPTimeout                    models.Duration `json:"DEFAULT_HTTP_TIMEOUT"`
-	Dev                                   bool            `json:"CHAINLINK_DEV"`
+	Dev                                   bool            `json:"PLUGIN_DEV"`
 	EnableExperimentalAdapters            bool            `json:"ENABLE_EXPERIMENTAL_ADAPTERS"`
 	EnableLegacyJobPipeline               bool            `json:"ENABLE_LEGACY_JOB_PIPELINE"`
 	EthBalanceMonitorBlockDelay           uint16          `json:"ETH_BALANCE_MONITOR_BLOCK_DELAY"`
@@ -71,18 +71,16 @@ type EnvPrinter struct {
 	FeatureFluxMonitor                    bool            `json:"FEATURE_FLUX_MONITOR"`
 	FeatureOffchainReporting              bool            `json:"FEATURE_OFFCHAIN_REPORTING"`
 	FlagsContractAddress                  string          `json:"FLAGS_CONTRACT_ADDRESS"`
-	FMDefaultTransactionQueueDepth        uint32          `json:"FM_DEFAULT_TRANSACTION_QUEUE_DEPTH"`
 	GasUpdaterBlockDelay                  uint16          `json:"GAS_UPDATER_BLOCK_DELAY"`
 	GasUpdaterBlockHistorySize            uint16          `json:"GAS_UPDATER_BLOCK_HISTORY_SIZE"`
 	GasUpdaterEnabled                     bool            `json:"GAS_UPDATER_ENABLED"`
 	GasUpdaterTransactionPercentile       uint16          `json:"GAS_UPDATER_TRANSACTION_PERCENTILE"`
 	InsecureFastScrypt                    bool            `json:"INSECURE_FAST_SCRYPT"`
-	KeeperDefaultTransactionQueueDepth    uint32          `json:"KEEPER_DEFAULT_TRANSACTION_QUEUE_DEPTH"`
 	TriggerFallbackDBPollInterval         time.Duration   `json:"JOB_PIPELINE_DB_POLL_INTERVAL"`
 	JobPipelineReaperInterval             time.Duration   `json:"JOB_PIPELINE_REAPER_INTERVAL"`
 	JobPipelineReaperThreshold            time.Duration   `json:"JOB_PIPELINE_REAPER_THRESHOLD"`
 	JSONConsole                           bool            `json:"JSON_CONSOLE"`
-	LinkContractAddress                   string          `json:"LINK_CONTRACT_ADDRESS"`
+	LinkContractAddress                   string          `json:"PLI_CONTRACT_ADDRESS"`
 	LogLevel                              orm.LogLevel    `json:"LOG_LEVEL"`
 	LogSQLMigrations                      bool            `json:"LOG_SQL_MIGRATIONS"`
 	LogSQLStatements                      bool            `json:"LOG_SQL"`
@@ -100,7 +98,6 @@ type EnvPrinter struct {
 	P2PListenPort                         string          `json:"P2P_LISTEN_PORT"`
 	P2PPeerID                             string          `json:"P2P_PEER_ID"`
 	P2PBootstrapPeers                     []string        `json:"P2P_BOOTSTRAP_PEERS"`
-	OCRDefaultTransactionQueueDepth       uint32          `json:"OCR_DEFAULT_TRANSACTION_QUEUE_DEPTH"`
 	OCRIncomingMessageBufferSize          int             `json:"OCR_INCOMING_MESSAGE_BUFFER_SIZE"`
 	OCROutgoingMessageBufferSize          int             `json:"OCR_OUTGOING_MESSAGE_BUFFER_SIZE"`
 	OCRNewStreamTimeout                   time.Duration   `json:"OCR_NEW_STREAM_TIMEOUT"`
@@ -108,15 +105,15 @@ type EnvPrinter struct {
 	OCRTraceLogging                       bool            `json:"OCR_TRACE_LOGGING"`
 	OperatorContractAddress               common.Address  `json:"OPERATOR_CONTRACT_ADDRESS"`
 	OptimismGasFees                       bool            `json:"OPTIMISM_GAS_FEES"`
-	Port                                  uint16          `json:"CHAINLINK_PORT"`
+	Port                                  uint16          `json:"PLUGIN_PORT"`
 	ReaperExpiration                      models.Duration `json:"REAPER_EXPIRATION"`
 	ReplayFromBlock                       int64           `json:"REPLAY_FROM_BLOCK"`
 	RootDir                               string          `json:"ROOT"`
 	SecureCookies                         bool            `json:"SECURE_COOKIES"`
 	SessionTimeout                        models.Duration `json:"SESSION_TIMEOUT"`
-	TLSHost                               string          `json:"CHAINLINK_TLS_HOST"`
-	TLSPort                               uint16          `json:"CHAINLINK_TLS_PORT"`
-	TLSRedirect                           bool            `json:"CHAINLINK_TLS_REDIRECT"`
+	TLSHost                               string          `json:"PLUGIN_TLS_HOST"`
+	TLSPort                               uint16          `json:"PLUGIN_TLS_PORT"`
+	TLSRedirect                           bool            `json:"PLUGIN_TLS_REDIRECT"`
 }
 
 // NewConfigPrinter creates an instance of ConfigPrinter
@@ -169,13 +166,11 @@ func NewConfigPrinter(store *store.Store) (ConfigPrinter, error) {
 			FeatureFluxMonitor:                    config.FeatureFluxMonitor(),
 			FeatureOffchainReporting:              config.FeatureOffchainReporting(),
 			FlagsContractAddress:                  config.FlagsContractAddress(),
-			FMDefaultTransactionQueueDepth:        config.FMDefaultTransactionQueueDepth(),
 			GasUpdaterBlockDelay:                  config.GasUpdaterBlockDelay(),
 			GasUpdaterBlockHistorySize:            config.GasUpdaterBlockHistorySize(),
 			GasUpdaterEnabled:                     config.GasUpdaterEnabled(),
 			GasUpdaterTransactionPercentile:       config.GasUpdaterTransactionPercentile(),
 			InsecureFastScrypt:                    config.InsecureFastScrypt(),
-			KeeperDefaultTransactionQueueDepth:    config.KeeperDefaultTransactionQueueDepth(),
 			TriggerFallbackDBPollInterval:         config.TriggerFallbackDBPollInterval(),
 			JobPipelineReaperInterval:             config.JobPipelineReaperInterval(),
 			JobPipelineReaperThreshold:            config.JobPipelineReaperThreshold(),
@@ -194,7 +189,6 @@ func NewConfigPrinter(store *store.Store) (ConfigPrinter, error) {
 			OCRBootstrapCheckInterval:             config.OCRBootstrapCheckInterval(),
 			OCRContractTransmitterTransmitTimeout: config.OCRContractTransmitterTransmitTimeout(),
 			OCRDatabaseTimeout:                    config.OCRDatabaseTimeout(),
-			OCRDefaultTransactionQueueDepth:       config.OCRDefaultTransactionQueueDepth(),
 			P2PListenIP:                           config.P2PListenIP().String(),
 			P2PListenPort:                         config.P2PListenPortRaw(),
 			P2PBootstrapPeers:                     p2pBootstrapPeers,
@@ -322,7 +316,7 @@ func (job JobSpec) FriendlyEndAt() string {
 }
 
 // FriendlyMinPayment returns a formatted string of the Job's
-// Minimum Link Payment threshold
+// Minimum Pli Payment threshold
 func (job JobSpec) FriendlyMinPayment() string {
 	return job.MinPayment.Text(10)
 }

@@ -18,7 +18,6 @@ import (
 	"github.com/lib/pq"
 	"github.com/GoPlugin/Plugin/core/adapters"
 
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/job"
 	"github.com/GoPlugin/Plugin/core/services/keeper"
 	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
@@ -609,17 +608,9 @@ func MustInsertInProgressEthTxWithAttempt(t *testing.T, store *strpkg.Store, non
 	return etx
 }
 
-func MustInsertUnstartedEthTx(t *testing.T, store *strpkg.Store, fromAddress common.Address, opts ...interface{}) models.EthTx {
-	var subject uuid.NullUUID
-	for _, opt := range opts {
-		switch v := opt.(type) {
-		case uuid.UUID:
-			subject = uuid.NullUUID{UUID: v, Valid: true}
-		}
-	}
+func MustInsertUnstartedEthTx(t *testing.T, store *strpkg.Store, fromAddress common.Address) models.EthTx {
 	etx := NewEthTx(t, store, fromAddress)
 	etx.State = models.EthTxUnstarted
-	etx.Subject = subject
 	require.NoError(t, store.DB.Save(&etx).Error)
 	return etx
 }
@@ -760,7 +751,7 @@ func MustInsertV2JobSpec(t *testing.T, store *strpkg.Store, transmitterAddress c
 	err = store.DB.Create(&pipelineSpec).Error
 	require.NoError(t, err)
 
-	oracleSpec := MustInsertOffchainreportingOracleSpec(t, store.DB, addr)
+	oracleSpec := MustInsertOffchainreportingOracleSpec(t, store, addr)
 	jb := job.Job{
 		OffchainreportingOracleSpec:   &oracleSpec,
 		OffchainreportingOracleSpecID: &oracleSpec.ID,
@@ -776,7 +767,7 @@ func MustInsertV2JobSpec(t *testing.T, store *strpkg.Store, transmitterAddress c
 	return jb
 }
 
-func MustInsertOffchainreportingOracleSpec(t *testing.T, db *gorm.DB, transmitterAddress ethkey.EIP55Address) job.OffchainReportingOracleSpec {
+func MustInsertOffchainreportingOracleSpec(t *testing.T, store *strpkg.Store, transmitterAddress ethkey.EIP55Address) job.OffchainReportingOracleSpec {
 	t.Helper()
 
 	pid := p2pkey.PeerID(DefaultP2PPeerID)
@@ -793,7 +784,7 @@ func MustInsertOffchainreportingOracleSpec(t *testing.T, db *gorm.DB, transmitte
 		ContractConfigTrackerPollInterval:      0,
 		ContractConfigConfirmations:            0,
 	}
-	require.NoError(t, db.Create(&spec).Error)
+	require.NoError(t, store.DB.Create(&spec).Error)
 	return spec
 }
 
@@ -864,7 +855,7 @@ func MustInsertKeeperRegistry(t *testing.T, store *strpkg.Store, ethKeyStore *ke
 
 func MustInsertUpkeepForRegistry(t *testing.T, store *strpkg.Store, registry keeper.Registry) keeper.UpkeepRegistration {
 	ctx, _ := postgres.DefaultQueryCtx()
-	upkeepID, err := keeper.NewORM(store.DB, nil, store.Config, bulletprooftxmanager.SendEveryStrategy{}).LowestUnsyncedID(ctx, registry)
+	upkeepID, err := keeper.NewORM(store.DB, nil, store.Config).LowestUnsyncedID(ctx, registry)
 	require.NoError(t, err)
 	upkeep := keeper.UpkeepRegistration{
 		UpkeepID:   upkeepID,

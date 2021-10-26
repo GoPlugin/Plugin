@@ -21,7 +21,7 @@ services:
         - SRCROOT
     entrypoint: /bin/sh -c 'yarn && yarn workspace @chainlink/operator-ui start'
     environment:
-      - CHAINLINK_PORT
+      - PLUGIN_PORT
     ports:
       - 3000:3000
       - 4000:4000

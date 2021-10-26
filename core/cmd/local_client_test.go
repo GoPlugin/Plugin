@@ -34,9 +34,9 @@ func TestClient_RunNodeShowsEnv(t *testing.T) {
 	_, err := keyStore.Eth().CreateNewKey()
 	require.NoError(t, err)
 
-	store.Config.Set("LINK_CONTRACT_ADDRESS", "0x514910771AF9Ca656af840dff83E8264EcF986CA")
+	store.Config.Set("PLI_CONTRACT_ADDRESS", "0x514910771AF9Ca656af840dff83E8264EcF986CA")
 	store.Config.Set("FLAGS_CONTRACT_ADDRESS", "0x4A5b9B4aD08616D11F3A402FF7cBEAcB732a76C6")
-	store.Config.Set("CHAINLINK_PORT", 6688)
+	store.Config.Set("PLUGIN_PORT", 6688)
 
 	ethClient := new(mocks.Client)
 	ethClient.On("Dial", mock.Anything).Return(nil)
@@ -82,7 +82,7 @@ func TestClient_RunNodeShowsEnv(t *testing.T) {
 	assert.Contains(t, logs, "ALLOW_ORIGINS: http://localhost:3000,http://localhost:6688\\n")
 	assert.Contains(t, logs, "BRIDGE_RESPONSE_URL: http://localhost:6688\\n")
 	assert.Contains(t, logs, "BLOCK_BACKFILL_DEPTH: 10\\n")
-	assert.Contains(t, logs, "CHAINLINK_PORT: 6688\\n")
+	assert.Contains(t, logs, "PLUGIN_PORT: 6688\\n")
 	assert.Contains(t, logs, "CLIENT_NODE_URL: http://")
 	assert.Contains(t, logs, "ETH_CHAIN_ID: 0\\n")
 	assert.Contains(t, logs, "ETH_GAS_BUMP_THRESHOLD: 3\\n")
@@ -91,7 +91,7 @@ func TestClient_RunNodeShowsEnv(t *testing.T) {
 	assert.Contains(t, logs, "ETH_URL: ws://")
 	assert.Contains(t, logs, "FLAGS_CONTRACT_ADDRESS: 0x4A5b9B4aD08616D11F3A402FF7cBEAcB732a76C6\\n")
 	assert.Contains(t, logs, "JSON_CONSOLE: false")
-	assert.Contains(t, logs, "LINK_CONTRACT_ADDRESS: 0x514910771AF9Ca656af840dff83E8264EcF986CA\\n")
+	assert.Contains(t, logs, "PLI_CONTRACT_ADDRESS: 0x514910771AF9Ca656af840dff83E8264EcF986CA\\n")
 	assert.Contains(t, logs, "LOG_LEVEL: debug\\n")
 	assert.Contains(t, logs, "LOG_TO_DISK: true")
 	assert.Contains(t, logs, "MIN_INCOMING_CONFIRMATIONS: 1\\n")
@@ -324,7 +324,7 @@ func TestClient_LogToDiskOptionDisablesAsExpected(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			config, configCleanup := cltest.NewConfig(t)
 			defer configCleanup()
-			config.Set("CHAINLINK_DEV", true)
+			config.Set("PLUGIN_DEV", true)
 			config.Set("LOG_TO_DISK", tt.logToDiskValue)
 			require.NoError(t, os.MkdirAll(config.RootDir(), os.FileMode(0700)))
 			defer os.RemoveAll(config.RootDir())

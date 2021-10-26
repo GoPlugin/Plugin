@@ -1,14 +1,14 @@
 pragma solidity 0.5.0;
 
-import "./MaliciousChainlink.sol";
-import "../ChainlinkClient.sol";
-import "../vendor/SafeMathChainlink.sol";
+import "./MaliciousPlugin.sol";
+import "../PluginClient.sol";
+import "../vendor/SafeMathPlugin.sol";
 
-contract MaliciousChainlinkClient is ChainlinkClient {
-  using MaliciousChainlink for MaliciousChainlink.Request;
-  using MaliciousChainlink for MaliciousChainlink.WithdrawRequest;
-  using Chainlink for Chainlink.Request;
-  using SafeMathChainlink for uint256;
+contract MaliciousPluginClient is PluginClient {
+  using MaliciousPlugin for MaliciousPlugin.Request;
+  using MaliciousPlugin for MaliciousPlugin.WithdrawRequest;
+  using Plugin for Plugin.Request;
+  using SafeMathPlugin for uint256;
 
   uint256 private maliciousRequests = 1;
   mapping(bytes32 => address) private maliciousPendingRequests;
@@ -17,56 +17,56 @@ contract MaliciousChainlinkClient is ChainlinkClient {
     bytes32 _specId,
     address _callbackAddress,
     bytes4 _callbackFunction
-  ) internal pure returns (MaliciousChainlink.WithdrawRequest memory) {
-    MaliciousChainlink.WithdrawRequest memory req;
+  ) internal pure returns (MaliciousPlugin.WithdrawRequest memory) {
+    MaliciousPlugin.WithdrawRequest memory req;
     return req.initializeWithdraw(_specId, _callbackAddress, _callbackFunction);
   }
 
-  function chainlinkTargetRequest(address _target, Chainlink.Request memory _req, uint256 _amount)
+  function pluginTargetRequest(address _target, Plugin.Request memory _req, uint256 _amount)
     internal
     returns(bytes32 requestId)
   {
     requestId = keccak256(abi.encodePacked(_target, maliciousRequests));
     _req.nonce = maliciousRequests;
-    maliciousPendingRequests[requestId] = chainlinkOracleAddress();
-    emit ChainlinkRequested(requestId);
-    LinkTokenInterface _link = LinkTokenInterface(chainlinkTokenAddress());
-    require(_link.transferAndCall(chainlinkOracleAddress(), _amount, encodeTargetRequest(_req)), "Unable to transferAndCall to oracle");
+    maliciousPendingRequests[requestId] = pluginOracleAddress();
+    emit PluginRequested(requestId);
+    PliTokenInterface _pli = PliTokenInterface(pluginTokenAddress());
+    require(_pli.transferAndCall(pluginOracleAddress(), _amount, encodeTargetRequest(_req)), "Unable to transferAndCall to oracle");
     maliciousRequests += 1;
 
     return requestId;
   }
 
-  function chainlinkPriceRequest(Chainlink.Request memory _req, uint256 _amount)
+  function pluginPriceRequest(Plugin.Request memory _req, uint256 _amount)
     internal
     returns(bytes32 requestId)
   {
     requestId = keccak256(abi.encodePacked(this, maliciousRequests));
     _req.nonce = maliciousRequests;
-    maliciousPendingRequests[requestId] = chainlinkOracleAddress();
-    emit ChainlinkRequested(requestId);
-    LinkTokenInterface _link = LinkTokenInterface(chainlinkTokenAddress());
-    require(_link.transferAndCall(chainlinkOracleAddress(), _amount, encodePriceRequest(_req)), "Unable to transferAndCall to oracle");
+    maliciousPendingRequests[requestId] = pluginOracleAddress();
+    emit PluginRequested(requestId);
+    PliTokenInterface _pli = PliTokenInterface(pluginTokenAddress());
+    require(_pli.transferAndCall(pluginOracleAddress(), _amount, encodePriceRequest(_req)), "Unable to transferAndCall to oracle");
     maliciousRequests += 1;
 
     return requestId;
   }
 
-  function chainlinkWithdrawRequest(MaliciousChainlink.WithdrawRequest memory _req, uint256 _wei)
+  function pluginWithdrawRequest(MaliciousPlugin.WithdrawRequest memory _req, uint256 _wei)
     internal
     returns(bytes32 requestId)
   {
     requestId = keccak256(abi.encodePacked(this, maliciousRequests));
     _req.nonce = maliciousRequests;
-    maliciousPendingRequests[requestId] = chainlinkOracleAddress();
-    emit ChainlinkRequested(requestId);
-    LinkTokenInterface _link = LinkTokenInterface(chainlinkTokenAddress());
-    require(_link.transferAndCall(chainlinkOracleAddress(), _wei, encodeWithdrawRequest(_req)), "Unable to transferAndCall to oracle");
+    maliciousPendingRequests[requestId] = pluginOracleAddress();
+    emit PluginRequested(requestId);
+    PliTokenInterface _pli = PliTokenInterface(pluginTokenAddress());
+    require(_pli.transferAndCall(pluginOracleAddress(), _wei, encodeWithdrawRequest(_req)), "Unable to transferAndCall to oracle");
     maliciousRequests += 1;
     return requestId;
   }
 
-  function encodeWithdrawRequest(MaliciousChainlink.WithdrawRequest memory _req)
+  function encodeWithdrawRequest(MaliciousPlugin.WithdrawRequest memory _req)
     internal pure returns (bytes memory)
   {
     return abi.encodeWithSelector(
@@ -77,7 +77,7 @@ contract MaliciousChainlinkClient is ChainlinkClient {
       _req.buf.buf);
   }
 
-  function encodeTargetRequest(Chainlink.Request memory _req)
+  function encodeTargetRequest(Plugin.Request memory _req)
     internal pure returns (bytes memory)
   {
     return abi.encodeWithSelector(
@@ -92,7 +92,7 @@ contract MaliciousChainlinkClient is ChainlinkClient {
       _req.buf.buf);
   }
 
-  function encodePriceRequest(Chainlink.Request memory _req)
+  function encodePriceRequest(Plugin.Request memory _req)
     internal pure returns (bytes memory)
   {
     return abi.encodeWithSelector(

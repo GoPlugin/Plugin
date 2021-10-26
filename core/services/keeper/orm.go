@@ -3,7 +3,6 @@ package keeper
 import (
 	"context"
 
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/keystore/keys/ethkey"
 	"github.com/GoPlugin/Plugin/core/store/models"
 	"github.com/GoPlugin/Plugin/core/store/orm"
@@ -12,20 +11,18 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-func NewORM(db *gorm.DB, txm transmitter, config orm.ConfigReader, strategy bulletprooftxmanager.TxStrategy) ORM {
+func NewORM(db *gorm.DB, txm transmitter, config *orm.Config) ORM {
 	return ORM{
-		DB:       db,
-		txm:      txm,
-		config:   config,
-		strategy: strategy,
+		DB:     db,
+		txm:    txm,
+		config: config,
 	}
 }
 
 type ORM struct {
-	DB       *gorm.DB
-	txm      transmitter
-	config   orm.ConfigReader
-	strategy bulletprooftxmanager.TxStrategy
+	DB     *gorm.DB
+	txm    transmitter
+	config *orm.Config
 }
 
 func (korm ORM) Registries(ctx context.Context) (registries []Registry, _ error) {
@@ -141,5 +138,5 @@ func (korm ORM) CreateEthTransactionForUpkeep(tx *gorm.DB, upkeep UpkeepRegistra
 	from := upkeep.Registry.FromAddress.Address()
 	to := upkeep.Registry.ContractAddress.Address()
 	gasLimit := upkeep.ExecuteGas + korm.config.KeeperRegistryPerformGasOverhead()
-	return korm.txm.CreateEthTransaction(tx, from, to, payload, gasLimit, nil, korm.strategy)
+	return korm.txm.CreateEthTransaction(tx, from, to, payload, gasLimit, nil)
 }

@@ -133,7 +133,7 @@ export const RecentRuns = withStyles(chartCardStyles)(
                           className={classes.paymentText}
                           variant="h5"
                         >
-                          Link Payment
+                          Pli Payment
                         </Typography>
                         <Typography className={classes.earnedText}>
                           {totalLinkEarned(job)}

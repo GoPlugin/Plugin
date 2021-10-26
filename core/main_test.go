@@ -14,7 +14,7 @@ func ExampleRun() {
 	t := &testing.T{}
 	tc, cleanup := cltest.NewConfig(t)
 	defer cleanup()
-	tc.Config.Set("CHAINLINK_DEV", false)
+	tc.Config.Set("PLUGIN_DEV", false)
 	testClient := &cmd.Client{
 		Renderer:               cmd.RendererTable{Writer: ioutil.Discard},
 		Config:                 tc.Config,
@@ -30,7 +30,7 @@ func ExampleRun() {
 	Run(testClient, "core.test", "--version")
 	// Output:
 	// NAME:
-	//    core.test - CLI for Chainlink
+	//    core.test - CLI for Plugin
 
 	// USAGE:
 	//    core.test [global options] command [command options] [arguments...]
@@ -44,7 +44,7 @@ func ExampleRun() {
 	//    bridges         Commands for Bridges communicating with External Adapters
 	//    config          Commands for the node's configuration
 	//    jobs            Commands for managing Jobs
-	//    keys            Commands for managing various types of keys used by the Chainlink node
+	//    keys            Commands for managing various types of keys used by the Plugin node
 	//    node, local     Commands for admin actions that must be run locally
 	//    runs            Commands for managing Runs
 	//    txs             Commands for handling Ethereum transactions

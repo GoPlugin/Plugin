@@ -23,7 +23,7 @@ func removeHidden(cmds ...cli.Command) []cli.Command {
 // NewApp returns the command-line parser/function-router for the given client
 func NewApp(client *Client) *cli.App {
 	app := cli.NewApp()
-	app.Usage = "CLI for Chainlink"
+	app.Usage = "CLI for Plugin"
 	app.Version = fmt.Sprintf("%v@%v", static.Version, static.Sha)
 	app.Flags = []cli.Flag{
 		cli.BoolFlag{
@@ -262,7 +262,7 @@ func NewApp(client *Client) *cli.App {
 		},
 		{
 			Name:  "keys",
-			Usage: "Commands for managing various types of keys used by the Chainlink node",
+			Usage: "Commands for managing various types of keys used by the Plugin node",
 			Subcommands: []cli.Command{
 				{
 					Name:  "eth",

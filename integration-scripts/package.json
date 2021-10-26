@@ -1,5 +1,5 @@
 {
-  "name": "@chainlink/integration-scripts",
+  "name": "@plugin/integration-scripts",
   "version": "0.0.1",
   "description": "Scripts for helping perform integration tests",
   "repository": "https://github.com/GoPlugin/Plugin",
@@ -26,8 +26,8 @@
   "dependencies": {
     "@0x/sol-compiler": "4.0.8",
     "@0x/sol-trace": "^3.0.29",
-    "@chainlink/contracts": "0.1.6",
-    "@chainlink/test-helpers": "0.0.5",
+    "@goplugin/contracts": "0.0.1",
+    "@goplugin/plugin-test-helpers": "1.0.0",
     "@typechain/ethers-v4": "^4.0.0",
     "chalk": "^4.1.0",
     "ethers": "^4.0.45",

@@ -11,7 +11,6 @@ import (
 	"github.com/GoPlugin/Plugin/core/internal/cltest"
 	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/keeper_registry_wrapper"
 	"github.com/GoPlugin/Plugin/core/internal/mocks"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/job"
 	"github.com/GoPlugin/Plugin/core/services/keeper"
 	"github.com/GoPlugin/Plugin/core/services/log"
@@ -69,7 +68,7 @@ func setupRegistrySync(t *testing.T) (
 	})).Return(func() {})
 	lbMock.On("IsConnected").Return(true).Maybe()
 
-	orm := keeper.NewORM(store.DB, nil, store.Config, bulletprooftxmanager.SendEveryStrategy{})
+	orm := keeper.NewORM(store.DB, nil, store.Config)
 	synchronizer := keeper.NewRegistrySynchronizer(j, contract, orm, jpv2.Jrm, lbMock, syncInterval, 1)
 	return store, synchronizer, ethMock, lbMock, j
 }

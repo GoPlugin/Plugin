@@ -2,7 +2,6 @@ package fluxmonitorv2
 
 import (
 	"github.com/pkg/errors"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/eth"
 	"github.com/GoPlugin/Plugin/core/services/job"
 	"github.com/GoPlugin/Plugin/core/services/keystore"
@@ -65,12 +64,10 @@ func (d *Delegate) ServicesForSpec(spec job.Job) (services []job.Service, err er
 		return nil, errors.Errorf("Delegate expects a *job.FluxMonitorSpec to be present, got %v", spec)
 	}
 
-	strategy := bulletprooftxmanager.NewQueueingTxStrategy(spec.ExternalJobID, d.cfg.FMDefaultTransactionQueueDepth)
-
 	fm, err := NewFromJobSpec(
 		spec,
 		d.db,
-		NewORM(d.db, d.txm, strategy),
+		NewORM(d.db, d.txm),
 		d.jobORM,
 		d.pipelineORM,
 		NewKeyStore(d.ethKeyStore),

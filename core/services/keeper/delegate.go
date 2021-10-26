@@ -4,7 +4,6 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 	"github.com/GoPlugin/Plugin/core/internal/gethwrappers/generated/keeper_registry_wrapper"
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/eth"
 	httypes "github.com/GoPlugin/Plugin/core/services/headtracker/types"
 	"github.com/GoPlugin/Plugin/core/services/job"
@@ -16,13 +15,12 @@ import (
 )
 
 type transmitter interface {
-	CreateEthTransaction(db *gorm.DB, fromAddress, toAddress common.Address, payload []byte, gasLimit uint64, meta interface{}, strategy bulletprooftxmanager.TxStrategy) (etx models.EthTx, err error)
+	CreateEthTransaction(db *gorm.DB, fromAddress, toAddress common.Address, payload []byte, gasLimit uint64, meta interface{}) (etx models.EthTx, err error)
 }
 
 type Delegate struct {
 	config          orm.ConfigReader
-	db              *gorm.DB
-	txm             transmitter
+	orm             ORM
 	jrm             job.ORM
 	pr              pipeline.Runner
 	ethClient       eth.Client
@@ -44,8 +42,7 @@ func NewDelegate(
 ) *Delegate {
 	return &Delegate{
 		config:          config,
-		db:              db,
-		txm:             txm,
+		orm:             NewORM(db, txm, config),
 		jrm:             jrm,
 		pr:              pr,
 		ethClient:       ethClient,
@@ -74,14 +71,11 @@ func (d *Delegate) ServicesForSpec(spec job.Job) (services []job.Service, err er
 	if err != nil {
 		return nil, errors.Wrap(err, "unable to create keeper registry contract wrapper")
 	}
-	strategy := bulletprooftxmanager.NewQueueingTxStrategy(spec.ExternalJobID, d.config.KeeperDefaultTransactionQueueDepth())
-
-	orm := NewORM(d.db, d.txm, d.config, strategy)
 
 	registrySynchronizer := NewRegistrySynchronizer(
 		spec,
 		contract,
-		orm,
+		d.orm,
 		d.jrm,
 		d.logBroadcaster,
 		d.config.KeeperRegistrySyncInterval(),
@@ -89,7 +83,7 @@ func (d *Delegate) ServicesForSpec(spec job.Job) (services []job.Service, err er
 	)
 	upkeepExecuter := NewUpkeepExecuter(
 		spec,
-		orm,
+		d.orm,
 		d.pr,
 		d.ethClient,
 		d.headBroadcaster,

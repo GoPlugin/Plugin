@@ -1,16 +1,16 @@
 pragma solidity ^0.4.24;
 
 
-import { ERC20Basic as linkERC20Basic } from "../interfaces/ERC20Basic.sol";
-import { SafeMathChainlink as linkSafeMath } from "./SafeMathChainlink.sol";
+import { ERC20Basic as pliERC20Basic } from "../interfaces/ERC20Basic.sol";
+import { SafeMathPlugin as pliSafeMath } from "./SafeMathPlugin.sol";
 
 
 /**
  * @title Basic token
  * @dev Basic version of StandardToken, with no allowances. 
  */
-contract BasicToken is linkERC20Basic {
-  using linkSafeMath for uint256;
+contract BasicToken is pliERC20Basic {
+  using pliSafeMath for uint256;
 
   mapping(address => uint256) balances;
 

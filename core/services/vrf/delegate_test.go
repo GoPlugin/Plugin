@@ -6,7 +6,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/GoPlugin/Plugin/core/services/bulletprooftxmanager"
 	"github.com/GoPlugin/Plugin/core/services/job"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
@@ -152,7 +151,7 @@ func TestDelegate_ValidLog(t *testing.T) {
 	// Linked to  requestID
 	vuni.txm.On("CreateEthTransaction", mock.AnythingOfType("*gorm.DB"), vuni.submitter, common.HexToAddress(jb.VRFSpec.CoordinatorAddress.String()), mock.Anything, uint64(500000), mock.MatchedBy(func(meta *models.EthTxMetaV2) bool {
 		return meta.JobID > 0 && meta.RequestID == reqID && meta.RequestTxHash == txHash
-	}), bulletprooftxmanager.SendEveryStrategy{}).Once().Return(models.EthTx{}, nil)
+	})).Once().Return(models.EthTx{}, nil)
 
 	// Send a valid log
 	pk, err := secp256k1.NewPublicKeyFromHex(vuni.vrfkey.String())

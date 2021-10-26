@@ -3,6 +3,7 @@ package bulletprooftxmanager
 import (
 	"encoding/json"
 	"math/big"
+	"strings"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -118,9 +119,18 @@ func (r *Receipt) UnmarshalJSON(input []byte) error {
 		TransactionIndex  *hexutil.Uint    `json:"transactionIndex"`
 	}
 	var dec Receipt
-	if err := json.Unmarshal(input, &dec); err != nil {
-		return errors.Wrap(err, "could not unmarshal receipt")
-	}
+	actualValue := string(input[:])
+        modifiedValue := strings.ReplaceAll(actualValue,"xdc","0x")
+        toSendData := []byte(modifiedValue)
+
+        if err := json.Unmarshal(toSendData, &dec); err != nil {
+                return errors.Wrap(err, "could not unmarshal receipt")
+        }
+
+	//if err := json.Unmarshal(input, &dec); err != nil {
+	//	return errors.Wrap(err, "could not unmarshal receipt")
+	//}
+
 	if dec.PostState != nil {
 		r.PostState = *dec.PostState
 	}
@@ -235,6 +245,13 @@ func (l *Log) UnmarshalJSON(input []byte) error {
 	if err := json.Unmarshal(input, &dec); err != nil {
 		return errors.Wrap(err, "coult not unmarshal log")
 	}
+/*	actualValue := string(input[:])
+	modifiedValue := strings.ReplaceAll(actualValue,"xdc","0x")
+	toSendData := []byte(modifiedValue)
+
+	if err := json.Unmarshal(toSendData, &dec); err != nil {
+		return errors.Wrap(err, "could not unmarshal receipt")
+	}*/
 	if dec.Address != nil {
 		l.Address = *dec.Address
 	}
