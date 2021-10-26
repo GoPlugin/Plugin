@@ -14,7 +14,6 @@ require (
 	github.com/ethereum/go-ethereum v1.10.3
 	github.com/fatih/color v1.12.0
 	github.com/fxamacker/cbor/v2 v2.3.0
-	github.com/garslo/gogen v0.0.0-20170307003452-d6ebae628c7c // indirect
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/expvar v0.0.0-20181230111036-f23b556cc79f
 	github.com/gin-contrib/size v0.0.0-20190528085907-355431950c57
@@ -51,8 +50,8 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/shopspring/decimal v1.2.0
 	github.com/sirupsen/logrus v1.8.1 // indirect
-	github.com/smartcontractkit/gencodec v0.0.0-20181025021405-42dc7da8c287 // indirect
 	github.com/smartcontractkit/libocr v0.0.0-20210617175326-472ada9f2eb2
+	github.com/smartcontractkit/wsrpc v0.3.4
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.7.0
 	github.com/tevino/abool v0.0.0-20170917061928-9b9efcf221b5
@@ -64,7 +63,7 @@ require (
 	go.dedis.ch/fixbuf v1.0.3
 	go.dedis.ch/kyber/v3 v3.0.13
 	go.uber.org/atomic v1.7.0
-	go.uber.org/multierr v1.6.0
+	go.uber.org/multierr v1.7.0
 	go.uber.org/zap v1.17.0
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
@@ -72,6 +71,7 @@ require (
 	golang.org/x/text v0.3.6
 	golang.org/x/tools v0.1.2
 	gonum.org/v1/gonum v0.9.1
+	google.golang.org/protobuf v1.26.0
 	gopkg.in/guregu/null.v4 v4.0.0
 	gorm.io/driver/postgres v1.0.8
 	gorm.io/gorm v1.20.12
