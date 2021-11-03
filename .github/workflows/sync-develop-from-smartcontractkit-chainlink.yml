@@ -10,7 +10,7 @@ jobs:
     name: Sync
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
         with:
           ref: develop
         if: env.GITHUB_REPOSITORY != 'smartcontractkit/plugin'
