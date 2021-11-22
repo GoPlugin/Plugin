@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fatih/color"
 	"github.com/GoPlugin/Plugin/core/store/dialects"
 	"github.com/GoPlugin/Plugin/core/store/migrations"
+	"github.com/fatih/color"
 
 	gormpostgres "gorm.io/driver/postgres"
 
@@ -633,6 +633,7 @@ func (cli *Client) ImportKey(c *clipkg.Context) error {
 	}
 
 	srcKeyPath := c.Args().First() // e.g. ./keys/mykey
+	logger.Infow(fmt.Sprintf("Importing key from: %s", srcKeyPath))
 
 	_, err = app.GetKeyStore().Eth().ImportKeyFileToDB(srcKeyPath)
 	return cli.errorOut(err)
