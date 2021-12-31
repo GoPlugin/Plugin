@@ -59,12 +59,12 @@ func (cli *Client) RunNode(c *clipkg.Context) error {
 
 	updateConfig(cli.Config, c.Bool("debug"), c.Int64("replay-from-block"))
 	logger.SetLogger(cli.Config.CreateProductionLogger())
-	logger.Infow(fmt.Sprintf("Starting Chainlink Node %s at commit %s", static.Version, static.Sha), "id", "boot", "Version", static.Version, "SHA", static.Sha, "InstanceUUID", static.InstanceUUID)
+	logger.Infow(fmt.Sprintf("Starting Plugin Node %s at commit %s", static.Version, static.Sha), "id", "boot", "Version", static.Version, "SHA", static.Sha, "InstanceUUID", static.InstanceUUID)
 	if cli.Config.Dev() {
-		logger.Warn("Chainlink is running in DEVELOPMENT mode. This is a security risk if enabled in production.")
+		logger.Warn("Plugin is running in DEVELOPMENT mode. This is a security risk if enabled in production.")
 	}
 	if cli.Config.EthereumDisabled() {
-		logger.Warn("Ethereum is disabled. Chainlink will only run services that can operate without an ethereum connection")
+		logger.Warn("Ethereum is disabled. Plugin will only run services that can operate without an ethereum connection")
 	}
 
 	pwd, err := passwordFromFile(c.String("password"))

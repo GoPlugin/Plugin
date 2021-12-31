@@ -39,7 +39,7 @@ waitForResponse () {
 
 launch_chainlink() {
   waitForResponse $CHAINLINK_URL
-  title "Chainlink is running."
+  title "Plugin is running."
 
   pushd tools/docker
   # Grab logs from our node service and find the unlocked account

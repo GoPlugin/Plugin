@@ -17,7 +17,7 @@ echo 'logging in..'
 echo 'copy binary'
 docker cp chainlink-node:/usr/local/bin/chainlink /usr/local/bin/chainlink
   waitForResponse $CHAINLINK_URL
-  title "Chainlink is running."
+  title "Plugin is running."
 echo 'chainlink admin login'
 chainlink admin login --file /run/secrets/apicredentials
 echo 'launch_chainlink'

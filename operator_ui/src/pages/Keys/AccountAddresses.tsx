@@ -74,7 +74,7 @@ export const AccountAddresses = withStyles(styles)(
                   </TableCell>
                   <TableCell>
                     <Typography variant="body1" color="textSecondary">
-                      Link balance
+                      Pli balance
                     </Typography>
                   </TableCell>
                   <TableCell>
