@@ -37,7 +37,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/multiformats/go-multiaddr v0.3.2
 	github.com/olekukonko/tablewriter v0.0.5
-	github.com/onsi/gomega v1.13.0
+	github.com/onsi/gomega v1.18.1
 	github.com/pelletier/go-toml v1.9.1
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.10.0
@@ -224,7 +224,7 @@ require (
 	go.dedis.ch/protobuf v1.0.11 // indirect
 	go.opencensus.io v0.22.5 // indirect
 	golang.org/x/net v0.0.0-20210428140749-89ef3d95e781 // indirect
-	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
+	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/time v0.0.0-20201208040808-7e3f01d25324 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/ini.v1 v1.51.0 // indirect
