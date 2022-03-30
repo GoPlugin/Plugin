@@ -12,7 +12,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v2
       - name: Yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.0.1
         env:
           cache-name: yarn-cache
         with:
@@ -40,7 +40,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v2
       - name: Yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.0.1
         env:
           cache-name: yarn-cache
         with:
