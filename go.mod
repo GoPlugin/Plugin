@@ -62,7 +62,7 @@ require (
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1
 	golang.org/x/text v0.3.7
-	golang.org/x/tools v0.1.2
+	golang.org/x/tools v0.1.10
 	gonum.org/v1/gonum v0.9.1
 	gopkg.in/guregu/null.v4 v4.0.0
 	gorm.io/driver/postgres v1.2.2
@@ -223,8 +223,8 @@ require (
 	github.com/x448/float16 v0.8.4 // indirect
 	go.dedis.ch/protobuf v1.0.11 // indirect
 	go.opencensus.io v0.22.5 // indirect
-	golang.org/x/net v0.0.0-20210428140749-89ef3d95e781 // indirect
-	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
+	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
+	golang.org/x/sys v0.0.0-20211019181941-9d821ace8654 // indirect
 	golang.org/x/time v0.0.0-20201208040808-7e3f01d25324 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/ini.v1 v1.51.0 // indirect
