@@ -35,7 +35,7 @@ require (
 	github.com/manyminds/api2go v0.0.0-20171030193247-e7b693844a6f
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.4.1
-	github.com/multiformats/go-multiaddr v0.3.2
+	github.com/multiformats/go-multiaddr v0.6.0
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/onsi/gomega v1.13.0
 	github.com/pelletier/go-toml v1.9.1
