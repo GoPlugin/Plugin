@@ -38,7 +38,7 @@ jobs:
           --health-retries 5
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
       - name: Set up Postgres user
         uses: docker://postgres
         with:
@@ -98,7 +98,7 @@ jobs:
       EXPLORER_DOCKER_TAG: ${{ fromJSON('["latest", "develop"]')[github.ref == 'refs/heads/master'] }} # https://github.community/t/do-expressions-support-ternary-operators-to-change-their-returned-value/18114/4
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
       # Login to dockerhub so that we don't get rate limited
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -129,7 +129,7 @@ jobs:
         password: ${{ secrets.DOCKER_READONLY_PASSWORD }}
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
       - name: Yarn cache
         uses: actions/cache@v2
         env:
@@ -154,7 +154,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       # Login to dockerhub so that we don't get rate limited
