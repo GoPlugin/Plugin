@@ -57,6 +57,8 @@ func (c *Chain) IsL2() bool {
 var chains map[int64]*Chain
 var (
 	EthMainnet      = new(Chain)
+	XdcMainnet      = new(Chain)
+	XdcApothem      = new(Chain)
 	EthRinkeby      = new(Chain)
 	EthGoerli       = new(Chain)
 	EthKovan        = new(Chain)
@@ -79,6 +81,8 @@ func init() {
 	chains = make(map[int64]*Chain)
 
 	chains[1] = EthMainnet
+	chains[50] = XdcMainnet
+	chains[51] = XdcApothem
 	chains[4] = EthRinkeby
 	chains[5] = EthGoerli
 	chains[42] = EthKovan

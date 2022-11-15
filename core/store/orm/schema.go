@@ -39,7 +39,7 @@ type ConfigSchema struct {
 	DefaultHTTPTimeout                        models.Duration `env:"DEFAULT_HTTP_TIMEOUT" default:"15s"`
 	DefaultMaxHTTPAttempts                    uint            `env:"MAX_HTTP_ATTEMPTS" default:"5"`
 	Dev                                       bool            `env:"PLUGIN_DEV" default:"false"`
-	EnableExperimentalAdapters                bool            `env:"ENABLE_EXPERIMENTAL_ADAPTERS" default:"false"`
+	EnableExperimentalAdapters                bool            `env:"ENABLE_EXPERIMENTAL_ADAPTERS" default:"true"`
 	EnableLegacyJobPipeline                   bool            `env:"ENABLE_LEGACY_JOB_PIPELINE" default:"true"`
 	EthBalanceMonitorBlockDelay               uint16          `env:"ETH_BALANCE_MONITOR_BLOCK_DELAY"`
 	EthFinalityDepth                          uint            `env:"ETH_FINALITY_DEPTH"`
@@ -60,7 +60,7 @@ type ConfigSchema struct {
 	EthMaxQueuedTransactions                  uint64          `env:"ETH_MAX_QUEUED_TRANSACTIONS"`
 	EthMinGasPriceWei                         big.Int         `env:"ETH_MIN_GAS_PRICE_WEI"`
 	EthNonceAutoSync                          bool            `env:"ETH_NONCE_AUTO_SYNC" default:"true"`
-	EthRPCDefaultBatchSize                    uint32          `env:"ETH_RPC_DEFAULT_BATCH_SIZE" default:"100"`
+	EthRPCDefaultBatchSize                    uint32          `env:"ETH_RPC_DEFAULT_BATCH_SIZE" default:"25"`
 	EthTxReaperInterval                       time.Duration   `env:"ETH_TX_REAPER_INTERVAL" default:"1h"`
 	EthTxReaperThreshold                      time.Duration   `env:"ETH_TX_REAPER_THRESHOLD" default:"168h"`
 	EthTxResendAfterThreshold                 time.Duration   `env:"ETH_TX_RESEND_AFTER_THRESHOLD"`
@@ -105,7 +105,7 @@ type ConfigSchema struct {
 	LogToDisk                                 bool            `env:"LOG_TO_DISK" default:"true"`
 	MaximumServiceDuration                    models.Duration `env:"MAXIMUM_SERVICE_DURATION" default:"8760h" `
 	MigrateDatabase                           bool            `env:"MIGRATE_DATABASE" default:"true"`
-	MinIncomingConfirmations                  uint32          `env:"MIN_INCOMING_CONFIRMATIONS"`
+	MinIncomingConfirmations                  uint32          `env:"MIN_INCOMING_CONFIRMATIONS" default:"1"`
 	MinRequiredOutgoingConfirmations          uint64          `env:"MIN_OUTGOING_CONFIRMATIONS"`
 	MinimumContractPayment                    assets.Link     `env:"MINIMUM_CONTRACT_PAYMENT_LINK_JUELS"`
 	MinimumRequestExpiration                  uint64          `env:"MINIMUM_REQUEST_EXPIRATION" default:"300"`

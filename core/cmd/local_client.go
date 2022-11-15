@@ -64,7 +64,7 @@ func (cli *Client) RunNode(c *clipkg.Context) error {
 		logger.Warn("Plugin is running in DEVELOPMENT mode. This is a security risk if enabled in production.")
 	}
 	if cli.Config.EthereumDisabled() {
-		logger.Warn("Ethereum is disabled. Plugin will only run services that can operate without an ethereum connection")
+		logger.Warn("XDC is disabled. Plugin will only run services that can operate without an XDC connection")
 	}
 
 	pwd, err := passwordFromFile(c.String("password"))
@@ -143,7 +143,7 @@ func (cli *Client) RunNode(c *clipkg.Context) error {
 		}
 	}
 
-	logger.Infof("Chainlink booted in %s", time.Since(static.InitTime))
+	logger.Infof("Plugin booted in %s", time.Since(static.InitTime))
 	return cli.errorOut(cli.Runner.Run(app))
 }
 
@@ -204,7 +204,7 @@ func checkFilePermissions(rootDir string) error {
 			continue
 		}
 		if !owned {
-			logger.Warnf("The file %v is not owned by the user running chainlink. This will be made mandatory in the future.", path)
+			logger.Warnf("The file %v is not owned by the user running Plugin. This will be made mandatory in the future.", path)
 		}
 	}
 	return nil
@@ -319,7 +319,7 @@ func (cli *Client) HardReset(c *clipkg.Context) error {
 	logger.SetLogger(cli.Config.CreateProductionLogger())
 
 	fmt.Print("/// WARNING WARNING WARNING ///\n\n\n")
-	fmt.Print("Do not run this while a Chainlink node is currently using the DB as it could cause undefined behavior.\n\n")
+	fmt.Print("Do not run this while a Plugin node is currently using the DB as it could cause undefined behavior.\n\n")
 	if !confirmAction(c) {
 		return nil
 	}

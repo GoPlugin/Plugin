@@ -97,6 +97,12 @@ func setConfigs() {
 	rinkeby := mainnet
 	rinkeby.LinkContractAddress = "0x01BE23585060835E02B77ef475b0Cc51aA1e0709"
 
+	//XDC COnfiguration
+	xdcmainnet :=mainnet
+	xdcmainnet.LinkContractAddress ="0xff7412ea7c8445c46a8254dfb557ac1e48094391"
+	apothem :=mainnet
+	apothem.LinkContractAddress ="0xb3db178db835b4dfcb4149b2161644058393267d"
+
 	// xDai currently uses AuRa (like Parity) consensus so finality rules will be similar to parity
 	// See: https://www.poa.network/for-users/whitepaper/poadao-v1/proof-of-authority
 	// NOTE: xDai is planning to move to Honeybadger BFT which might have different finality guarantees
@@ -218,6 +224,8 @@ func setConfigs() {
 	avalancheFuji.LinkContractAddress = "0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846"
 
 	EthMainnet.config = mainnet
+	XdcMainnet.config = xdcmainnet
+	XdcApothem.config = apothem
 	EthRinkeby.config = rinkeby
 	EthGoerli.config = goerli
 	EthKovan.config = kovan
