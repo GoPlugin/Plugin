@@ -48,7 +48,7 @@ require (
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.7.0
 	github.com/tevino/abool v0.0.0-20170917061928-9b9efcf221b5
-	github.com/tidwall/gjson v1.8.0
+	github.com/tidwall/gjson v1.14.4
 	github.com/tidwall/sjson v1.1.6
 	github.com/ulule/limiter v0.0.0-20190417201358-7873d115fc4e
 	github.com/unrolled/secure v0.0.0-20190624173513-716474489ad3
@@ -212,8 +212,8 @@ require (
 	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/syndtr/goleveldb v1.0.1-0.20210305035536-64b5b1c73954 // indirect
-	github.com/tidwall/match v1.0.3 // indirect
-	github.com/tidwall/pretty v1.1.0 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.5 // indirect
 	github.com/tklauser/numcpus v0.2.2 // indirect
 	github.com/tyler-smith/go-bip39 v1.0.2 // indirect
