@@ -8,7 +8,7 @@ The docker-compose configuration present in this directory allows for a user to 
 
 # Using the compose script
 
-Inside the `chainlink/tools/docker` directory, there is a helper script that is included which should cover all cases of integration / acceptance / development needs acroos multiple services. To see a list of available commands, perform the following:
+Inside the `chainlink/tools/docker` directory, there is a helper script that is included which should cover all cases of integration / acceptance / development needs across multiple services. To see a list of available commands, perform the following:
 
 ```sh
 cd tools/docker
@@ -306,7 +306,7 @@ The dockerized development environment provides an alternative development and t
 - contain all dependencies in a single docker image
 - contain sensible, pre-configured defaults
 
-The entire chainlink repo is bind-mounted so any changes will take effect immediately - this makes the env good for TDD. Node modules are also bind-mounted, so you shouldn't have to install many deps after launching the container. Go deps are not bind-mounted, so you will have to install those after starting the container. You should only need to do this once, as long as you re-use the container.
+The entire chainlink repo is bind-mounted so any changes will take effect immediately - this makes the env good for TDD. Node modules are also bind-mounted, so you shouldn't have to install many deps after launching the container. Go deps are not bind-mounted, so you will have to install those after starting the container. You should only need to do this once, as long as you reuse the container.
 
 The docker env contains direnv, so whatever changes you make locally to your (bind-mounted) `.envrc` will be reflected in the docker container. The container is built with a default ENV that should require minimal changes for basic testing and development.
 

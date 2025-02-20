@@ -198,7 +198,7 @@ pipeline_tasks_total_finished{job_id="1",job_name="example keeper spec",status="
 
 - The v2 (TOML) `bridge` task's `includeInputAtKey` parameter is being deprecated in favor of variable interpolation. Please migrate your jobs to the new syntax as soon as possible.
 
-- Chainlink no longers writes/reads eth key files to disk
+- Chainlink no longer writes/reads eth key files to disk
 
 - Add sensible default configuration settings for Fantom
 
@@ -258,7 +258,7 @@ chainlink keys vrf import -p path/to/vrfpasswordfile 0x788_exported_key
   by setting `ETH_HEAD_TRACKER_SAMPLING_INTERVAL` env var e.g. `ETH_HEAD_TRACKER_SAMPLING_INTERVAL=5s`.
 
 - Database backups: default directory is now a subdirectory 'backup' of chainlink root dir, and can be changed
-  to any chosed directory by setting a new configuration value: `DATABASE_BACKUP_DIR`
+  to any chose directory by setting a new configuration value: `DATABASE_BACKUP_DIR`
 
 ## [0.10.6] - 2021-05-10
 
@@ -537,7 +537,7 @@ for OCR jobs.
 - Silence spurious `Job spawner ORM attempted to claim locally-claimed job` warnings
 - OCR now drops transmissions instead of queueing them if the node is out of Ether
 - Fixed a long-standing issue where standby nodes would hold transactions open forever while waiting for a lock. This was preventing postgres from running necessary cleanup operations, resulting in bad database performance. Any node operators running standby failover chainlink nodes should see major database performance improvements with this release and may be able to reduce the size of their database instances.
-- Fixed an issue where expired session tokens in operator UI would cause a large number of reqeusts to be sent to the node, resulting in a temporary rate-limit and 429 errors.
+- Fixed an issue where expired session tokens in operator UI would cause a large number of requests to be sent to the node, resulting in a temporary rate-limit and 429 errors.
 - Fixed issue whereby http client could leave too many open file descriptors
 
 ### Changed
@@ -573,7 +573,7 @@ for OCR jobs.
 
 #### BREAKING CHANGES
 
-- Commands for creating/managing legacy jobs and OCR jobs have changed, to reduce confusion and accomodate additional types of jobs using the new pipeline.
+- Commands for creating/managing legacy jobs and OCR jobs have changed, to reduce confusion and accommodate additional types of jobs using the new pipeline.
 
 #### V1 jobs
 
@@ -609,7 +609,7 @@ Name: "pipeline_run_total_time_to_completion",
 Help: "How long each pipeline run took to finish (from the moment it was created)",
 
 Name: "pipeline_tasks_total_finished",
-Help: "The total number of pipline tasks which have finished",
+Help: "The total number of pipeline tasks which have finished",
 
 Name: "pipeline_task_execution_time",
 Help: "How long each pipeline task took to execute",
@@ -621,10 +621,10 @@ Name: "pipeline_task_http_response_body_size",
 Help: "Size (in bytes) of the HTTP response body",
 
 Name: "pipeline_runs_queued",
-Help: "The total number of pipline runs that are awaiting execution",
+Help: "The total number of pipeline runs that are awaiting execution",
 
 Name: "pipeline_task_runs_queued",
-Help: "The total number of pipline task runs that are awaiting execution",
+Help: "The total number of pipeline task runs that are awaiting execution",
 ```
 
 ### Changed
