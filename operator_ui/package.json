@@ -53,7 +53,7 @@
     "react-router-dom": "^5.0.1",
     "react-time-ago": "6.2.2",
     "redux": "^4.1.0",
-    "redux-object": "^1.0.0",
+    "redux-object": "^1.0.1",
     "redux-thunk": "^2.3.0",
     "stream-browserify": "^3.0.0",
     "title-case": "^3.0.2",
