@@ -25,7 +25,7 @@
     "debug": "^4.3.1",
     "ethers": "^4.0.45",
     "tslib": "^2.1.0",
-    "typechain": "^4.0.1"
+    "typechain": "^5.1.2"
   },
   "devDependencies": {
     "@types/cbor": "^5.0.1",
